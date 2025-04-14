@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8fafc;
+  color: #111827;
+}
+
+header {
+  background-color: #4f46e5;
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+nav a {
+  color: white;
+  margin-left: 2rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  background: #eef2ff;
+}
+
+.hero-content {
+  max-width: 500px;
+  margin-right: 2rem;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  background-color: #4f46e5;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #3730a3;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #4f46e5;
+  border: 2px solid #4f46e5;
+}
+
+.btn-secondary:hover {
+  background-color: #e0e7ff;
+}
+
+.hero-image {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 2rem;
+  background: white;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.feature {
+  margin-bottom: 2rem;
+}
+
+.feature h2 {
+  color: #4f46e5;
+}
+
+.testimonial {
+  background-color: #f1f5f9;
+  padding: 3rem 2rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.testimonial blockquote {
+  font-size: 1.4rem;
+}
+
+.testimonial .author {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #e5e7eb;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
