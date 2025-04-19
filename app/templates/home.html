@@ -60,22 +60,6 @@
       margin: 0 auto 2rem;
     }
 
-    .hero .buttons a {
-      display: inline-block;
-      margin: 0 1rem;
-      padding: 1rem 2rem;
-      background-color: #4f46e5;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      transition: background-color 0.3s;
-    }
-
-    .hero .buttons a:hover {
-      background-color: #3730a3;
-    }
-
     .image-section {
       text-align: center;
       padding: 2rem 1rem;
@@ -96,6 +80,27 @@
       color: #777;
       font-size: 0.9rem;
     }
+
+    .content-section {
+      padding: 3rem 1rem;
+      text-align: center;
+      background-color: #ffffff;
+      margin-top: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .content-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #4f46e5;
+    }
+
+    .content-section p {
+      font-size: 1.1rem;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
   </style>
 </head>
 <body>
@@ -111,14 +116,16 @@
   <section class="hero">
     <h1>Pomáháme budoucím gymplákům uspět</h1>
     <p>Doučování od studentů Gymnázia Jana Keplera pro všechny, kdo se připravují na přijímací zkoušky na víceletá gymnázia.</p>
-    <div class="buttons">
-      <a href="{{ url_for('main.about') }}">O projektu</a>
-      <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
-    </div>
+  </section>
+
+  <section class="content-section">
+    <h2>O projektu</h2>
+    <p>Projekt "Studenti studentům" je iniciativou studentů Gymnázia Jana Keplera, která má za cíl pomáhat žákům při přípravě na přijímací zkoušky na víceletá gymnázia. Tento program je vytvořen pro studenty, kteří sami úspěšně prošli přijímacími zkouškami a chtějí sdílet své zkušenosti a znalosti s budoucími gympláky.</p>
+    <p>Je to jedinečná příležitost, jak si vzájemně pomoci – studenti se učí, jak efektivně předávat své znalosti, a zároveň pomáhají mladším spolužákům uspět u přijímaček.</p>
   </section>
 
   <section class="image-section">
-    <img src="{{ url_for('static', filename='img/ukazka.jpg') }}" alt="Ilustrační obrázek kurzu">
+    <img src="{{ url_for('static', filename='img/home_students.jpg') }}" alt="Ilustrační obrázek kurzu">
   </section>
 
   <footer>

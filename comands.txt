@@ -1,0 +1,25 @@
+
+py -m pip install idk
+git status
+git pull
+git add .
+git commit -m "První commit"
+git push -u origin main
+GIT push
+
+
+
+email
+jmeno studenta 
+cislo uctu (pro pridne vraceni)
+cislo uct na ktery poslou penize (firmeni ucet)
+
+email cislo uctu 
+
+pridat kalendar
+
+dát na vyber mezi bankvním ptevdem a platbou kartou  
+
+homepage == o projectu
+o project == reklam du (co vsechno je v cene ( o doucovaní ))
+
