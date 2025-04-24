@@ -1,33 +1,58 @@
-<div class="section">
-  <h1>Koupit kurz</h1>
-  <p>
-    Vyplňte prosím formulář níže – na základě těchto údajů vám budou zaslány pokyny k platbe. si nevíte rady, neváhejte nás kontaktovat.
-    lze taky platit na
-  </p>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studenti studentům – Platba</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
 
-  <form action="/submit" method="POST" style="margin-top: 2rem; background: #ffffff; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-    <div style="margin-bottom: 1.5rem;">
-      <label for="childName" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Jméno dítěte</label>
-      <input type="text" id="childName" name="childName" required style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #ccc;">
+  <header>
+    <div class="header-inner">
+      <div class="logo">🎓 Studenti studentům</div>
+      <nav>
+        <a href="{{ url_for('main.home') }}">Domů</a>
+        <a href="{{ url_for('main.about') }}">O kurzu</a>
+        <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
+      </nav>
     </div>
+  </header>
 
-    <div style="margin-bottom: 1.5rem;">
-      <label for="parentEmail" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">E-mail rodiče</label>
-      <input type="email" id="parentEmail" name="parentEmail" required style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #ccc;">
+  <section class="features">
+    <div class="feature">
+      <h2>Platební formulář</h2>
+      <p>Vyplňte prosím formulář níže – na základě těchto údajů vám budou zaslány pokyny k platbě. Pokud si nevíte rady, neváhejte nás kontaktovat.</p>
+      <p>Lze také platit převodem na náš účet uvedený níže.</p>
+
+      <form action="/submit" method="POST" class="payment-form">
+        <div class="form-group">
+          <label for="childName">Jméno dítěte</label>
+          <input type="text" id="childName" name="childName" required>
+        </div>
+
+        <div class="form-group">
+          <label for="parentEmail">E-mail rodiče</label>
+          <input type="email" id="parentEmail" name="parentEmail" required>
+        </div>
+
+        <div class="form-group">
+          <label for="parentAccount">Číslo účtu rodiče</label>
+          <input type="text" id="parentAccount" name="parentAccount" required>
+        </div>
+
+        <div class="form-group">
+          <label for="targetAccount">Účet pro platbu (náš účet)</label>
+          <input type="text" id="targetAccount" name="targetAccount" value="123456789/0100" readonly>
+        </div>
+
+        <button type="submit" class="btn">Odeslat</button>
+      </form>
     </div>
+  </section>
 
-    <div style="margin-bottom: 1.5rem;">
-      <label for="parentAccount" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Číslo účtu rodiče</label>
-      <input type="text" id="parentAccount" name="parentAccount" required style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #ccc;">
-    </div>
-
-    <div style="margin-bottom: 2rem;">
-      <label for="targetAccount" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Účet pro platbu (náš účet)</label>
-      <input type="text" id="targetAccount" name="targetAccount" value="123456789/0100" readonly style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #ccc; background-color: #f9fafb;">
-    </div>
-
-    <button type="submit" style="background-color: #4f46e5; color: white; padding: 0.8rem 1.5rem; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s;">
-      Odeslat
-    </button>
-  </form>
-</div>
+  <footer>
+    &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
+  </footer>
+</body>
+</html>

@@ -4,132 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Studenti studentům – Domů</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      background-color: #4f46e5;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 1.5rem;
-      font-weight: 500;
-      transition: opacity 0.3s;
-    }
-
-    nav a:hover {
-      opacity: 0.8;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 4rem 1rem 2rem;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      color: #333;
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: #555;
-      max-width: 600px;
-      margin: 0 auto 2rem;
-    }
-
-    .image-section {
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-
-    .image-section img {
-      max-width: 90%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    footer {
-      margin-top: 4rem;
-      padding: 2rem;
-      background-color: #f0f0f0;
-      text-align: center;
-      color: #777;
-      font-size: 0.9rem;
-    }
-
-    .content-section {
-      padding: 3rem 1rem;
-      text-align: center;
-      background-color: #ffffff;
-      margin-top: 2rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .content-section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #4f46e5;
-    }
-
-    .content-section p {
-      font-size: 1.1rem;
-      color: #333;
-      max-width: 800px;
-      margin: 0 auto 2rem;
-    }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body>
+<body class="white-bg">
   <header>
-    <div class="logo">🎓 Studenti studentům</div>
-    <nav>
-      <a href="{{ url_for('main.home') }}">Domů</a>
-      <a href="{{ url_for('main.about') }}">O projektu</a>
-      <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
-    </nav>
+    <div class="header-inner">
+      <div class="logo">🎓 Studenti studentům</div>
+      <nav>
+        <a href="{{ url_for('main.home') }}">Domů</a>
+        <a href="{{ url_for('main.about') }}">O kurzu</a>
+        <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="hero">
-    <h1>Pomáháme budoucím gymplákům uspět</h1>
-    <p>Doučování od studentů Gymnázia Jana Keplera pro všechny, kdo se připravují na přijímací zkoušky na víceletá gymnázia.</p>
+  <section class="hero white-bg">
+    <div class="hero-content">
+      <h1>Pomáháme budoucím gymplákům uspět</h1>
+      <p>Doučování od studentů Gymnázia Jana Keplera pro všechny, kdo se připravují na přijímací zkoušky na víceletá gymnázia.</p>
+    </div>
+    <img class="hero-image" src="{{ url_for('static', filename='img/home_students.jpg') }}" alt="Ilustrační obrázek kurzu">
   </section>
 
-  <section class="content-section">
-    <h2>O projektu</h2>
-    <p>Projekt "Studenti studentům" je iniciativou studentů Gymnázia Jana Keplera, která má za cíl pomáhat žákům při přípravě na přijímací zkoušky na víceletá gymnázia. Tento program je vytvořen pro studenty, kteří sami úspěšně prošli přijímacími zkouškami a chtějí sdílet své zkušenosti a znalosti s budoucími gympláky.</p>
-    <p>Je to jedinečná příležitost, jak si vzájemně pomoci – studenti se učí, jak efektivně předávat své znalosti, a zároveň pomáhají mladším spolužákům uspět u přijímaček.</p>
+  <section class="features highlight-section">
+    <div class="feature">
+      <h2>O projektu</h2>
+      <p>Projekt "Studenti studentům" je iniciativou studentů Gymnázia Jana Keplera, která má za cíl pomáhat žákům při přípravě na přijímací zkoušky. Program vedou úspěšní absolventi zkoušek, kteří sdílí své zkušenosti.</p>
+      <p>Studenti se zároveň učí učit a pomáhají mladším spolužákům uspět.</p>
+    </div>
   </section>
-
-  <section class="image-section">
-    <img src="{{ url_for('static', filename='img/home_students.jpg') }}" alt="Ilustrační obrázek kurzu">
-  </section>
+  
 
   <footer>
     &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
   </footer>
 </body>
 </html>
+
