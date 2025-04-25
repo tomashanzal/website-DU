@@ -6,21 +6,20 @@
   <title>O projektu – Studenti studentům</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body>
-
+<body class="dark-bg">
   <header>
     <div class="header-inner">
       <div class="logo">🎓 Studenti studentům</div>
       <nav>
         <a href="{{ url_for('main.home') }}">Domů</a>
-        <a href="{{ url_for('main.about') }}">O projektu</a>
+        <a href="{{ url_for('main.about') }}">O kurzu</a>
         <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-content">
+  <section class="hero dark-bg">
+    <div class="hero-content text-box">
       <h1>O projektu</h1>
       <p>
         Tento projekt vznikl jako iniciativa studentů Gymnázia Jana Keplera, kteří se rozhodli nabídnout pomoc těm, kdo se připravují na přijímací zkoušky na víceletá gymnázia.
@@ -29,7 +28,7 @@
         Věříme, že díky zkušenostem, které jsme sami nasbírali, můžeme ostatním předat nejen znalosti, ale také praktické tipy, jak se s přípravou poprat co nejlépe.
       </p>
       <p>
-        Naším cílem není jen předávat informace, ale také dodat motivaci, podporu a strukturu v náročném období přípravy. Projekt je organizován a veden studenty, což zajišťuje přirozený a blízký přístup k uchazečům.
+        Naším cílem není jen předávat informace, ale také dodat motivaci, podporu a strukturu v náročném období přípravy. Projekt je organizován a veden studenty, což zajišťuje přirozený a blízky přístup k uchazečům.
       </p>
       <p>
         Webová stránka slouží nejen jako informační portál, ale také jako brána ke koupi kurzů a přihlášení se na doučování.

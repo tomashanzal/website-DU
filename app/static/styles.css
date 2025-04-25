@@ -100,8 +100,9 @@ footer {
   font-size: 0.9rem;
   color: #374151;
 }
+
 .highlight-section {
-  background-color: #eef2ff; /* jemná světle fialová */
+  background-color: #eef2ff;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   padding: 3rem 2rem;
@@ -154,3 +155,28 @@ footer {
   background-color: #3730a3;
 }
 
+body.dark-bg,
+.dark-bg {
+  background-color: #d0e7ff;
+  color: #111827;
+}
+
+.hero.dark-bg {
+  background-color: #d0e7ff;
+  color: #111827;
+}
+
+.text-box {
+  background-color: #f1f1f1; /* tmavší bílá / světle šedá */
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* stín pro efekt rámečku */
+}
+.highlight-section {
+  background-color: #f1f1f1; /* Tmavší bílá / světle šedá pro shodu s text-box */
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 3rem 2rem;
+  margin: 3rem auto;
+  max-width: 1000px;
+}
