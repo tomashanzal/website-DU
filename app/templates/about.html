@@ -7,13 +7,14 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body class="dark-bg">
-  <header>
+  <header>  
     <div class="header-inner">
       <div class="logo">🎓 Studenti studentům</div>
       <nav>
         <a href="{{ url_for('main.home') }}">Domů</a>
         <a href="{{ url_for('main.about') }}">O kurzu</a>
         <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
+        <a href="{{ url_for('main.kontakt') }}">Kontakt</a>
       </nav>
     </div>
   </header>

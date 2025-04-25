@@ -13,11 +13,14 @@ def home():
 def about():
     return render_template("about.html")
 
+@main.route("/kontakt")
+def kontakt():
+    return render_template("kontakt.html")
+
 @main.route("/payment")
 def payment():
     return render_template("payment.html")  # název šablony změněn z payment.html
 
-@main.route("/submit", methods=["POST"])
 @main.route("/submit", methods=["POST"])
 def submit():
     child_name = request.form["childName"]

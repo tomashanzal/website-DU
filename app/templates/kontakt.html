@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studenti studentům – Kontakt</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="dark-bg">
+  <header>
+    <div class="header-inner">
+      <div class="logo">🎓 Studenti studentům</div>
+      <nav>
+        <a href="{{ url_for('main.home') }}">Domů</a>
+        <a href="{{ url_for('main.about') }}">O kurzu</a>
+        <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
+        <a href="{{ url_for('main.kontakt') }}">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero dark-bg">
+    <div class="hero-content">
+      <h1>Kontaktujte nás</h1>
+      <p>Máte dotazy ohledně kurzů, plateb nebo spolupráce? Neváhejte se ozvat.</p>
+
+      <div class="text-box">
+        <p><strong>Email:</strong> <a href="mailto:info@studentistudentum.cz">info@studentistudentum.cz</a></p>
+        <p><strong>Telefon:</strong></p>
+        <ul>
+          <li>+420 777 111 222 (obecné dotazy)</li>
+          <li>+420 777 333 444 (kurzy a přihlášky)</li>
+          <li>+420 777 555 666 (technická podpora)</li>
+        </ul>
+        <p><strong>IČO:</strong> 12345678</p>
+        <p><strong>Místo konání:</strong><br>Gymnázium Jana Keplera<br>Parléřova 2, 169 00 Praha 6</p>
+        <p><strong>Zákaznická linka:</strong><br>Jsme Vám k dispozici každý všední den od 10:00 do 16:00. Pokud hovor zmeškáme, zavoláme Vám zpět.</p>
+      </div>
+    </div>
+    <img class="hero-image" src="{{ url_for('static', filename='img/contact_team.jpg') }}" alt="Náš tým nebo škola">
+  </section>
+
+  <footer>
+    &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
+  </footer>
+</body>
+</html>
