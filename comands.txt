@@ -7,6 +7,8 @@ git commit -m "První commit"
 git push -u origin main
 GIT push
 
+.\venv\Scripts\Activate
+pip freeze > requirements.txt
 
 
 email

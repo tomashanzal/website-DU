@@ -6,7 +6,7 @@
   <title>Studenti studentům – Platba</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body class="dark-bg"></body>
+<body class="dark-bg">
   <header>
     <div class="header-inner">
       <div class="logo">🎓 Studenti studentům</div>
@@ -19,40 +19,31 @@
     </div>
   </header>
 
-  <section class="features">
-    <div class="feature">
-      <h2>Platební formulář</h2>
-      <p>Vyplňte prosím formulář níže – na základě těchto údajů vám budou zaslány pokyny k platbě. Pokud si nevíte rady, neváhejte nás kontaktovat.</p>
-      <p>Lze také platit převodem na náš účet uvedený níže.</p>
+  <section class="highlight-section">
+    <div class="hero-content">
+      <h1>Rezervace kurzu</h1>
+      <p>Investujte do budoucnosti vašeho dítěte! Náš přípravný kurz na přijímací zkoušky na střední školy pomohl už stovkám studentů uspět.</p>
+      
+      <div style="background-color: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 2rem 0;">
+        <h2 style="margin: 0; font-size: 2rem; color: #4f46e5;">Cena kurzu: 8000 Kč</h2>
+      </div>
 
-      <form action="/submit" method="POST" class="payment-form">
-        <div class="form-group">
-          <label for="childName">Jméno dítěte</label>
-          <input type="text" id="childName" name="childName" required>
-        </div>
+      <p>Vyberte si způsob platby:</p>
 
-        <div class="form-group">
-          <label for="parentEmail">E-mail rodiče</label>
-          <input type="email" id="parentEmail" name="parentEmail" required>
-        </div>
+      <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
+        <form action="{{ url_for('main.create_checkout_session') }}" method="POST">
+          <button class="btn" type="submit">💳 Zaplatit kartou (Stripe)</button>
+        </form>
 
-        <div class="form-group">
-          <label for="parentAccount">Číslo účtu rodiče</label>
-          <input type="text" id="parentAccount" name="parentAccount" required>
-        </div>
-
-        <div class="form-group">
-          <label for="targetAccount">Účet pro platbu (náš účet)</label>
-          <input type="text" id="targetAccount" name="targetAccount" value="123456789/0100" readonly>
-        </div>
-
-        <button type="submit" class="btn">Odeslat</button>
-      </form>
+        <a href="{{ url_for('main.prevod') }}" class="btn" style="text-align: center;">🏦 Zaplatit bankovním převodem</a>
+      </div>
     </div>
   </section>
 
-  <footer>
-    &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
-  </footer>
-</body>
-</html>
+  <section class="features">
+    <div class="feature">
+      <h2>Co získáte?</h2>
+      <p><strong>✅ Malé skupinky</strong> – individuální přístup ke každému studentovi.</p>
+      <p><strong>✅ Zkušení lektoři</strong> – studenti a absolventi Gymnázia Jana Keplera.</p>
+      <p><strong>✅ Materiály v ceně</strong> – žádné skryté poplatky.</p>
+      <p><strong>✅ Přátelská atmosféra</strong> – podpora a motivace bě
