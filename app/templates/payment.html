@@ -3,8 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Přípravný kurz na přijímací zkoušky na střední školy. Investujte do budoucnosti vašeho dítěte!">
+  <meta name="keywords" content="kurz, přijímací zkoušky, střední školy, platba, online kurz">
   <title>Studenti studentům – Platba</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    .payment-btn {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      background-color: #4f46e5;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+    .payment-btn:hover {
+      background-color: #4338ca;
+      cursor: pointer;
+    }
+    .payment-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+      width: 100%;
+    }
+  </style>
 </head>
 <body class="dark-bg">
   <header>
@@ -19,31 +46,41 @@
     </div>
   </header>
 
-  <section class="highlight-section">
-    <div class="hero-content">
-      <h1>Rezervace kurzu</h1>
-      <p>Investujte do budoucnosti vašeho dítěte! Náš přípravný kurz na přijímací zkoušky na střední školy pomohl už stovkám studentů uspět.</p>
-      
-      <div style="background-color: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: 2rem 0;">
-        <h2 style="margin: 0; font-size: 2rem; color: #4f46e5;">Cena kurzu: 8000 Kč</h2>
+  <main>
+    <section class="highlight-section">
+      <div class="hero-content">
+        <h1>Rezervace kurzu</h1>
+        <p>Investujte do budoucnosti vašeho dítěte! Náš přípravný kurz na přijímací zkoušky na střední školy pomohl už stovkám studentů uspět.</p>
+        
+        <div class="price-card">
+          <h2>Cena kurzu: 8000 Kč</h2>
+        </div>
+
+        <p>Vyberte si způsob platby:</p>
+
+        <div class="payment-buttons">
+          <form action="{{ url_for('main.create_checkout_session') }}" method="POST" style="width: 100%;">
+            <button class="payment-btn" type="submit">💳 Zaplatit kartou (Stripe)</button>
+          </form>
+
+          <a href="{{ url_for('main.prevod') }}" class="payment-btn">🏦 Zaplatit bankovním převodem</a>
+        </div>
       </div>
+    </section>
 
-      <p>Vyberte si způsob platby:</p>
-
-      <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
-        <form action="{{ url_for('main.create_checkout_session') }}" method="POST">
-          <button class="btn" type="submit">💳 Zaplatit kartou (Stripe)</button>
-        </form>
-
-        <a href="{{ url_for('main.prevod') }}" class="btn" style="text-align: center;">🏦 Zaplatit bankovním převodem</a>
+    <section class="features">
+      <div class="feature">
+        <h2>Co získáte?</h2>
+        <p><strong>✅ Malé skupinky</strong> – individuální přístup ke každému studentovi.</p>
+        <p><strong>✅ Zkušení lektoři</strong> – studenti a absolventi Gymnázia Jana Keplera.</p>
+        <p><strong>✅ Materiály v ceně</strong> – žádné skryté poplatky.</p>
+        <p><strong>✅ Přátelská atmosféra</strong> – podpora a motivace během přípravy.</p>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <section class="features">
-    <div class="feature">
-      <h2>Co získáte?</h2>
-      <p><strong>✅ Malé skupinky</strong> – individuální přístup ke každému studentovi.</p>
-      <p><strong>✅ Zkušení lektoři</strong> – studenti a absolventi Gymnázia Jana Keplera.</p>
-      <p><strong>✅ Materiály v ceně</strong> – žádné skryté poplatky.</p>
-      <p><strong>✅ Přátelská atmosféra</strong> – podpora a motivace bě
+  <footer>
+    <p>&copy; 2025 Studenti studentům</p>
+  </footer>
+</body>
+</html>
