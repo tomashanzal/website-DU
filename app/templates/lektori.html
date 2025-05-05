@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Naši lektoři – Studenti studentům</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='lektori.css') }}">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">🎓 Studenti studentům</div>
+      <nav>
+        <a href="{{ url_for('main.home') }}">Domů</a>
+        <a href="{{ url_for('main.about') }}">O kurzu</a>
+        <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
+        <a href="{{ url_for('main.kontakt') }}">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="lektori-container">
+    <h1>Naši lektoři</h1>
+    <div class="lektori-grid">
+
+      <div class="lektor-card">
+        <img src="{{ url_for('static', filename='img/lektor1.jpg') }}" alt="Lektor 1" class="lektor-photo">
+        <h3>Jana Nováková</h3>
+        <p><strong>Předmět:</strong> Matematika</p>
+        <p class="bio">Jana studuje pedagogiku a doučuje matematiku už třetím rokem. Miluje jasné vysvětlování a přátelský přístup.</p>
+      </div>
+
+      <div class="lektor-card">
+        <img src="{{ url_for('static', filename='img/lektor2.jpg') }}" alt="Lektor 2" class="lektor-photo">
+        <h3>Tomáš Dvořák</h3>
+        <p><strong>Předmět:</strong> Čeština</p>
+        <p class="bio">Tomáš je student bohemistiky na UK. Zaměřuje se na individuální práci a motivaci žáků.</p>
+      </div>
+
+      <!-- Přidej další lektory podle potřeby -->
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
+  </footer>
+</body>
+</html>

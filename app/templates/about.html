@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>O projektu – Studenti studentům</title>
+  <title>Jak bude doučování probíhat – Studenti studentům</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-<body class="dark-bg">
+<body>
   <header>  
     <div class="header-inner">
       <div class="logo">🎓 Studenti studentům</div>
@@ -19,23 +19,24 @@
     </div>
   </header>
 
-  <section class="hero dark-bg">
-    <div class="hero-content text-box">
-      <h1>O projektu</h1>
-      <p>
-        Tento projekt vznikl jako iniciativa studentů Gymnázia Jana Keplera, kteří se rozhodli nabídnout pomoc těm, kdo se připravují na přijímací zkoušky na víceletá gymnázia.
-      </p>
-      <p>
-        Věříme, že díky zkušenostem, které jsme sami nasbírali, můžeme ostatním předat nejen znalosti, ale také praktické tipy, jak se s přípravou poprat co nejlépe.
-      </p>
-      <p>
-        Naším cílem není jen předávat informace, ale také dodat motivaci, podporu a strukturu v náročném období přípravy. Projekt je organizován a veden studenty, což zajišťuje přirozený a blízky přístup k uchazečům.
-      </p>
-      <p>
-        Webová stránka slouží nejen jako informační portál, ale také jako brána ke koupi kurzů a přihlášení se na doučování.
-      </p>
+  <section class="highlight-section">
+    <h1>Jak bude doučování probíhat?</h1>
+
+    <div class="timeline">
+      <h2>1. Rozřazení a první část kurzu (říjen – listopad)</h2>
+      <p>Na začátku si žáci napíšou úvodní test podobný CERMATu. Podle výsledků budou rozděleni do skupin po 3–5 lidech.</p>
+      <p>Každá lekce bude obsahovat jeden test, který se postupně projde a vysvětlí. Na konci této části se napíše další test, podle kterého se zaktualizují skupiny.</p>
+
+      <h2>2. Tematická výuka (prosinec – leden)</h2>
+      <p>Výuka se zaměří na konkrétní oblasti, ve kterých mají žáci slabiny – např. zlomky, slovní úlohy apod.</p>
+      <p>Skupiny budou vytvořeny na základě výsledků testu. Na konci této části opět následuje test.</p>
+
+      <h2>3. Intenzivní příprava (únor – březen)</h2>
+      <p>Každou hodinu se bude psát zkušební CERMAT test, který se ihned opraví a společně projde.</p>
+      <p>Žáci tak získají rutinu, jistotu a zpětnou vazbu před ostrou zkouškou.</p>
     </div>
-    <img src="{{ url_for('static', filename='images/about-illustration.png') }}" alt="Ilustrace o projektu" class="hero-image">
+
+    <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Naši lektoři</a>
   </section>
 
   <footer>

@@ -1,15 +1,17 @@
+/* ===== ZÁKLAD ===== */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8fafc;
-  color: #111827;
+  background-color: #f4f7fb; /* Světle modrá */
+  color: #333333; /* Tmavě šedá text */
 }
 
+/* ===== HLAVIČKA ===== */
 header {
-  background-color: #4f46e5;
   padding: 1rem 2rem;
   color: white;
+  background-color: #4a90e2; /* Světle modrá */
 }
 
 .header-inner {
@@ -21,8 +23,9 @@ header {
 }
 
 .logo {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: bold;
+  color: white;
 }
 
 nav a {
@@ -36,115 +39,64 @@ nav a:hover {
   text-decoration: underline;
 }
 
+/* ===== HERO SEKCE ===== */
 .hero {
+  position: relative;
+  background-image: url("img/homepage.webp");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
+  min-height: 60vh;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding: 4rem 2rem;
-  background: #eef2ff;
-  gap: 2rem;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* Tmavý overlay pro lepší čitelnost */
+  z-index: 1;
 }
 
 .hero-content {
-  max-width: 500px;
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
 }
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+.hero-content h1 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
 }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.hero-image {
-  max-width: 400px;
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.features {
-  padding: 3rem 2rem;
-  background: white;
-  max-width: 1000px;
-  margin: 3rem auto;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-}
-
-.feature h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #4f46e5;
-}
-
-body.white-bg,
-.white-bg {
-  background-color: #ffffff;
-}
-
-.feature p {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-footer {
-  text-align: center;
-  padding: 1.5rem;
-  background-color: #e5e7eb;
-  font-size: 0.9rem;
-  color: #374151;
-}
-
-.highlight-section {
-  background-color: #eef2ff;
+/* ===== FEATURES SEKCE ===== */
+.features, .highlight-section {
+  background-color: #e6e6fa; /* Levandulová barva */
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 3rem 2rem;
   margin: 3rem auto;
   max-width: 1000px;
 }
 
-.payment-form {
-  background: #ffffff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin-top: 2rem;
+
+.features h1, .highlight-section h1 {
+  font-size: 2rem;
+  color: #333333; /* Tmavě šedá */
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 0.8rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.form-group input[readonly] {
-  background-color: #f9fafb;
-}
-
+/* ===== TLAČÍTKA ===== */
 .btn {
-  background-color: #4f46e5;
+  background-color: #ff8c00; /* Světle oranžová */
   color: white;
   padding: 0.8rem 1.5rem;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 1rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -152,75 +104,160 @@ footer {
 }
 
 .btn:hover {
-  background-color: #3730a3;
+  background-color: #e07600; /* Tmavě oranžová */
 }
 
-body.dark-bg,
-.dark-bg {
-  background-color: #d0e7ff;
-  color: #111827;
-}
-
-.hero.dark-bg {
-  background-color: #d0e7ff;
-  color: #111827;
-}
-
-.text-box {
-  background-color: #f1f1f1; /* tmavší bílá / světle šedá */
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* stín pro efekt rámečku */
-}
-.highlight-section {
-  background-color: #f1f1f1; /* Tmavší bílá / světle šedá pro shodu s text-box */
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  padding: 3rem 2rem;
-  margin: 3rem auto;
-  max-width: 1000px;
-}
-.price-card {
-  background-color: white;
+/* ===== PATIČKA ===== */
+footer {
+  text-align: center;
   padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #f1f5f9;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+/* ===== TIMELINE SEKCE ===== */
+.timeline {
+  border-left: 4px solid #4a90e2;
+  padding-left: 1.5rem;
   margin: 2rem 0;
+}
+
+.timeline h2 {
+  margin-top: 2rem;
+  color: #4a90e2;
+}
+
+.timeline p {
+  margin: 0.5rem 0 1.5rem;
+}
+
+.kontakt-section h1 {
+  text-align: center;
+  color: #4a90e2;
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+
+.kontakt-section .intro {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.kontakt-box {
+  background-color: #f1f5f9;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  color: #333;
+  line-height: 1.6;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.kontakt-box a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.kontakt-box a:hover {
+  text-decoration: underline;
+}
+
+.kontakt-box ul {
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.lektori-container {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #e6e6fa;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.price-card h2 {
-  margin: 0;
+.lektori-container h1 {
   font-size: 2rem;
-  color: #4f46e5;
+  margin-bottom: 2rem;
+  color: #4a90e2;
 }
 
-.payment-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 2rem;
+.lektori-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.lektor-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.lektor-card:hover {
+  transform: translateY(-5px);
+}
+
+.lektor-photo {
   width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.lektor-card h3 {
+  margin: 0.5rem 0 0.2rem;
+  color: #333;
+}
+
+.lektor-card p {
+  margin: 0.3rem 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.bio {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.btn-lektori {
+  display: inline-block;
+  margin-top: 2rem;
+  text-decoration: none;
+  background-color: #ff8c00;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.btn-lektori:hover {
+  background-color: #e07600;
 }
 
 .payment-btn {
   width: 100%;
-  padding: 0.6rem 1rem; /* menší padding */
-  background-color: #4f46e5;
+  padding: 0.6rem 1rem;
+background-color: #e4a459;
   color: white;
-  font-size: 1rem; /* menší font-size */
+  font-size: 1rem;
   font-weight: 600;
   border: none;
   border-radius: 8px;
   text-align: center;
   transition: background-color 0.3s ease;
 }
-
 .payment-btn:hover {
   background-color: #4338ca;
   cursor: pointer;
 }
-
 .payment-buttons {
   display: flex;
   flex-direction: column;
@@ -228,9 +265,3 @@ body.dark-bg,
   margin-top: 2rem;
   width: 100%;
 }
-
-.payment-btn a {
-  display: inline-block;
-  text-decoration: none;
-}
-

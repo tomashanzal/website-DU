@@ -35,6 +35,10 @@ def payment():
 def prevod():
     return render_template("prevod.html")
 
+@main.route("/lektori")
+def lektori():
+    return render_template("lektori.html")
+
 # Platba přes Stripe (tlačítko pro vytvoření session)
 @main.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
