@@ -6,7 +6,6 @@
   <title>Studenti studentům – Domů</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
 <body>
   <header>
     <div class="header-inner">
@@ -14,6 +13,7 @@
       <nav>
         <a href="{{ url_for('main.home') }}">Domů</a>
         <a href="{{ url_for('main.about') }}">O kurzu</a>
+        <a href="{{ url_for('main.projekt') }}">O projektu</a>
         <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
         <a href="{{ url_for('main.kontakt') }}">Kontakt</a>
       </nav>
@@ -23,15 +23,11 @@
   <section class="hero">
     <div class="hero-content">
       <h1>Propojujeme gympláky s deváťákama</h1>
+      <div class="hero-buttons">
+        <a class="btn" href="{{ url_for('main.projekt') }}">O projektu</a>
+        <a class="btn" href="{{ url_for('main.about') }}">Jak kurz funguje</a>
+      </div>
     </div>
-  </section>
-
-  <section class="features highlight-section">
-    <h1>O projektu</h1>
-    <p>Tenhle projekt vznikl jako jednoduchý nápad: propojit studenty středních škol – konkrétně z Keplera – s deváťáky, kteří se chystají na přijímačky. Všichni jsme si tím sami prošli a víme, jak stresující to období může být. Taky víme, že kvalitní doučování často stojí víc, než si spousta rodin může dovolit. A právě proto jsme tady.</p>
-<p>Nabízíme <strong>dostupné a smysluplné doučování</strong> vedené lidmi, kteří vědí, jak přijímačky opravdu vypadají. Žádná suchá teorie, ale praktické tipy a podpora od těch, co to zvládli.</p>
-<p>Zároveň chceme dát <strong>studentům středních škol možnost férové brigády</strong>, která má smysl – můžou si přivydělat, zlepšit se v komunikaci a pomoct někomu, kdo je přesně tam, kde oni byli před pár lety.</p>
-<p>Děláme to, protože nás štve, že doučování se stalo luxusem. Nemusí být. Tohle je přístupná, přátelská a cenově dostupná alternativa. A hlavně: <strong>funguje.</strong></p>
   </section>
 
   <footer>

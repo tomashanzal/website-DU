@@ -18,6 +18,10 @@ main = Blueprint('main', __name__)
 def home():
     return render_template("home.html")
 
+@main.route("/projekt")
+def projekt():
+    return render_template("projekt.html")
+
 @main.route("/about")
 def about():
     return render_template("about.html")
