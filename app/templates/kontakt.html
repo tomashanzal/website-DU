@@ -3,14 +3,150 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studenti studentům – Kontakt</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='kontakt.css') }}">
+  <title>Kontakt</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f4f3;
+      color: #333333;
+    }
+
+    header {
+      padding: 1rem 5vw;
+      color: white;
+      background-color: #457b9d;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      margin-left: auto;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .kontakt-map-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+    max-width: 1200px;
+    margin: 5vw auto;
+    padding: 1rem 2rem;
+  }
+
+    .kontakt-box {
+      background-color: #e5e5e5;
+      border-radius: 1rem;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      width: 100%;
+      height: 100%;
+      min-height: 350px;
+      max-height: 400px;
+    }
+
+    .kontakt-box h2 {
+      margin-top: 0;
+      color: #1d3557;
+      font-size: 1.6rem;
+    }
+
+    .kontakt-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .kontakt-item a {
+      color: #457b9d;
+      text-decoration: none;
+    }
+
+    .kontakt-item a:hover {
+      text-decoration: underline;
+    }
+
+    .mapa-box {
+      background-color: #e5e5e5;
+      border-radius: 1rem;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      width: 100%;
+      height: 100%;
+    }
+
+    .mapa-box h2 {
+      margin-top: 0;
+      color: #1d3557;
+      font-size: 1.6rem;
+    }
+
+    .mapa-iframe {
+      width: 100%;
+      height: 400px;
+    }
+
+    .doprava {
+      margin-top: 1rem;
+    }
+
+    .doprava h3 {
+      margin-bottom: 0.5rem;
+      color: #1d3557;
+    }
+
+    @media (max-width: 768px) {
+      .kontakt-map-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mapa-iframe {
+        height: 300px;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav a {
+        margin-left: 1rem;
+        display: inline-block;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
+  <header>  
     <div class="header-inner">
-      <div class="logo">🎓 Studenti studentům</div>
+      <div class="logo">🎓 Studna</div>
       <nav>
         <a href="{{ url_for('main.home') }}">Domů</a>
         <a href="{{ url_for('main.projekt') }}">O projektu</a>
@@ -21,26 +157,50 @@
     </div>
   </header>
 
-  <main class="kontakt-section">
-    <h1>Kontaktujte nás</h1>
-    <p class="intro">Máte dotazy ohledně kurzů, plateb nebo spolupráce? Neváhejte se nám ozvat.</p>
+  <section class="kontakt-wrapper">
+    <div class="kontakt-map-grid">
+      <div class="kontakt-box">
+        <h2>Obecné kontakty</h2>
+        <div class="kontakt-item">
+          <strong>📧 Email</strong>
+          <p>Obecné dotazy: <a href="mailto:info@example.com">info@example.com</a></p>
+          <p>Pro vystavovatele: <a href="mailto:vystavovatele@example.com">vystavovatele@example.com</a></p>
+          <p>Pro média: <a href="mailto:media@example.com">media@example.com</a></p>
+        </div>
+        <div class="kontakt-item">
+          <strong>📞 Telefon</strong>
+          <p>+420 123 456 789</p>
+        </div>
+        <div class="kontakt-item">
+          <strong>📍 Adresa</strong>
+          <p>Gymnázium Kepler<br>Parléřova 2<br>Praha 6, 169 00</p>
+        </div>
+      </div>
 
-    <div class="kontakt-box">
-      <p><strong>Email:</strong> <a href="mailto:info@studentistudentum.cz">info@studentistudentum.cz</a></p>
-      <p><strong>Telefon:</strong></p>
-      <ul>
-        <li>+420 777 111 222 (obecné dotazy)</li>
-        <li>+420 777 333 444 (kurzy a přihlášky)</li>
-        <li>+420 777 555 666 (technická podpora)</li>
-      </ul>
-      <p><strong>IČO:</strong> 12345678</p>
-      <p><strong>Místo konání:</strong><br>Gymnázium Jana Keplera<br>Parléřova 2, 169 00 Praha 6</p>
-      <p><strong>Zákaznická linka:</strong><br>Každý všední den od 10:00 do 16:00. Pokud hovor zmeškáme, ozveme se zpět.</p>
+      <div class="mapa-box">
+        <h2>Kde nás najdete</h2>
+        <div class="mapa-iframe">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1279.9552990449008!2d14.38684360857243!3d50.0879606875569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b951a87784a87%3A0x7cc9fd475f7b8166!2sGymn%C3%A1zium%20Jana%20Keplera!5e0!3m2!1scs!2scz!4v1747164217870!5m2!1scs!2scz"
+            width="100%"  
+            height="100%"
+            style="border:0; border-radius: 0.8rem;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <div class="doprava">
+          <h3>Doprava</h3>
+          <p><strong>MHD:</strong></p>
+          <p><strong>Metro:</strong> Linka A, stanice Hradčanská (8 min pěšky)</p>
+          <p><strong>Tramvaj:</strong> 1, 8, 18 – zastávka Hládkov</p>
+          <p><strong>Autobus:</strong> 143 – zastávka Hládkov</p>
+          <br>
+          <p><strong>Autem:</strong> Omezené možnosti parkování. Doporučujeme využít MHD.</p>
+        </div>
+      </div>
     </div>
-  </main>
-
-  <footer>
-    &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
-  </footer>
+  </section>
 </body>
 </html>

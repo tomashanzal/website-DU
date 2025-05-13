@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f7fb;
+  background-color: #f2f4f3;
   color: #333333;
 }
 
@@ -11,7 +11,7 @@ body {
 header {
   padding: 1rem 5vw;
   color: white;
-  background-color: #4a90e2;
+  background-color: #457b9d;
 }
 
 .header-inner {
@@ -84,7 +84,7 @@ nav a:hover {
 
 /* ===== FEATURES SEKCE ===== */
 .features, .highlight-section {
-  background-color: #e6e6fa;
+  background-color: #e5e5e5;
   border-radius: 2vw;
   box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.1);
   padding: 5vw;
@@ -103,7 +103,7 @@ nav a:hover {
 }
 
 .btn {
-  background-color: #ff8c00;
+  background-color: #1d3557;
   color: white;
   padding: 0.8rem 1.5rem;
   font-weight: 600;
@@ -116,8 +116,9 @@ nav a:hover {
 }
 
 .btn:hover {
-  background-color: #e07600;
+  background-color: 1d3557;
 }
+
 
 /* ===== PATIČKA ===== */
 footer {
@@ -128,164 +129,9 @@ footer {
   color: #6b7280;
 }
 
-/* ===== TIMELINE SEKCE ===== */
-.timeline {
-  border-left: 0.5vw solid #4a90e2;
-  padding-left: 2vw;
-  margin: 4vw 0;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.timeline h2 {
-  margin-top: 2vw;
-  color: #4a90e2;
-}
-
-.timeline p {
-  margin: 1vw 0 3vw;
-}
-
-.kontakt-section h1 {
-  text-align: center;
-  color: #4a90e2;
-  font-size: 2.4rem;
-  margin-bottom: 1rem;
-}
-
-.kontakt-section .intro {
-  text-align: center;
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-}
-
-.kontakt-box {
-  background-color: #f1f5f9;
-  border-radius: 12px;
-  padding: 1.5rem 2rem;
-  color: #333;
-  line-height: 1.6;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.kontakt-box a {
-  color: #4a90e2;
-  text-decoration: none;
-}
-
-.kontakt-box a:hover {
-  text-decoration: underline;
-}
-
-.kontakt-box ul {
-  padding-left: 1.2rem;
-  margin-top: 0.5rem;
-}
-
-.lektori-container {
-  max-width: 1000px;
-  margin: 5vw auto;
-  padding: 5vw;
-  background-color: #e6e6fa;
-  border-radius: 2vw;
-  box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.lektori-container h1 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #4a90e2;
-}
-
-.lektori-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-}
-
-.lektor-card {
-  background-color: white;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s;
-}
-
-.lektor-card:hover {
-  transform: translateY(-5px);
-}
-
-.lektor-photo {
-  width: 100%;
-  height: auto;
-  max-height: 220px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.lektor-card h3 {
-  margin: 0.5rem 0 0.2rem;
-  color: #333;
-}
-
-.lektor-card p {
-  margin: 0.3rem 0;
-  color: #555;
-  font-size: 0.95rem;
-}
-
 .bio {
   font-size: 0.9rem;
   color: #666;
-}
-
-.btn-lektori {
-  display: inline-block;
-  margin-top: 2rem;
-  background-color: #ff8c00;
-  color: white;
-  padding: 0.8rem 1.5rem;
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: 8px;
-  transition: background-color 0.3s;
-  text-decoration: none;
-}
-
-.btn-lektori:hover {
-  background-color: #e07600;
-}
-
-.payment-btn {
-  width: 100%;
-  padding: 0.6rem 1rem;
-  background-color: #e4a459;
-  color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  text-align: center;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
-}
-
-.payment-btn:hover {
-  background-color: #4338ca;
-  cursor: pointer;
-}
-
-.payment-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-top: 2rem;
-  width: 100%;
 }
 
 @media (max-width: 768px) {
