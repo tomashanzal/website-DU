@@ -3,35 +3,158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studenti studentům – Domů</title>
+  <title>O projektu – Studenti studentům</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background: linear-gradient(to bottom, #e7ecf8 0%, #ffffff 70%);
+    }
+
+    .hero-landing {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      padding: 3vw 15vw;
+      max-width: 3000px;  
+      margin: 0 auto;
+      gap: 3vw;
+      border-radius: 0rem;
+      background-color: #eef0f2;
+    }
+
+    .hero-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem; /* mezera mezi odstavci */
+    }
+
+    
+
+    .hero-logo {
+      max-width: 12vw;
+      border-radius: 10rem; 
+      height: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      padding:10 2vw ;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+    }
+      
+    .hero-video { 
+      flex: 1.5;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-video iframe {
+      width: 100%;
+      max-width: 725px;
+      aspect-ratio: 16 / 9;
+      border-radius: 1rem;
+      box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.25);
+    }
+
+    .project-info {
+      max-width: 3000px;
+      margin: 0;
+      padding: 2.5vw 5vw;
+      text-align: left;
+      line-height: 1.7;
+      font-size: 1.1rem;
+      color: #1d1d1d;
+      background-color: white;
+    }
+
+    .project-info h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .project-info h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.7rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-landing {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-video iframe {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <header>
     <div class="header-inner">
-      <div class="logo">🎓 Studenti studentům</div>
+      <div class="logo">🎓 Studna</div>
       <nav>
         <a href="{{ url_for('main.home') }}">Domů</a>
         <a href="{{ url_for('main.projekt') }}">O projektu</a>
-        <a href="{{ url_for('main.about') }}">O doučku</a>
+        <a href="{{ url_for('main.about') }}">O doůčku</a>
         <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
         <a href="{{ url_for('main.kontakt') }}">Kontakt</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Propojujeme gympláky s deváťákama</h1>
-      <div class="hero-buttons">
-        <a class="btn" href="{{ url_for('main.projekt') }}">O projektu</a>
-        <a class="btn" href="{{ url_for('main.about') }}">Jak kurz funguje</a>
+  <section class="hero-landing">
+    <div class="hero-text">
+      <img src="{{ url_for('static', filename='img/Logo.webp') }}" alt="Logo USIFEST" class="hero-logo">
+      <h2>Studenti studentum</h2>
+      <p>Doučování 2025-26 | gymnázium Jana Keplera</p>
+      <div class="hero-buttons">  
+        <a href="#" class="btn" style="background-color: #00a8e8;">O projektu</a>
+        <a href="#" class="btn" style="background-color: #ff6392;">O pruběhu doučování</a>
       </div>
+    </div>
+    <div class="hero-video">
+      <iframe src="https://www.youtube.com/embed/YoHD9XEInc0" title="Inception Trailer" frameborder="0" allowfullscreen></iframe>
     </div>
   </section>
 
-  <footer>
-    &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
-  </footer>
+  <section class="project-info" id="o-projektu">
+    <h2>Kdo jsme?</h2>
+    <p>
+      jsme bývalí deváťáci a jejich rodiče, co už přijímačkovým procesem uspěšně prošli. Zažili jsme frustraci z předražených doučování a stres s výběrem škol.
+      A tak jsme založili Studnu. Studentské doučování, 
+      Doučování od studentů pro studenty 
+    </p>
+
+    <h3>Ideový program festivalu</h3>
+    <p>
+      Smíchovská SPŠ a gymnázium se stane centrem aktivních středoškolských studentů...
+    </p>
+    <p>
+      Dalším cílem je aktivizovat studenty středních škol napříč Českou republikou...
+    </p>
+
+    <h3>Základní pravidla festivalu</h3>
+    <p>
+      Základním pravidlem festivalu je, že bude plně v režii studentů...
+    </p>
+    <p>
+      Každý den bude festival otevřený pro veřejnost od cca 8:30 do 16:00 hodin...
+    </p>
+  </section>
 </body>
 </html>
