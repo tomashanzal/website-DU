@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f2f4f3;
+  background-color: white;
   color: #333333;
 }
 
@@ -51,39 +51,28 @@ p {
 }
 
 /* ===== HLAVIČKA ===== */
-header {
-  padding: 1rem 5vw;
+ header {
+  background-color: #06aed5;
+  padding: 1rem 10vw;
   color: white;
-  background-color: #5aa9e6;
 }
-
 .header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
 }
-
+.header-inner nav a {
+  color: white;
+  margin-left: 3rem;
+  text-decoration: none;
+  font-weight: bold;
+  font-weight: 600;         /* tučnější než bold (numeric) */
+  font-size: 1.3rem;        /* větší písmo */
+}
 .logo {
   font-size: 2rem;
   font-weight: bold;
   color: white;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  margin-left: auto;
-}
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1.2rem;
-  padding: 0.5rem 0;
 }
 
 nav a:hover {

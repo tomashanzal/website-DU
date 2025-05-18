@@ -4,54 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kontakt</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f2f4f3;
-      color: #333333;
-    }
-
-    header {
-      padding: 1rem 5vw;
-      color: white;
-      background-color: #457b9d;
-    }
-
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .logo {
-      font-size: 2rem;
-      font-weight: bold;
-      color: white;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 2.5rem;
-      margin-left: auto;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      padding: 0.5rem 0;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
 
     .kontakt-map-grid {
     display: grid;
@@ -64,7 +18,7 @@
   }
 
     .kontakt-box {
-      background-color: #e5e5e5;
+      background-color: #eef0f2;
       border-radius: 1rem;
       box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
       padding: 2rem;
@@ -94,7 +48,7 @@
     }
 
     .mapa-box {
-      background-color: #e5e5e5;
+      background-color: #eef0f2;
       border-radius: 1rem;
       box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
       padding: 2rem;
@@ -102,25 +56,73 @@
       height: 100%;
     }
 
-    .mapa-box h2 {
-      margin-top: 0;
-      color: #1d3557;
-      font-size: 1.6rem;
-    }
+    
 
     .mapa-iframe {
       width: 100%;
       height: 400px;
     }
+    .tym-section {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+  text-align: center;
+}
 
-    .doprava {
-      margin-top: 1rem;
-    }
+.tym-section h2 {
+  font-size: 2rem;
+  color: #1d3557;
+  margin-bottom: 2rem;
+}
 
-    .doprava h3 {
-      margin-bottom: 0.5rem;
-      color: #1d3557;
-    }
+.tym-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  justify-items: center;
+}
+
+
+.tym-clen {
+  background-color: #f8f9fa;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+  text-align: center;
+  max-width: 300px;
+  width: 100%;
+}
+.tym-clen img {
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.tym-clen h3 {
+  margin: 0.5rem 0;
+  color: #1d3557;
+  font-size: 1.1rem;
+}
+
+.tym-clen p {
+  margin: 0.2rem 0;
+  font-size: 0.95rem;
+}
+
+.tym-clen a {
+  color: #457b9d;
+  text-decoration: none;
+}
+
+.tym-clen a:hover {
+  text-decoration: underline;
+}
+
+
+    
 
     @media (max-width: 768px) {
       .kontakt-map-grid {
@@ -139,6 +141,9 @@
       nav a {
         margin-left: 1rem;
         display: inline-block;
+      }
+      .tym-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -202,5 +207,20 @@
       </div>
     </div>
   </section>
+  <section class="tym-section">
+    <h2>Organizační tým</h2>
+    <div class="tym-grid">
+      {% for i in range(1, 7) %}
+      <div class="tym-clen">
+        <img src="{{ url_for('static', filename='img/tym/clen' ~ i ~ '.jpg') }}" alt="Člen týmu {{ i }}">
+        <h3>Jméno Příjmení {{ i }}</h3>
+        <p>📞 +420 123 456 78{{ i }}</p>
+        <p>📧 <a href="mailto:clen{{ i }}@example.com">clen{{ i }}@example.com</a></p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+
 </body>
 </html>
