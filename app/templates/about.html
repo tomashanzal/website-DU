@@ -5,214 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jak bude doučování probíhat – Studenti studentům</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      background-color: #f5faff;
-    }
-    .timeline-wrapper {
-      background-color: white;
-      padding-bottom: 5vw;
-    }
-
-    .dou-flex {
-      display: flex;
-      gap: 3vw;
-      align-items: stretch;
-      justify-content: center;
-      padding: 3vw 10vw;
-      background-color: #eef0f2;
-      border-radius: 1rem;
-      flex-wrap: wrap;
-    }
-    .dou-heading {
-      flex: 1 1 400px;
-      background-color: white;
-      padding: 2rem;
-      padding-bottom: 1rem;
-      margin-top:0vw;
-      border-radius: 1rem;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    }
-    .dou-heading h2 {
-      margin-top: 0;
-      color: #1d3557;
-    }
-    .dou-heading-inner {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2em;
-    }
-    .left-col, .right-col {
-      flex: 1 1 200px;
-    }
-    .left-col p, .right-col p {
-      margin: 0.3em 0;
-    }
-    .left-col strong, .right-col strong {
-      display: block;
-      margin-bottom: 0.3em;
-    }
-
-    .dou-map {
-      flex: 1 1 400px;
-    }
-    .dou-map h2 {
-      text-align: left;
-      color: #1d3557;
-      margin-top: -1vw;
-      margin-bottom: 1.3rem;
-    }
-    .dou-map iframe {
-      width: 100%;
-      height: 85%;
-      min-height: 320px;
-      border: 4px solid #1d3557;
-      
-      border-radius: 1rem;
-      display: block;
-    }
-
-    .timeline-labels {
-      display: flex;
-      justify-content: space-between;
-      font-weight: 600;
-      padding: 0 1rem;
-    }
-    .label-left {
-      color: #17c3b2;
-      margin-left: 15vw;
-      margin-top: 2.5vw;
-    }
-    .label-right {
-      color: #fe6d73;
-      margin-right: 25vw;
-      margin-top: 2.5vw;
-    }
-
-    .timeline-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      padding-top: 2rem;
-      margin: 2.5vw 0;
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .timeline-container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 20px;
-      width: 80%;
-      background-color: #ccc;
-      border-radius: 999px;
-      z-index: 1;
-    }
-    .timeline-container::after {
-      content: '';
-      position: absolute;
-      top: 5px;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 8px;
-      width: 79%;
-      background: linear-gradient(to right, #17c3b2 33.3%, #fe6d73 33.3%);
-      border-radius: 999px;
-      z-index: 2;
-    }
-    .timeline-month {
-      position: relative;
-      text-align: center;
-      flex: 1;
-      max-width: 12%;
-      font-size: 1.1rem;
-      font-weight: 500;
-      z-index: 3;
-      margin: 0 1%;
-    }
-    .timeline-month::before {
-      content: '';
-      position: absolute;
-      top: -1.9vw;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 20px;
-      height: 20px;
-      background-color: white;
-      border: 4px solid #ccc;
-      border-radius: 50%;
-      z-index: 4;
-    }
-
-    .btn-lektori {
-      display: inline-block;
-      margin: 1rem 0;
-      background-color: #ff6392;
-      color: white;
-      padding: 0.7rem 1.5rem;
-      font-weight: 600;
-      font-size: 1rem;
-      border-radius: 8px;
-      transition: background-color 0.3s;
-      text-decoration: none;
-    }
-    .btn-lektori:hover {
-      background-color: #ff4c7d;
-    }
-
-    .timeline-description {
-      display: flex;
-      justify-content: space-around;
-      padding: 3vw 10vw;
-      gap: 3vw;
-      flex-wrap: wrap;
-    }
-    .description-block {
-      flex: 1 1 300px;
-      background-color: #ffffff;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    }
-    .description-block h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: #1d3557;
-    }
-    .description-block p {
-      font-size: 1rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background-color: #1d3557;
-      color: white;
-    }
-  </style>
 </head>
 <body>
-  <section class="timeline-wrapper">
-    <header>
+  <header>
       <div class="header-inner">
         <div class="logo">🎓 Studenti studentům</div>
-        <nav>
+        <nav >
           <a href="{{ url_for('main.home') }}">Domů</a>
           <a href="{{ url_for('main.projekt') }}">O projektu</a>
           <a href="{{ url_for('main.about') }}">O doučku</a>
           <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
           <a href="{{ url_for('main.kontakt') }}">Kontakt</a>
-        </nav>
+        </nav >
       </div>
     </header>
-
+  <section class="timeline-wrapper">
     <div class="dou-flex">
       <div class="dou-heading">
         <h2>Rychlé Info.</h2>
