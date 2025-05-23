@@ -9,14 +9,13 @@
 <body>
   <header>
     <div class="header-inner">
-      <div class="logo">🎓 Studenti studentům</div>
+      <div class="logo">🎓 Studna</div>
       <nav>
-        <a href="{{ url_for('main.home') }}">Domů</a>
-        <a href="{{ url_for('main.projekt') }}">O projektu</a>
-        <a href="{{ url_for('main.about') }}">O doůčku</a>
-        <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
-        <a href="{{ url_for('main.kontakt') }}">Kontakt</a>
-      </nav>
+        <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
+        <a href="{{ url_for('main.projekt') }}" class="{% if request.endpoint == 'main.projekt' %}active{% endif %}">Projekt</a>
+        <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doůčko</a>
+        <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
+        <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
     </div>
   </header>
 

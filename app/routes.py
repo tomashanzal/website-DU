@@ -5,7 +5,7 @@ import base64
 import stripe
 import os
 from dotenv import load_dotenv
-
+from flask import request
 # Načti proměnné z .env souboru
 load_dotenv()
 
