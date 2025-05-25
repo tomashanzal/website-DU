@@ -133,15 +133,6 @@
         height: 300px;
       }
 
-      .header-inner {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      nav a {
-        margin-left: 1rem;
-        display: inline-block;
-      }
       .tym-grid {
         grid-template-columns: 1fr;
       }
@@ -149,12 +140,14 @@
   </style>
 </head>
 <body>
-  <header>  
+  <header>
     <div class="header-inner">
-      <div class="logo">🎓 Studna</div>
+      <div class="logo">
+      <img src="{{ url_for('static', filename='img/Logo.webp') }}" >
+      <span class="studna-text desktop-only">Studna</span>
+      </div>
       <nav>
         <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
-        <a href="{{ url_for('main.projekt') }}" class="{% if request.endpoint == 'main.projekt' %}active{% endif %}">Projekt</a>
         <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doůčko</a>
         <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
         <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -7,6 +8,44 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
   <style>
+    .dou-flex {
+      display: flex;
+      gap: clamp(1rem, 3vw, 3vw);
+      align-items: flex-end;
+      justify-content: center;
+      padding: clamp(1rem, 3vw, 3vw) clamp(3rem, 10vw, 10vw);
+      background-color: #eef0f2;
+      border-radius: clamp(0.5rem, 1vw, 1rem);
+      flex-wrap: wrap;
+    }
+    .dou-heading {
+      flex: 1 1 400px;
+      background-color: white;
+      padding: clamp(1.5rem, 2vw, 2rem);
+      padding-bottom: clamp(0.5rem, 1vw, 1rem);
+      margin-top: 0;
+      border-radius: clamp(0.5rem, 1vw, 1rem);
+      box-shadow: 0 clamp(0.1rem, 0.3vw, 0.4rem) clamp(0.3rem, 1vw, 1rem) rgba(0, 0, 0, 0.05);
+    }
+    .dou-heading h2 {
+      margin-top: 0;
+      color: #1d3557;
+    }
+    .dou-heading-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2em;
+    }
+    .left-col, .right-col {
+      flex: 1 1 200px;
+    }
+    .left-col p, .right-col p {
+      margin: 0.3em 0;
+    }
+    .left-col strong, .right-col strong {
+      display: block;
+      margin-bottom: 0.3em;
+    }
     /* ===== TIMELINE ===== */
     .timeline-wrapper {
       background-color: white;
@@ -84,6 +123,30 @@
       border-radius: 50%;
       z-index: 4;
     }
+    /* ===== POPISY timline===== */
+    .timeline-description {
+      display: flex;
+      justify-content: space-around;
+      padding: clamp(1rem, 3vw, 3vw) clamp(1rem, 10vw, 10vw);
+      gap: clamp(1rem, 3vw, 3vw);
+      flex-wrap: wrap;
+    }
+    .description-block {
+      flex: 1 1 300px;
+      background-color: #ffffff;
+      padding: clamp(1rem, 2vw, 2rem);
+      border-radius: clamp(0.7rem, 1vw, 1rem);
+      box-shadow: 0 clamp(0.1rem, 0.3vw, 0.4rem) clamp(0.3rem, 1vw, 1rem) rgba(0, 0, 0, 0.05);
+    }
+    .description-block h3 {
+      font-size: clamp(1.2rem, 1.5vw, 1.4rem);
+      margin-bottom: 1rem;
+      color: #1d3557;
+    }
+    .description-block p {
+      font-size: clamp(0.9rem, 1vw, 1rem);
+    }
+
     /* ===== MAPA ===== */
     .dou-map {
       flex: 1 1 400px;
@@ -106,15 +169,17 @@
   </style>
 <body>
   <header>
-      <div class="header-inner">
-        <div class="logo">🎓 Studna</div>
+    <div class="header-inner">
+      <div class="logo">
+      <img src="{{ url_for('static', filename='img/Logo.webp') }}" >
+      <span class="studna-text desktop-only">Studna</span>
+      </div>
       <nav>
         <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
-        <a href="{{ url_for('main.projekt') }}" class="{% if request.endpoint == 'main.projekt' %}active{% endif %}">Projekt</a>
         <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doůčko</a>
         <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
         <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
-      </div>
+    </div>
   </header>
   <section class="timeline-wrapper">
     <div class="dou-flex">
@@ -138,7 +203,7 @@
             <p>Masakr: 130 Kč/h → 4 000 Kč</p>
           </div>
         </div>
-          <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Naši lektoři</a>
+        <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Naši lektoři</a>
       </div>
 
       <div class="dou-map">
@@ -186,3 +251,5 @@
   </footer>
 </body>
 </html>
+
+
