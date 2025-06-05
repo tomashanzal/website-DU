@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -13,8 +14,8 @@
       align-items: flex-end; /* změna z 'center' na 'stretch' */
       padding: 3vw 15vw;
       max-width: 3000px;  
-      margin: 0 auto;
-      gap: 3vw;
+      margin: 0vw auto;
+      gap: 2vw;
       border-radius: 0rem;
       background-color: #eef0f2;
     }
@@ -22,7 +23,9 @@
     .hero-text {
       flex: 1;
       display: flex;
+      padding: -4vw 0;
       flex-direction: column;
+      background-color:#eef0f2;
       gap: 0rem; /* mezera mezi odstavci */
     }
 
@@ -40,7 +43,7 @@
     }
       
     .hero-video { 
-      flex: 1.5;
+      flex: 1.2;
       display: flex;
       justify-content: center;
       align-items: center; /* přidáno – iframe se roztáhne na celou výšku */
@@ -66,9 +69,14 @@
       background-color: white;
     }
     .project-info h2 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
+      color: #1d3557;
+      margin-top: clamp(-0.5rem, -1vw, -1vw);
+      margin-bottom: clamp(1rem, 1.3rem, 1.3rem);
+    }
+    @media (max-width: 1399px) {
+      .hero-logo {
+        display: none;
+      }
     }
 
     @media (max-width: 768px) {
@@ -111,7 +119,7 @@
     <div class="hero-text">
       <img src="{{ url_for('static', filename='img/Logo.webp') }}" alt="Logo USIFEST" class="hero-logo">
       <h2>Studenti studentum</h2>
-      <p>Doučování na přijímačky 9. ročníků.  2025-26.</p>
+      <p>Doučování na přijímačky 9. ročníků.   2025-26.</p>
       <p>gymnázium Jana Keplera</p>
       <div class="hero-buttons">  
         <a href="#" class="btn" style="background-color: #00a8e8;">O projektu</a>
@@ -124,14 +132,13 @@
   </section>
 
   <section class="project-info" id="o-projektu">
-    <h2>Kdo jsme?</h2>
-    <p>
-      jsme bývalí deváťáci a jejich rodiče, co už přijímačkovým procesem uspěšně prošli. Zažili jsme frustraci z předražených doučování a stres s výběrem škol.
-      A tak jsme založili Studnu. Studentské doučování, 
+    <h3>Kdo jsme</h3>
+    <p>Jsme bývalí deváťáci a jejich rodiče, co už přijímačkovým procesem uspěšně prošli. Zažili jsme frustraci z předražených doučování a stres s výběrem škol.
+    A tak jsme založili Studnu. Studentské doučování</p>
       Doučování od studentů pro studenty 
     </p>
 
-    <h3>Ideový program festivalu</h3>
+    <h3>Kdo jsme?</h3>
     <p>
       Smíchovská SPŠ a gymnázium se stane centrem aktivních středoškolských studentů...
     </p>
