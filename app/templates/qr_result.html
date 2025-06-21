@@ -3,124 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studenti studentům – Platba</title>
+  <title>Detaily bankovního převodu – Studenti studentům</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      background-color: #4f46e5;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 1.5rem;
-      font-weight: 500;
-      transition: opacity 0.3s;
-    }
-
-    nav a:hover {
-      opacity: 0.8;
-    }
-
-    .section {
-      padding: 2rem 1rem;
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .section h1 {
-      font-size: 2rem;
-      color: #333;
-      margin-bottom: 1rem;
-    }
-
-    .section p {
-      font-size: 1.1rem;
-      color: #555;
-    }
-
-    .section strong {
-      color: #333;
-    }
-
-    .section img {
-      max-width: 300px;
-      margin-top: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-    }
-
-    footer {
-      margin-top: 4rem;
-      padding: 2rem;
-      background-color: #f0f0f0;
+    .qr-section {
       text-align: center;
-      color: #777;
-      font-size: 0.9rem;
+      padding: clamp(3rem, 6vw, 8vw);
+      background-color: #eef0f2;
+      border-radius: clamp(1rem, 2vw, 2vw);
+      box-shadow: 0 clamp(0.3rem, 0.5vw, 1vw) clamp(0.6rem, 1vw, 1vw) rgba(0, 0, 0, 0.1);
+      margin: clamp(2rem, 4vw, 5vw) auto;
+      max-width: 800px;
+    }
+    .qr-section h1 {
+      color: #1d3557;
+      margin-bottom: 1.5rem;
+    }
+    .qr-section img {
+      max-width: 300px;
+      height: auto;
+      border: 5px solid #00a8e8;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+    }
+    .qr-details p {
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
+      margin-bottom: 0.5rem;
+      text-align: left;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .qr-details strong {
+      display: inline-block;
+      min-width: 150px;
+    }
+    .qr-section .btn {
+      margin-top: 2rem;
+      background-color: #00a8e8;
+    }
+    .qr-section .btn:hover {
+      background-color: #008cb3;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <div class="logo">🎓 Studenti studentům</div>
-    <nav>
-      <a href="{{ url_for('main.home') }}">Domů</a>
-      <a href="{{ url_for('main.about') }}">O projektu</a>
-      <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
-    </nav>
+    <div class="header-inner">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='img/Logo.webp') }}" >
+        <span class="studna-text desktop-only">Studna</span>
+      </div>
+      <nav>
+        <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
+        <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
+        <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
+        <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="section">
-    <h1>Děkujeme za vyplnění!</h1>
-    <p>
-      Níže najdete platební údaje – částka, účet a QR kód. Pokud budete potřebovat s čímkoliv pomoct, neváhejte nás kontaktovat.
-    </p>
+  <section class="qr-section">
+    <h1>Detaily bankovního převodu</h1>
+    <p>Použijte tento QR kód pro snadnou platbu kurzu **{{ course_name }}** nebo zadejte údaje ručně.</p>
+    <img src="data:image/png;base64,{{ qr_code }}" alt="QR Kód pro platbu" />
 
-    <div style="margin-bottom: 1.5rem;">
-      <strong>Jméno dítěte:</strong> {{ child_name }}<br>
-      <strong>E-mail rodiče:</strong> {{ parent_email }}
+    <div class="qr-details">
+      <p><strong>Kurz:</strong> {{ course_name }}</p>
+      <p><strong>Jméno žáka:</strong> {{ child_name }}</p>
+      <p><strong>E-mail rodiče:</strong> {{ parent_email }}</p>
+      <p><strong>Částka:</strong> {{ "%.2f" % amount }} CZK</p>
+      <p><strong>Číslo účtu příjemce:</strong> {{ account_number }} / {{ bank_code }}</p>
+      <p><strong>Variabilní symbol:</strong> {{ variable_symbol }}</p>
+      <p><strong>Specifický symbol:</strong> {{ specific_symbol }}</p>
+      <p><strong>Zpráva pro příjemce:</strong> {{ message }}</p>
     </div>
-
-    <div style="margin-bottom: 1.5rem;">
-      <p>
-        Prosíme o platbu <strong>{{ amount }} Kč</strong> na účet <strong>{{ account_number }}</strong>.<br>
-        Do zprávy pro příjemce uveďte: <strong>{{ message }}</strong>
-      </p>
-    </div>
-
-    <div style="margin-top: 2rem; text-align: center;">
-      <p style="margin-bottom: 1rem;">Pro pohodlí můžete použít tento QR kód:</p>
-      <img src="data:image/png;base64,{{ qr_code }}" alt="QR kód">
-    </div>
-
-    <footer>
-      &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
-    </footer>
+    <p class="small-text" style="margin-top: 1rem;">Po odeslání platby obdržíte potvrzení na váš e-mail.</p>
+    <a href="{{ url_for('main.payment') }}" class="btn">Zpět na výběr kurzů</a>
   </section>
 
+  <footer>
+    © 2025 Studenti studentům. Všechna práva vyhrazena.
+  </footer>
 </body>
 </html>
