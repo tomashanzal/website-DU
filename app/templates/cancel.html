@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Platba zrušena – Studenti studentům</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    .result-section {
+      text-align: center;
+      padding: clamp(3rem, 6vw, 8vw);
+      background-color: #eef0f2;
+      border-radius: clamp(1rem, 2vw, 2vw);
+      box-shadow: 0 clamp(0.3rem, 0.5vw, 1vw) clamp(0.6rem, 1vw, 1vw) rgba(0, 0, 0, 0.1);
+      margin: clamp(2rem, 4vw, 5vw) auto;
+      max-width: 800px;
+    }
+    .result-section h1 {
+      color: #fe6d73; /* Barva pro zrušení/chybu */
+      margin-bottom: 1rem;
+    }
+    .result-section p {
+      font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+      margin-bottom: 1.5rem;
+    }
+    .result-section .btn {
+      background-color: #00a8e8;
+    }
+    .result-section .btn:hover {
+      background-color: #008cb3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <img src="{{ url_for('static', filename='img/Logo.webp') }}" >
+        <span class="studna-text desktop-only">Studna</span>
+      </div>
+      <nav>
+        <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
+        <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
+        <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
+        <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="result-section">
+    <h1>Platba byla zrušena.</h1>
+    <p>Mrzí nás, že došlo ke zrušení platby. Můžete to zkusit znovu nebo nás kontaktovat, pokud máte dotazy.</p>
+    <a href="{{ url_for('main.payment') }}" class="btn">Zkusit platbu znovu</a>
+    <a href="{{ url_for('main.kontakt') }}" class="btn" style="margin-left: 1rem;">Kontaktujte nás</a>
+  </section>
+
+  <footer>
+    © 2025 Studenti studentům. Všechna práva vyhrazena.
+  </footer>
+</body>
+</html>

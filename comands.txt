@@ -1,0 +1,280 @@
+
+py -m pip install idk
+git status
+git pull
+git add .
+git commit -m "První commit"
+git push -u origin main
+GIT push
+
+.\venv\Scripts\Activate
+pip freeze > requirements.txt
+pip install -r requirements.txt
+
+
+
+email
+jmeno studenta 
+cislo uctu (pro pridne vraceni)
+cislo uct na ktery poslou penize (firmeni ucet)
+
+email cislo uctu 
+
+pridat kalendar
+
+dát na vyber mezi bankvním ptevdem a platbou kartou  
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jak bude doučování probíhat – Studenti studentům</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+  <style>
+    .dou-flex {
+      display: flex;
+      gap: clamp(1rem, 3vw, 3vw);
+      align-items: flex-end;
+      justify-content: center;
+      padding: clamp(1rem, 3vw, 3vw) clamp(3rem, 10vw, 10vw);
+      background-color: #eef0f2;
+      border-radius: clamp(0.5rem, 1vw, 1rem);
+      flex-wrap: wrap;
+    }
+    .dou-heading {
+      flex: 1 1 400px;
+      background-color: white;
+      padding: clamp(1.5rem, 2vw, 2rem);
+      padding-bottom: clamp(0.5rem, 1vw, 1rem);
+      margin-top: 0;
+      border-radius: clamp(0.5rem, 1vw, 1rem);
+      box-shadow: 0 clamp(0.1rem, 0.3vw, 0.4rem) clamp(0.3rem, 1vw, 1rem) rgba(0, 0, 0, 0.05);
+    }
+    .dou-heading h2 {
+      margin-top: 0;
+      color: #1d3557;
+    }
+    .dou-heading-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2em;
+    }
+    .left-col, .right-col {
+      flex: 1 1 200px;
+    }
+    .left-col p, .right-col p {
+      margin: 0.3em 0;
+    }
+    .left-col strong, .right-col strong {
+      display: block;
+      margin-bottom: 0.3em;
+    }
+    /* ===== TIMELINE ===== */
+    .timeline-wrapper {
+      background-color: white;
+      padding-bottom: clamp(2rem, 5vw, 5vw);
+    }
+    .timeline-labels {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      padding: 0 clamp(0.5rem, 1vw, 1rem);
+    }
+    .label-left {
+      color: #17c3b2;
+      margin-left: clamp(5rem, 15vw, 15vw);
+      margin-top: clamp(1rem, 2vw, 2.5vw);
+    }
+    .label-right {
+      color: #fe6d73;
+      margin-right: clamp(7rem, 25vw, 25vw);
+      margin-top: clamp(1rem, 2vw, 2.5vw);
+    }
+    .timeline-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding-top: clamp(1rem, 2vw, 2rem);
+      margin: clamp(1rem, 2vw, 2.5vw) 0;
+      width: 100%;
+    }
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 20px;
+      width: 80%;
+      background-color: #ccc;
+      border-radius: 999px;
+      z-index: 1;
+    }
+    .timeline-container::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 8px;
+      width: 79%;
+      background: linear-gradient(to right, #17c3b2 33.3%, #fe6d73 33.3%);
+      border-radius: 999px;
+      z-index: 2;
+    }
+    .timeline-month {
+      position: relative;
+      text-align: center;
+      flex: 1;
+      max-width: 12%;
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      font-weight: 500;
+      z-index: 3;
+      margin: 0 clamp(0.3rem, 1vw, 1%);
+    }
+    .timeline-month::before {
+      content: '';
+      position: absolute;
+      top: clamp(-1.5rem, -1.9vw, -1.9vw);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 4px solid #ccc;
+      border-radius: 50%;
+      z-index: 4;
+    }
+    /* ===== POPISY timline===== */
+    .timeline-description {
+      display: flex;
+      justify-content: space-around;
+      padding: clamp(1rem, 3vw, 3vw) clamp(1rem, 10vw, 10vw);
+      gap: clamp(1rem, 3vw, 3vw);
+      flex-wrap: wrap;
+    }
+    .description-block {
+      flex: 1 1 300px;
+      background-color: #ffffff;
+      padding: clamp(1rem, 2vw, 2rem);
+      border-radius: clamp(0.7rem, 1vw, 1rem);
+      box-shadow: 0 clamp(0.1rem, 0.3vw, 0.4rem) clamp(0.3rem, 1vw, 1rem) rgba(0, 0, 0, 0.05);
+    }
+    .description-block h3 {
+      font-size: clamp(1.2rem, 1.5vw, 1.4rem);
+      margin-bottom: 1rem;
+      color: #1d3557;
+    }
+    .description-block p {
+      font-size: clamp(0.9rem, 1vw, 1rem);
+    }
+
+    /* ===== MAPA ===== */
+    .dou-map {
+      flex: 1 1 400px;
+    }
+    .dou-map h2 {
+      text-align: left;
+      color: #1d3557;
+      margin-top: clamp(-0.5rem, -1vw, -1vw);
+      margin-bottom: clamp(1rem, 1.3rem, 1.3rem);
+    }
+    .dou-map iframe {
+      width: 100%;
+      height: 85%;
+      min-height: 320px;
+      border: 4px solid #1d3557;
+      border-radius: clamp(0.5rem, 1vw, 1rem);
+      display: block;
+    }
+
+  </style>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+      <img src="{{ url_for('static', filename='img/Logo.webp') }}" >
+      <span class="studna-text desktop-only">Studna</span>
+      </div>
+      <nav>
+        <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
+        <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doůčko</a>
+        <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
+        <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
+    </div>
+  </header>
+  <section class="timeline-wrapper">
+    <div class="dou-flex">
+      <div class="dou-heading">
+        <h2>Rychlé Info.</h2>
+        <div class="dou-heading-inner">
+          <div class="left-col">
+            <p><strong>Kdy se koná?</strong></p>
+            <p>Čeština, čtvrtky 17:00–18:30</p>
+            <p>Matematika, čtvrtky 17:00–18:30</p>
+            <p><strong>Kde se koná?</strong></p>
+            <p>Gymnázium Jana Keplera</p>
+            <p>Parléřova 2, Praha 6</p>
+          </div>
+          <div class="right-col">
+            <p><strong>Jak je kurz rozdělen?</strong></p>
+            <p>Šprtárna: 10. 1. – 1. 2.</p>
+            <p>Masakr: 1. 2. – 15. 3.</p>
+            <p><strong>Cena kurzů:</strong></p>
+            <p>Šprtárna: 130 Kč/h → 4 000 Kč</p>
+            <p>Masakr: 130 Kč/h → 4 000 Kč</p>
+          </div>
+        </div>
+        <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Naši lektoři</a>
+      </div>
+
+      <div class="dou-map">
+        <h2>Kde nás najdete</h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1279.9552990449008!2d14.38684360857243!3d50.0879606875569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b951a87784a87%3A0x7cc9fd475f7b8166!2sGymn%C3%A1zium%20Jana%20Keplera!5e0!3m2!1scs!2scz!4v1747164217870!5m2!1scs!2scz"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="timeline-labels">
+      <div class="label-left"><h2>Šprtárna</h2></div>
+      <div class="label-right"><h2>Masakr</h2></div>
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline-month">Listopad</div>
+      <div class="timeline-month">Prosinec</div>
+      <div class="timeline-month">Leden</div>
+      <div class="timeline-month">Únor</div>
+      <div class="timeline-month">Březen</div>
+      <div class="timeline-month">Duben</div>
+    </div>
+  </section>
+
+  <div class="timeline-description">
+    <div class="description-block">
+      <h3>Šprtárna</h3>
+      <p>V lednu se zaměřujeme na základní témata. Lektoři vysvětlují nové látky, stavíme pevné základy a rozjíždíme doučko pozvolna.</p>
+    </div>
+    <div class="description-block">
+      <h3>Masakr</h3>
+      <p>Od února začíná intenzivní příprava. Přijímačky se blíží, zvyšujeme tempo, řešíme testy a ladíme detaily.</p>
+    </div>
+  </div>
+  <section style="text-align: center;">
+    <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Zjistit více o lektorech</a>
+  </section>
+
+  <footer>
+    &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
+  </footer>
+</body>
+</html>
+
+

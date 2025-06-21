@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studenti studentům – Bankovní převod</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="dark-bg">
+  <header>
+    <div class="header-inner">
+      <div class="logo">🎓 Studenti studentům</div>
+      <nav>
+        <a href="{{ url_for('main.home') }}">Domů</a>
+        <a href="{{ url_for('main.about') }}">O kurzu</a>
+        <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
+        <a href="{{ url_for('main.kontakt') }}">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="features">
+    <div class="feature">
+      <h2>Platba bankovním převodem</h2>
+      <p>Vyplňte prosím formulář níže. Na základě údajů vám vygenerujeme QR kód pro snadnou platbu.</p>
+
+      <form action="/submit" method="POST" class="payment-form">
+        <div class="form-group">
+          <label for="childName">Jméno dítěte</label>
+          <input type="text" id="childName" name="childName" required>
+        </div>
+
+        <div class="form-group">
+          <label for="parentEmail">E-mail rodiče</label>
+          <input type="email" id="parentEmail" name="parentEmail" required>
+        </div>
+
+        <div class="form-group">
+          <label for="parentAccount">Číslo účtu rodiče</label>
+          <input type="text" id="parentAccount" name="parentAccount" required>
+        </div>
+
+        <div class="form-group">
+          <label for="targetAccount">Účet pro platbu (náš účet)</label>
+          <input type="text" id="targetAccount" value="123456789/0100" readonly>
+        </div>
+
+        <button type="submit" class="btn">Odeslat údaje a získat QR kód</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
+  </footer>
+</body>
+</html>

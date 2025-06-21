@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Naši lektoři – Studenti studentům</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='lektori.css') }}">
+  <style>
+.lektori-container {
+  max-width: 1000px;
+  margin: 5vw auto;
+  padding: 5vw;
+  background-color: #a8dadc;
+  border-radius: 2vw;
+  box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.lektori-container h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #4a90e2;
+}
+
+.lektori-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.lektor-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.lektor-card:hover {
+  transform: translateY(-5px);
+}
+
+.lektor-photo {
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.lektor-card h3 {
+  margin: 0.5rem 0 0.2rem;
+  color: #333;
+}
+
+.lektor-card p {
+  margin: 0.3rem 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="logo">🎓 Studenti studentům</div>
+      <nav>
+        <a href="{{ url_for('main.home') }}">Domů</a>
+        <a href="{{ url_for('main.projekt') }}">O projektu</a>
+        <a href="{{ url_for('main.about') }}">O doůčku</a>
+        <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
+        <a href="{{ url_for('main.kontakt') }}">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+  <section class="lektori-container">
+    <h1>Naši lektoři</h1>
+    <div class="lektori-grid">
+
+      <div class="lektor-card">
+        <img src="{{ url_for('static', filename='img/lektor1.jpg') }}" alt="Lektor 1" class="lektor-photo">
+        <h3>Jana Nováková</h3>
+        <p><strong>Předmět:</strong> Matematika</p>
+        <p class="bio">Jana studuje pedagogiku a doučuje matematiku už třetím rokem. Miluje jasné vysvětlování a přátelský přístup.</p>
+      </div>
+
+      <div class="lektor-card">
+        <img src="{{ url_for('static', filename='img/lektor2.jpg') }}" alt="Lektor 2" class="lektor-photo">
+        <h3>Tomáš Dvořák</h3>
+        <p><strong>Předmět:</strong> Čeština</p>
+        <p class="bio">Tomáš je student bohemistiky na UK. Zaměřuje se na individuální práci a motivaci žáků.</p>
+      </div>
+
+      <!-- Přidej další lektory podle potřeby -->
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
+  </footer>
+</body>
+</html>
