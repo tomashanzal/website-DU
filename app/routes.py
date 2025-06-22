@@ -62,7 +62,7 @@ def create_checkout_session():
             # Pokud přijímáš např. "100.00", převedeme na float a pak vynásobíme 100
             # Pokud by vstup byl int (např. "100"), také to funguje
             course_price_float = float(course_price_str)
-            course_price = int(course_price_float /1000)
+            course_price = int(course_price_float * 100)
         except ValueError:
             raise ValueError("Neplatný formát ceny kurzu. Zadejte prosím číslo.")
 
