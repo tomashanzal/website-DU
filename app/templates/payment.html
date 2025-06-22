@@ -180,7 +180,7 @@
 
           <form id="sprtarna-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
             <input type="hidden" name="course_name" value="Sprtárna">
-            <input type="hidden" name="course_price" value="4000"> <label for="sprtarna_child_name_stripe">Jméno a příjmení žáka:</label>
+            <input type="hidden" name="course_price" value="20"> <label for="sprtarna_child_name_stripe">Jméno a příjmení žáka:</label>
             <input type="text" id="sprtarna_child_name_stripe" name="child_name" required>
             <label for="sprtarna_parent_email_stripe">E-mail rodiče:</label>
             <input type="email" id="sprtarna_parent_email_stripe" name="parent_email" required>
@@ -189,7 +189,7 @@
 
           <form id="sprtarna-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
             <input type="hidden" name="course_name" value="Sprtárna">
-            <input type="hidden" name="course_price" value="4000"> <label for="sprtarna_child_name_bank">Jméno a příjmení žáka:</label>
+            <input type="hidden" name="course_price" value="20"> <label for="sprtarna_child_name_bank">Jméno a příjmení žáka:</label>
             <input type="text" id="sprtarna_child_name_bank" name="child_name" required>
             <label for="sprtarna_parent_email_bank">E-mail rodiče:</label>
             <input type="email" id="sprtarna_parent_email_bank" name="parent_email" required>
@@ -215,7 +215,7 @@
 
           <form id="masakr-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
             <input type="hidden" name="course_name" value="Masakr">
-            <input type="hidden" name="course_price" value="4000"> <label for="masakr_child_name_stripe">Jméno a příjmení žáka:</label>
+            <input type="hidden" name="course_price" value="20"> <label for="masakr_child_name_stripe">Jméno a příjmení žáka:</label>
             <input type="text" id="masakr_child_name_stripe" name="child_name" required>
             <label for="masakr_parent_email_stripe">E-mail rodiče:</label>
             <input type="email" id="masakr_parent_email_stripe" name="parent_email" required>
@@ -224,7 +224,7 @@
 
           <form id="masakr-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
             <input type="hidden" name="course_name" value="Masakr">
-            <input type="hidden" name="course_price" value="4000"> <label for="masakr_child_name_bank">Jméno a příjmení žáka:</label>
+            <input type="hidden" name="course_price" value="20"> <label for="masakr_child_name_bank">Jméno a příjmení žáka:</label>
             <input type="text" id="masakr_child_name_bank" name="child_name" required>
             <label for="masakr_parent_email_bank">E-mail rodiče:</label>
             <input type="email" id="masakr_parent_email_bank" name="parent_email" required>
