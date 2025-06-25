@@ -4,17 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Koupit kurz – Studenti studentům</title>
+  <title>Studna-doucování na přijímačky</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='img/favicon.jpg') }}">
   <style>
     .payment-section {
-      background-color: #eef0f2;
-      padding: clamp(2rem, 4vw, 5vw) clamp(3vw, 6vw, 8vw);
-      margin: clamp(2rem, 4vw, 5vw) auto;
+      background-color:#f5faff; 
+      padding: clamp(0rem, 0vw, 5vw) clamp(3vw, 6vw, 8vw);
+      margin-top: clamp(-4rem, -1vw, 5vw) auto;
+      margin-bottom: clamp(2rem, 34vw, 5vw) auto;
       max-width: 1200px;
-      border-radius: clamp(1rem, 2vw, 2vw);
-      box-shadow: 0 clamp(0.3rem, 0.5vw, 1vw) clamp(0.6rem, 1vw, 1vw) rgba(0, 0, 0, 0.1);
+      background-color: #f5faff;
     }
 
     .course-offerings {
@@ -30,11 +30,16 @@
       padding: clamp(1.5rem, 2.5vw, 2.5rem);
       border-radius: clamp(0.7rem, 1.2vw, 1.2rem);
       box-shadow: 0 clamp(0.2rem, 0.4vw, 0.6rem) clamp(0.4rem, 0.8vw, 1rem) rgba(0, 0, 0, 0.08);
-      flex: 1 1 450px; /* Adjust based on desired card width */
-      max-width: 550px;
+      flex: 1 1 300px;
+      max-width: 350px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: border 0.3s ease; /* přechod pro zvýraznění */
+    }
+    .course-card.selected {
+      border: 3px solid #1d3557;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .course-card h3 {
@@ -161,12 +166,12 @@
   </header>
 
   <section class="payment-section">
-    <h1>Vyberte si svůj kurz</h1>
+    <h1>Kurzy:</h1>
     <p>Nabízíme dva intenzivní kurzy přípravy na Cermat přijímačky, šité na míru pro žáky 9. tříd. Vyberte si ten, který vám nejvíce vyhovuje!</p>
 
     <div class="course-offerings">
       <div class="course-card">
-        <h3>Šprtárna</h3>
+        <h3>Komplet</h3>
         <p><strong>Období:</strong> 10. leden – 1. únor</p>
         <p><strong>Obsah:</strong> Zaměřujeme se na základní témata z češtiny a matematiky. Lektoři vysvětlují nové látky, budujeme pevné základy a rozjíždíme doučování pozvolna a systematicky.</p>
         <p><strong>Rozsah:</strong> 30 hodin</p>
@@ -201,7 +206,7 @@
       </div>
 
       <div class="course-card">
-        <h3>Masakr</h3>
+        <h3 style="color: #fe6d73;">Masakr</h3>
         <p><strong>Období:</strong> 1. únor – 15. březen</p>
         <p><strong>Obsah:</strong> Od února začíná intenzivní příprava! Přijímačky se blíží, proto zvyšujeme tempo, řešíme cvičné testy, analyzujeme chyby a ladíme detaily k dokonalosti.</p>
         <p><strong>Rozsah:</strong> 30 hodin</p>
@@ -234,6 +239,38 @@
           </form>
         </div>
       </div>
+      <div class="course-card">
+        <h3 style="color: #17c3b2;">Šprtárna</h3>
+        <p><strong>Období:</strong> 1. únor – 15. březen</p>
+        <p><strong>Obsah:</strong> Od února začíná intenzivní příprava! Přijímačky se blíží, proto zvyšujeme tempo, řešíme cvičné testy, analyzujeme chyby a ladíme detaily k dokonalosti.</p>
+        <p><strong>Rozsah:</strong> 30 hodin</p>
+        <div class="price">Cena: 4 000 Kč</div>
+          <form id="masakr-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
+            <input type="hidden" name="course_name" value="Masakr">
+            <input type="hidden" name="course_price" value="20"> <label for="masakr_child_name_stripe">Jméno a příjmení žáka:</label>
+            <input type="text" id="masakr_child_name_stripe" name="child_name" required>
+            <label for="masakr_parent_email_stripe">E-mail rodiče:</label>
+            <input type="email" id="masakr_parent_email_stripe" name="parent_email" required>
+            <button type="submit" class="payment-btn">Zaplatit kartou (Stripe)</button>
+          </form>
+
+          <form id="masakr-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
+            <input type="hidden" name="course_name" value="Masakr">
+            <input type="hidden" name="course_price" value="20"> <label for="masakr_child_name_bank">Jméno a příjmení žáka:</label>
+            <input type="text" id="masakr_child_name_bank" name="child_name" required>
+            <label for="masakr_parent_email_bank">E-mail rodiče:</label>
+            <input type="email" id="masakr_parent_email_bank" name="parent_email" required>
+            <label for="masakr_parent_account_bank">Číslo účtu rodiče (pro případ vrácení platby):</label>
+            <input type="text" id="masakr_parent_account_bank" name="parent_account" placeholder="Např. 12345678/0100" required>
+            <button type="submit" class="payment-btn">Generovat QR kód pro bankovní převod</button>
+          </form>
+          <div class="payment-options">
+            <div class="payment-option-toggle">
+              <button onclick="showPaymentForm('sprtarna-stripe')">Platba kartou</button>
+              <button onclick="showPaymentForm('sprtarna-bank')">Bankovní převod</button>
+            </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -243,21 +280,69 @@
 
   <script>
     function showPaymentForm(formId) {
-      // Skryje všechny formuláře v daném kurzu
       const parentCard = document.getElementById(formId).closest('.course-card');
       const forms = parentCard.querySelectorAll('.payment-form');
       forms.forEach(form => form.classList.remove('active'));
-
-      // Zobrazí vybraný formulář
       document.getElementById(formId).classList.add('active');
-
-      // Odstraní "active" třídu ze všech tlačítek v daném kurzu
       const buttons = parentCard.querySelectorAll('.payment-option-toggle button');
       buttons.forEach(button => button.classList.remove('active'));
-
-      // Přidá "active" třídu na kliknuté tlačítko
       event.currentTarget.classList.add('active');
     }
+  </script>
+
+  <script>
+    // 1. Zvýraznění kliknuté karty
+    document.querySelectorAll('.course-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.course-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+      });
+    });
+
+    // 2. Přidání radio tlačítek pro výběr předmětu do každé karty
+    const courseCards = document.querySelectorAll('.course-card');
+    courseCards.forEach((card, index) => {
+      const groupName = `subject-group-${index}`;
+      const subjectSelector = document.createElement('div');
+      subjectSelector.classList.add('subject-selection');
+      subjectSelector.innerHTML = `
+        <p><strong>Vyber předmět:</strong></p>
+        <label><input type="radio" name="${groupName}" value="Full" required checked> Full (obojí)</label><br>
+        <label><input type="radio" name="${groupName}" value="Matematika"> Matematika </label><br>
+        <label><input type="radio" name="${groupName}" value="Čestina"> Čeština </label>
+      `;
+      card.insertBefore(subjectSelector, card.querySelector('.price'));
+    });
+  </script>
+  <script>
+    document.querySelectorAll('.course-card').forEach(card => {
+      const priceEl = card.querySelector('.price');
+      const subjectRadios = card.querySelectorAll('input[type="radio"][name^="subject-group"]');
+      const priceInputs = card.querySelectorAll('input[name="course_price"]');
+
+      subjectRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+          // najde zaškrtnutý input v rámci téhle skupiny
+          const selected = card.querySelector('input[type="radio"][name^="subject-group"]:checked');
+          let price = 2000;
+
+          if (selected && selected.value === 'Full') {
+            price = 4000;
+          }
+
+          // aktualizace ceny v textu
+          priceEl.textContent = `Cena: ${price.toLocaleString('cs-CZ')} Kč`;
+
+          // aktualizace ceny ve formulářích
+          priceInputs.forEach(input => {
+            input.value = price;
+          });
+        });
+      });
+    });
+
+  </script>
+</body>
   </script>
 </body>
 </html>
