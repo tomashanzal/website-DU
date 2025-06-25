@@ -30,7 +30,7 @@
             padding: -4vw 0; /* Zvaž, zda je záporný padding v pořádku, může způsobovat překryvy */
             flex-direction: column;
             background-color:#eef0f2;
-            gap: 0rem; /* mezera mezi odstavci */
+            gap: -2rem; /* mezera mezi odstavci */
             /* ZMĚNY PRO ZAROVNÁNÍ TEXTU A TLAČÍTEK */
             align-items: flex-start; /* Zarovná logo, nadpis, odstavce a tlačítka doleva */
             text-align: left; /* Zajišťuje, že samotný text je zarovnán doleva */
@@ -132,8 +132,8 @@
         <div class="hero-text">
             <img src="{{ url_for('static', filename='img/Logo.webp') }}" alt="Logo USIFEST" class="hero-logo">
             <h2>Studenti studentum</h2>
-            <p>Doučování na přijímačky 9. ročníků. 2025-26.</p>
-            <p>gymnázium Jana Keplera</p>
+            <p>Doučování na přijímačky 9. ročníků. 2025-26.
+            <br>gymnázium Jana Keplera</p>
             <div class="hero-buttons">
                 <a href="#o-projektu" class="btn" style="background-color: #00a8e8;">Kdo jsme</a>
                 <a href="{{ url_for('main.about') }}" class="btn" style="background-color: #ff6392;">O průběhu doučování</a>
@@ -147,8 +147,8 @@
     <section class="project-info" id="o-projektu">
         <h3>Kdo jsme</h3>
         <p>Jsme studenti Gymnázia Jana Keplera a jejich rodiče, co už přijímačkovým procesem uspěšně prošli. Zažili jsme frustraci z předražených doučování a stres s výběrem škol.
-        <br>A tak jsme se rozhodli založit Studnu. Studentské doučování, "od studentu pro studenty"
-        <br>Co přijímačky už úspěšně zvládly a z první ruky vědí co příprava obnáší. Kepleráci mají naoplátku možnost kvalitní Brigády
+        A tak jsme se rozhodli založit Studnu. Studentské doučování, "od studentu pro studenty"
+        Co přijímačky už úspěšně zvládly a z první ruky vědí co příprava obnáší. Kepleráci mají naoplátku možnost kvalitní Brigády
         </p>
         <h3>Jak funguje doučko</h3>
         <p>Celé Du dělíme na dvě části, Šprtárnu a Masakr. Jak probíhají?

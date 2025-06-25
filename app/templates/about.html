@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -42,33 +41,37 @@
       flex: 1 1 200px;
     }
     .left-col p, .right-col p {
-      margin: 0.3em 0;
+      margin: 0.2em 0;
     }
     .left-col strong, .right-col strong {
       display: block;
-      margin-bottom: 0.3em;
+      margin-bottom: 0.2em;
     }
     /* ===== TIMELINE ===== */
     .timeline-wrapper {
       background-color: white;
       padding-bottom: clamp(2rem, 5vw, 5vw);
     }
+
     .timeline-labels {
       display: flex;
       justify-content: space-between;
       font-weight: 600;
       padding: 0 clamp(0.5rem, 1vw, 1rem);
     }
+
     .label-left {
       color: #17c3b2;
       margin-left: clamp(5rem, 15vw, 15vw);
       margin-top: clamp(1rem, 2vw, 2.5vw);
     }
+
     .label-right {
       color: #fe6d73;
       margin-right: clamp(7rem, 25vw, 25vw);
       margin-top: clamp(1rem, 2vw, 2.5vw);
     }
+
     .timeline-container {
       display: flex;
       justify-content: center;
@@ -78,10 +81,11 @@
       margin: clamp(1rem, 2vw, 2.5vw) 0;
       width: 100%;
     }
+
     .timeline-container::before {
       content: '';
       position: absolute;
-      top: 0;
+      top: 0%;
       left: 50%;
       transform: translateX(-50%);
       height: 20px;
@@ -90,10 +94,11 @@
       border-radius: 999px;
       z-index: 1;
     }
+
     .timeline-container::after {
       content: '';
       position: absolute;
-      top: 5px;
+      top: 5px; /* referenční výška */
       left: 50%;
       transform: translateX(-50%);
       height: 8px;
@@ -102,29 +107,32 @@
       border-radius: 999px;
       z-index: 2;
     }
+
     .timeline-month {
       position: relative;
       text-align: center;
       flex: 1;
       max-width: 12%;
-      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      font-size: clamp(0.8rem, 1.5vw, 1.1rem);
       font-weight: 500;
       z-index: 3;
       margin: 0 clamp(0.3rem, 1vw, 1%);
     }
+
     .timeline-month::before {
       content: '';
       position: absolute;
-      top: clamp(-1.5rem, -1.9vw, -1.9vw);
+      top: -1.2VW; /* zarovnáno s .timeline-container::after */
       left: 50%;
-      transform: translateX(-50%);
-      width: 20px;
-      height: 20px;
+      transform: translate(-50%, -50%); /* středové zarovnání kolečka */
+      width: 16px;
+      height: 16px;
       background-color: white;
       border: 4px solid #ccc;
       border-radius: 50%;
       z-index: 4;
     }
+
     /* ===== POPISY timline===== */
     .timeline-description {
       display: flex;
@@ -178,6 +186,43 @@
         box-shadow: 0 clamp(0.1rem, 0.3vw, 0.4rem) clamp(0.3rem, 1vw, 1rem) rgba(0, 0, 0, 0.05);
         min-width: 0;
       }
+      .timeline-month::before {
+      content: '';
+      position: absolute;
+      top: -1.5VW; /* zarovnáno s .timeline-container::after */
+      left: 50%;
+      transform: translate(-50%, -50%); /* středové zarovnání kolečka */
+      width: 10px;
+      height: 10px;
+      background-color: white;
+      border: 4px solid #ccc;
+      border-radius: 50%;
+      z-index: 4;
+    }
+    .timeline-container::after {
+      content: '';
+      position: absolute;
+      top: 5px; /* referenční výška */
+      left: 50%;
+      transform: translateX(-50%);
+      height: 8px;
+      width: 85%;
+      background: linear-gradient(to right, #17c3b2 33.3%, #fe6d73 33.3%);
+      border-radius: 999px;
+      z-index: 2;
+    }
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      top: 1px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 16px;
+      width: 90%;
+      background-color: #ccc;
+      border-radius: 999px;
+      z-index: 1;
+    }
     .dou-map iframe {
       width: 100%;
       height: 20%;
@@ -198,7 +243,7 @@
       </div>
       <nav>
         <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
-        <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doůčko</a>
+        <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
         <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
         <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
     </div>
@@ -209,23 +254,24 @@
         <h2>Rychlé Info.</h2>
         <div class="dou-heading-inner">
           <div class="left-col">
-            <p><strong>Kdy se koná?</strong></p>
-            <p>Čeština, čtvrtky 17:00–18:30</p>
-            <p>Matematika, čtvrtky 17:00–18:30</p>
+            <p><strong>Cena kurzů:</strong></p>
+            <p>Šprtárna: 4 000 
+            <br>Masakr: 4 000</p>
             <p><strong>Kde se koná?</strong></p>
-            <p>Gymnázium Jana Keplera</p>
-            <p>Parléřova 2, Praha 6</p>
+            <p>Gymnázium Jana Keplera
+            <br>Parléřova 2, Praha 6</p>
+            <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Naši lektoři</a>
           </div>
           <div class="right-col">
             <p><strong>Jak je kurz rozdělen?</strong></p>
-            <p>Šprtárna: 10. 1. – 1. 2.</p>
-            <p>Masakr: 1. 2. – 15. 3.</p>
-            <p><strong>Cena kurzů:</strong></p>
-            <p>Šprtárna: </p>
-            <p>Masakr: </p>
+            <p>Šprtárna: 10. 1. – 1. 2.
+            <br>Masakr: 1. 2. – 15. 3.</p>
+            <p><strong>Kdy se koná?</strong></p>
+            <p>Čeština, čtvrtky  17:00–18:30
+            <br>Matematika, čtvrtky 17:00–18:30</p>
+
           </div>
         </div>
-        <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Naši lektoři</a>
       </div>
 
       <div class="dou-map">
@@ -273,5 +319,3 @@
   </footer>
 </body>
 </html>
-
-
