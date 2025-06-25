@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="cs">
 <head>
@@ -10,10 +9,10 @@
   <style>
     .payment-section {
       background-color:#f5faff; 
-      padding: clamp(0rem, 0vw, 5vw) clamp(2vw, 4vw, 8vw);
-      margin-top: -5vw auto;
+      padding: clamp(0rem, 1vw, 5vw) clamp(2vw, 4vw, 8vw);
+      margin-top: 0vw;
       margin-bottom: 15vw auto;
-      max-width: 100vw;
+      max-width: 3000px;
     }
 
     .course-offerings {
@@ -26,7 +25,7 @@
 
     .course-card {
       background-color: white;
-      padding: clamp(1.5rem, 2.5vw, 2.5rem);
+      padding: clamp(1.5rem, 2vw, 2.5rem);
       border-radius: clamp(0.7rem, 1.2vw, 1.2rem);
       box-shadow: 0 clamp(0.2rem, 0.4vw, 0.6rem) clamp(0.4rem, 0.8vw, 1rem) rgba(0, 0, 0, 0.08);
       flex: 1 1 300px;
@@ -35,6 +34,7 @@
       flex-direction: column;
       justify-content: space-between;
       transition: border 0.3s ease; /* přechod pro zvýraznění */
+      margin-bottom: 5vw;
     }
     .course-card.selected {
       border: 3px solid #1d3557;
@@ -50,27 +50,27 @@
 
     .course-card p {
       font-size: clamp(1rem, 1.3vw, 1.1rem);
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.6rem;
     }
 
     .course-card .price {
       font-size: clamp(1.4rem, 2vw, 1.8rem);
       font-weight: 700;
-      color: #00a8e8;
+      color: #1cbe00;
       text-align: center;
       margin-top: 1.5rem;
       margin-bottom: 2rem;
     }
 
     .payment-options {
-      margin-top: 1.5rem;
+      margin-top: 0rem;
     }
 
     .payment-option-toggle {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .payment-option-toggle button {
@@ -85,9 +85,8 @@
     }
 
     .payment-option-toggle button:hover {
-      background-color: #008cb3;
+      background-color: #007ea0;
     }
-
     .payment-option-toggle button.active {
       background-color: #1d3557;
     }
@@ -131,7 +130,7 @@
     }
 
     .payment-form button[type="submit"]:hover {
-      background-color: #008cb3;
+      background-color: #00a8e8;
     }
 
     .stripe-button-container {
@@ -166,14 +165,58 @@
 
   <section class="payment-section">
     <h1>Kurzy:</h1>
-    <p>Nabízíme dva intenzivní kurzy přípravy na Cermat přijímačky, šité na míru pro žáky 9. tříd. Vyberte si ten, který vám nejvíce vyhovuje!</p>
 
     <div class="course-offerings">
+      <!-- KARTA: Komplet -->
       <div class="course-card">
         <h3>Komplet</h3>
-        <p><strong>Období:</strong> 10. leden – 1. únor</p>
-        <p><strong>Obsah:</strong> Zaměřujeme se na základní témata z češtiny a matematiky. Lektoři vysvětlují nové látky, budujeme pevné základy a rozjíždíme doučování pozvolna a systematicky.</p>
-        <p><strong>Rozsah:</strong> 30 hodin</p>
+        <p><strong>Období:</strong> 4. Listopad – 16. Duben</p>
+        <p><strong>Obsah:</strong><br> 
+        Zde se zaměříme na dopilování menších nedostatků studentů v potřebné látce a zároveň na psaní testů stejně, jako u cermatu.
+        </p>
+        <p>
+            <strong>Rozsah:</strong> 42 lekcí (63h)<br>
+        </p>
+        <div class="price">Cena: 4 000 Kč</div>
+
+        <div class="payment-options">
+          <div class="payment-option-toggle">
+            <button onclick="showPaymentForm('komplet-stripe')">Platba kartou</button>
+            <button onclick="showPaymentForm('komplet-bank')">Bankovní převod</button>
+          </div>
+
+          <form id="komplet-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
+            <input type="hidden" name="course_name" value="Komplet">
+            <input type="hidden" name="course_price" value="4000">
+            <label for="komplet_child_name_stripe">Jméno a příjmení žáka:</label>
+            <input type="text" id="komplet_child_name_stripe" name="child_name" required>
+            <label for="komplet_parent_email_stripe">E-mail rodiče:</label>
+            <input type="email" id="komplet_parent_email_stripe" name="parent_email" required>
+            <button type="submit" class="payment-btn">Zaplatit kartou (Stripe)</button>
+          </form>
+
+          <form id="komplet-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
+            <input type="hidden" name="course_name" value="Komplet">
+            <input type="hidden" name="course_price" value="4000">
+            <label for="komplet_child_name_bank">Jméno a příjmení žáka:</label>
+            <input type="text" id="komplet_child_name_bank" name="child_name" required>
+            <label for="komplet_parent_email_bank">E-mail rodiče:</label>
+            <input type="email" id="komplet_parent_email_bank" name="parent_email" required>
+            <label for="komplet_parent_account_bank">Číslo účtu rodiče:</label>
+            <input type="text" id="komplet_parent_account_bank" name="parent_account" placeholder="Např. 12345678/0100" required>
+            <button type="submit" class="payment-btn">Generovat QR kód</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- KARTA: Šprtárna -->
+      <div class="course-card">
+        <h3 style="color: #17c3b2;">Šprtárna</h3>
+        <p><strong>Období:</strong> 4. Listopadu – 29. Ledna</p>
+        <p><strong>Obsah:</strong><br>
+        V tomto kurzu se primárně zaměříme na skupinové vyplňování a opravování testů ve skupinkách, abychom žákům pomohli získat základy potřebné k tomu, aby se dostali na jejich vysněnou střední školu.
+        </p>
+        <p><strong>Rozsah:</strong> 22 lekcí (33h)</p>
         <div class="price">Cena: 4 000 Kč</div>
 
         <div class="payment-options">
@@ -183,8 +226,9 @@
           </div>
 
           <form id="sprtarna-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
-            <input type="hidden" name="course_name" value="Sprtárna">
-            <input type="hidden" name="course_price" value="20"> <label for="sprtarna_child_name_stripe">Jméno a příjmení žáka:</label>
+            <input type="hidden" name="course_name" value="Šprtárna">
+            <input type="hidden" name="course_price" value="4000">
+            <label for="sprtarna_child_name_stripe">Jméno a příjmení žáka:</label>
             <input type="text" id="sprtarna_child_name_stripe" name="child_name" required>
             <label for="sprtarna_parent_email_stripe">E-mail rodiče:</label>
             <input type="email" id="sprtarna_parent_email_stripe" name="parent_email" required>
@@ -192,23 +236,28 @@
           </form>
 
           <form id="sprtarna-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
-            <input type="hidden" name="course_name" value="Sprtárna">
-            <input type="hidden" name="course_price" value="20"> <label for="sprtarna_child_name_bank">Jméno a příjmení žáka:</label>
+            <input type="hidden" name="course_name" value="Šprtárna">
+            <input type="hidden" name="course_price" value="4000">
+            <label for="sprtarna_child_name_bank">Jméno a příjmení žáka:</label>
             <input type="text" id="sprtarna_child_name_bank" name="child_name" required>
             <label for="sprtarna_parent_email_bank">E-mail rodiče:</label>
             <input type="email" id="sprtarna_parent_email_bank" name="parent_email" required>
-            <label for="sprtarna_parent_account_bank">Číslo účtu rodiče (pro případ vrácení platby):</label>
+            <label for="sprtarna_parent_account_bank">Číslo účtu rodiče:</label>
             <input type="text" id="sprtarna_parent_account_bank" name="parent_account" placeholder="Např. 12345678/0100" required>
-            <button type="submit" class="payment-btn">Generovat QR kód pro bankovní převod</button>
+            <button type="submit" class="payment-btn">Generovat QR kód</button>
           </form>
         </div>
       </div>
 
+      <!-- KARTA: Masakr -->
       <div class="course-card">
-        <h3 style="color: #17c3b2;">Šprtárna</h3>
-        <p><strong>Období:</strong> 1. únor – 15. březen</p>
-        <p><strong>Obsah:</strong> Od února začíná intenzivní příprava! Přijímačky se blíží, proto zvyšujeme tempo, řešíme cvičné testy, analyzujeme chyby a ladíme detaily k dokonalosti.</p>
-        <p><strong>Rozsah:</strong> 30 hodin</p>
+        <h3 style="color: #fe6d73;">Masakr</h3>
+        <p><strong>Období:</strong> 3. Únor – 16. Dubna</p>
+        <p><strong>Rozsah:</strong> 20 lekcí (30h)</p>
+        <p><strong>Obsah:</strong><br> 
+        Zde se zaměříme na dopilování menších nedostatků studentů v potřebné látce a zároveň na psaní testů stejně, jako u cermatu.
+        </p>
+        <p><strong>Rozsah:</strong> 20 lekcí (30h)</p>
         <div class="price">Cena: 4 000 Kč</div>
 
         <div class="payment-options">
@@ -219,7 +268,8 @@
 
           <form id="masakr-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
             <input type="hidden" name="course_name" value="Masakr">
-            <input type="hidden" name="course_price" value="20"> <label for="masakr_child_name_stripe">Jméno a příjmení žáka:</label>
+            <input type="hidden" name="course_price" value="4000">
+            <label for="masakr_child_name_stripe">Jméno a příjmení žáka:</label>
             <input type="text" id="masakr_child_name_stripe" name="child_name" required>
             <label for="masakr_parent_email_stripe">E-mail rodiče:</label>
             <input type="email" id="masakr_parent_email_stripe" name="parent_email" required>
@@ -228,69 +278,39 @@
 
           <form id="masakr-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
             <input type="hidden" name="course_name" value="Masakr">
-            <input type="hidden" name="course_price" value="20"> <label for="masakr_child_name_bank">Jméno a příjmení žáka:</label>
+            <input type="hidden" name="course_price" value="4000">
+            <label for="masakr_child_name_bank">Jméno a příjmení žáka:</label>
             <input type="text" id="masakr_child_name_bank" name="child_name" required>
             <label for="masakr_parent_email_bank">E-mail rodiče:</label>
             <input type="email" id="masakr_parent_email_bank" name="parent_email" required>
-            <label for="masakr_parent_account_bank">Číslo účtu rodiče (pro případ vrácení platby):</label>
+            <label for="masakr_parent_account_bank">Číslo účtu rodiče:</label>
             <input type="text" id="masakr_parent_account_bank" name="parent_account" placeholder="Např. 12345678/0100" required>
-            <button type="submit" class="payment-btn">Generovat QR kód pro bankovní převod</button>
+            <button type="submit" class="payment-btn">Generovat QR kód</button>
           </form>
-        </div>
-      </div>
-      <div class="course-card">
-        <h3 style="color: #fe6d73;">Masakr</h3>
-        <p><strong>Období:</strong> 1. únor – 15. březen</p>
-        <p><strong>Obsah:</strong> Od února začíná intenzivní příprava! Přijímačky se blíží, proto zvyšujeme tempo, řešíme cvičné testy, analyzujeme chyby a ladíme detaily k dokonalosti.</p>
-        <p><strong>Rozsah:</strong> 30 hodin</p>
-        <div class="price">Cena: 4 000 Kč</div>
-          <form id="masakr-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
-            <input type="hidden" name="course_name" value="Masakr">
-            <input type="hidden" name="course_price" value="20"> <label for="masakr_child_name_stripe">Jméno a příjmení žáka:</label>
-            <input type="text" id="masakr_child_name_stripe" name="child_name" required>
-            <label for="masakr_parent_email_stripe">E-mail rodiče:</label>
-            <input type="email" id="masakr_parent_email_stripe" name="parent_email" required>
-            <button type="submit" class="payment-btn">Zaplatit kartou (Stripe)</button>
-          </form>
-
-          <form id="masakr-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
-            <input type="hidden" name="course_name" value="Masakr">
-            <input type="hidden" name="course_price" value="20"> <label for="masakr_child_name_bank">Jméno a příjmení žáka:</label>
-            <input type="text" id="masakr_child_name_bank" name="child_name" required>
-            <label for="masakr_parent_email_bank">E-mail rodiče:</label>
-            <input type="email" id="masakr_parent_email_bank" name="parent_email" required>
-            <label for="masakr_parent_account_bank">Číslo účtu rodiče (pro případ vrácení platby):</label>
-            <input type="text" id="masakr_parent_account_bank" name="parent_account" placeholder="Např. 12345678/0100" required>
-            <button type="submit" class="payment-btn">Generovat QR kód pro bankovní převod</button>
-          </form>
-          <div class="payment-options">
-            <div class="payment-option-toggle">
-              <button onclick="showPaymentForm('sprtarna-stripe')">Platba kartou</button>
-              <button onclick="showPaymentForm('sprtarna-bank')">Bankovní převod</button>
-            </div>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    © 2025 Studenti studentům. Všechna práva vyhrazena.
-  </footer>
+  <footer>© 2025 Studenti studentům. Všechna práva vyhrazena.</footer>
 
   <script>
     function showPaymentForm(formId) {
-      const parentCard = document.getElementById(formId).closest('.course-card');
-      const forms = parentCard.querySelectorAll('.payment-form');
-      forms.forEach(form => form.classList.remove('active'));
-      document.getElementById(formId).classList.add('active');
-      const buttons = parentCard.querySelectorAll('.payment-option-toggle button');
-      buttons.forEach(button => button.classList.remove('active'));
-      event.currentTarget.classList.add('active');
+      document.querySelectorAll('.payment-form').forEach(form => {
+        form.classList.remove('active');
+      });
+      document.querySelectorAll('.payment-option-toggle button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      const targetForm = document.getElementById(formId);
+      if (targetForm) {
+        targetForm.classList.add('active');
+      }
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+      }
     }
-  </script>
 
-  <script>
-    // 1. Zvýraznění kliknuté karty
     document.querySelectorAll('.course-card').forEach(card => {
       card.addEventListener('click', () => {
         document.querySelectorAll('.course-card').forEach(c => c.classList.remove('selected'));
@@ -298,7 +318,6 @@
       });
     });
 
-    // 2. Přidání radio tlačítek pro výběr předmětu do každé karty
     const courseCards = document.querySelectorAll('.course-card');
     courseCards.forEach((card, index) => {
       const groupName = `subject-group-${index}`;
@@ -312,36 +331,26 @@
       `;
       card.insertBefore(subjectSelector, card.querySelector('.price'));
     });
-  </script>
-  <script>
-    document.querySelectorAll('.course-card').forEach(card => {
+
+    courseCards.forEach(card => {
       const priceEl = card.querySelector('.price');
       const subjectRadios = card.querySelectorAll('input[type="radio"][name^="subject-group"]');
       const priceInputs = card.querySelectorAll('input[name="course_price"]');
 
       subjectRadios.forEach(radio => {
         radio.addEventListener('change', () => {
-          // najde zaškrtnutý input v rámci téhle skupiny
           const selected = card.querySelector('input[type="radio"][name^="subject-group"]:checked');
           let price = 2000;
-
           if (selected && selected.value === 'Full') {
             price = 4000;
           }
-
-          // aktualizace ceny v textu
           priceEl.textContent = `Cena: ${price.toLocaleString('cs-CZ')} Kč`;
-
-          // aktualizace ceny ve formulářích
           priceInputs.forEach(input => {
             input.value = price;
           });
         });
       });
     });
-
-  </script>
-</body>
   </script>
 </body>
 </html>
