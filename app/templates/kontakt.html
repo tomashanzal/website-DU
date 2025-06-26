@@ -7,6 +7,7 @@
   <title>Studna-doucování na přijímačky</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='img/favicon.jpg') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-/O1M8qv2j4FdnD2eRX1gQFNYQw+ZqUq2U3mFAkpKXsULr4b9Z5Uv+1r0c8yS9HPX8on0wTqRzEO0rYeCcuL0Xg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     .kontakt-wrapper {
       background-color: #eef0f2; 
@@ -163,17 +164,18 @@
 </head>
 <body>
   <header>
-    <div class="header-inner">
-      <div class="logo">
-        <img src="{{ url_for('static', filename='img/Logo.webp') }}" >
-        <span class="studna-text desktop-only">Studna</span>
+      <div class="header-inner">
+          <div class="logo">
+              <img src="{{ url_for('static', filename='img/big_logo.png') }}" >
+              <span class="studna-text desktop-only">Studna</span>
+          </div>
+          <nav>
+              <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
+              <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
+              <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
+              <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
+          </nav>
       </div>
-      <nav>
-        <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
-        <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
-        <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
-        <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
-    </div>
   </header>
 
   <div class="kontakt-wrapper">
@@ -182,13 +184,26 @@
         <h2>Obecné kontakty</h2>
         <div class="kontakt-item">
           <strong>📧 Email</strong>
-          <p>Obecné dotazy: <a href="mailto:info@example.com"></a></p>
-          <p>Pro vystavovatele: <a href="mailto:vystavovatele@example.com">douc.studna@gmail.com </a></p>
-          <p>Pro média: <a href="mailto:media@example.com">media@example.com</a></p>
+          <p> <a href="mailto:vystavovatele@example.com">douc.studna@gmail.com 
+          <br><a href="mailto:media@example.com">media@example.com</a></p>
         </div>
         <div class="kontakt-item">
-          <strong>📞 Telefon</strong>
-          <p>+420 123 456 789</p>
+          <strong>📞 Telefon:</strong>
+          <p>
+            +420 123 456 789<br>
+            +420 602 270 817
+          </p>
+        </div>
+        <div class="kontakt-item">
+          <strong>Sociální sítě:</strong>
+          <p>
+            <a href="https://www.instagram.com/studna_doucovani" target="_blank">
+              <i class="fab fa-instagram"></i> Instagram – studna_doucovani
+            </a><br>
+            <a href="https://www.facebook.com/studnadoucovani" target="_blank">
+              <i class="fab fa-facebook"></i> Facebook – Studna Doučování
+            </a>
+          </p>
         </div>
         <div class="kontakt-item">
           <strong>📍 Adresa</strong>

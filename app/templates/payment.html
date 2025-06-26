@@ -149,25 +149,25 @@
 </head>
 <body>
   <header>
-    <div class="header-inner">
-      <div class="logo">
-        <img src="{{ url_for('static', filename='img/Logo.webp') }}" >
-        <span class="studna-text desktop-only">Studna</span>
+      <div class="header-inner">
+          <div class="logo">
+              <img src="{{ url_for('static', filename='img/big_logo.png') }}" >
+              <span class="studna-text desktop-only">Studna</span>
+          </div>
+          <nav>
+              <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
+              <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
+              <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
+              <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
+          </nav>
       </div>
-      <nav>
-        <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
-        <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
-        <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
-        <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
-      </nav>
-    </div>
   </header>
 
   <section class="payment-section">
     <h1>Kurzy:</h1>
 
     <div class="course-offerings">
-      <!-- KARTA: Komplet -->
+      <!-- KARTA: KOMPLET-->
       <div class="course-card">
         <h3>Komplet</h3>
         <p><strong>Období:</strong> 4. Listopad – 16. Duben</p>
@@ -177,7 +177,7 @@
         <p>
             <strong>Rozsah:</strong> 42 lekcí (63h)<br>
         </p>
-        <div class="price">Cena: 4 000 Kč</div>
+        <div class="price">Cena: 7500 Kč</div>
 
         <div class="payment-options">
           <div class="payment-option-toggle">
@@ -187,29 +187,58 @@
 
           <form id="komplet-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
             <input type="hidden" name="course_name" value="Komplet">
-            <input type="hidden" name="course_price" value="4000">
-            <label for="komplet_child_name_stripe">Jméno a příjmení žáka:</label>
-            <input type="text" id="komplet_child_name_stripe" name="child_name" required>
-            <label for="komplet_parent_email_stripe">E-mail rodiče:</label>
-            <input type="email" id="komplet_parent_email_stripe" name="parent_email" required>
+            <input type="hidden" name="course_price" value="7500">
+
+            <label for="name_zak">Jméno a příjmení žáka:</label>
+            <input type="text" id="name_zak" name="name_zak" required>
+            
+            <label for="telefon_zak">Telefonní číslo žáka:</label>
+            <input type="tel" id="telefon_zak" name="telefon_zak" required>
+            
+            <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
+            <input type="text" id="name_rodic" name="name_rodic" required>
+            
+            <label for="parent_email">E-mail rodiče:</label>
+            <input type="email" id="parent_email" name="parent_email" required>          
+            
+            <label for="bydliste">Místo bydliště:</label>
+            <input type="text" id="bydliste" name="bydliste" required>
+            
+            <label for="psc">PSČ:</label>
+            <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
+          
             <button type="submit" class="payment-btn">Zaplatit kartou (Stripe)</button>
           </form>
 
+
           <form id="komplet-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
             <input type="hidden" name="course_name" value="Komplet">
-            <input type="hidden" name="course_price" value="4000">
-            <label for="komplet_child_name_bank">Jméno a příjmení žáka:</label>
-            <input type="text" id="komplet_child_name_bank" name="child_name" required>
-            <label for="komplet_parent_email_bank">E-mail rodiče:</label>
-            <input type="email" id="komplet_parent_email_bank" name="parent_email" required>
-            <label for="komplet_parent_account_bank">Číslo účtu rodiče:</label>
-            <input type="text" id="komplet_parent_account_bank" name="parent_account" placeholder="Např. 12345678/0100" required>
+            <input type="hidden" name="course_price" value="7500">
+
+            <label for="name_zak">Jméno a příjmení žáka:</label>
+            <input type="text" id="name_zak" name="name_zak" required>
+            
+            <label for="telefon_zak">Telefonní číslo žáka:</label>
+            <input type="tel" id="telefon_zak" name="telefon_zak" required>
+            
+            <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
+            <input type="text" id="name_rodic" name="name_rodic" required>
+            
+            <label for="parent_email">E-mail rodiče:</label>
+            <input type="email" id="parent_email" name="parent_email" required>          
+            
+            <label for="bydliste">Místo bydliště:</label>
+            <input type="text" id="bydliste" name="bydliste" required>
+            
+            <label for="psc">PSČ:</label>
+            <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
+                        
             <button type="submit" class="payment-btn">Generovat QR kód</button>
           </form>
         </div>
       </div>
 
-      <!-- KARTA: Šprtárna -->
+     <!--SPRTARNA-->
       <div class="course-card">
         <h3 style="color: #17c3b2;">Šprtárna</h3>
         <p><strong>Období:</strong> 4. Listopadu – 29. Ledna</p>
@@ -228,22 +257,50 @@
           <form id="sprtarna-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
             <input type="hidden" name="course_name" value="Šprtárna">
             <input type="hidden" name="course_price" value="4000">
-            <label for="sprtarna_child_name_stripe">Jméno a příjmení žáka:</label>
-            <input type="text" id="sprtarna_child_name_stripe" name="child_name" required>
-            <label for="sprtarna_parent_email_stripe">E-mail rodiče:</label>
-            <input type="email" id="sprtarna_parent_email_stripe" name="parent_email" required>
+            
+            <label for="name_zak">Jméno a příjmení žáka:</label>
+            <input type="text" id="name_zak" name="name_zak" required>
+            
+            <label for="telefon_zak">Telefonní číslo žáka:</label>
+            <input type="tel" id="telefon_zak" name="telefon_zak" required>
+            
+            <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
+            <input type="text" id="name_rodic" name="name_rodic" required>
+            
+            <label for="parent_email">E-mail rodiče:</label>
+            <input type="email" id="parent_email" name="parent_email" required>          
+            
+            <label for="misto_bydliste">Místo bydliště:</label>
+            <input type="text" id="misto_bydliste" name="misto_bydliste" required>
+
+            label for="psc">PSČ:</label>
+            <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
+            
             <button type="submit" class="payment-btn">Zaplatit kartou (Stripe)</button>
           </form>
 
           <form id="sprtarna-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
             <input type="hidden" name="course_name" value="Šprtárna">
             <input type="hidden" name="course_price" value="4000">
-            <label for="sprtarna_child_name_bank">Jméno a příjmení žáka:</label>
-            <input type="text" id="sprtarna_child_name_bank" name="child_name" required>
-            <label for="sprtarna_parent_email_bank">E-mail rodiče:</label>
-            <input type="email" id="sprtarna_parent_email_bank" name="parent_email" required>
-            <label for="sprtarna_parent_account_bank">Číslo účtu rodiče:</label>
-            <input type="text" id="sprtarna_parent_account_bank" name="parent_account" placeholder="Např. 12345678/0100" required>
+            
+            <label for="name_zak">Jméno a příjmení žáka:</label>
+            <input type="text" id="name_zak" name="name_zak" required>
+            
+            <label for="telefon_zak">Telefonní číslo žáka:</label>
+            <input type="tel" id="telefon_zak" name="telefon_zak" required>
+            
+            <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
+            <input type="text" id="name_rodic" name="name_rodic" required>
+            
+            <label for="parent_email">E-mail rodiče:</label>
+            <input type="email" id="parent_email" name="parent_email" required>          
+            
+            <label for="misto_bydliste">Místo bydliště:</label>
+            <input type="text" id="misto_bydliste" name="misto_bydliste" required>
+
+            <label for="psc">PSČ:</label>
+            <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
+            
             <button type="submit" class="payment-btn">Generovat QR kód</button>
           </form>
         </div>
@@ -269,22 +326,50 @@
           <form id="masakr-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
             <input type="hidden" name="course_name" value="Masakr">
             <input type="hidden" name="course_price" value="4000">
-            <label for="masakr_child_name_stripe">Jméno a příjmení žáka:</label>
-            <input type="text" id="masakr_child_name_stripe" name="child_name" required>
-            <label for="masakr_parent_email_stripe">E-mail rodiče:</label>
-            <input type="email" id="masakr_parent_email_stripe" name="parent_email" required>
+            
+             <label for="name_zak">Jméno a příjmení žáka:</label>
+            <input type="text" id="name_zak" name="name_zak" required>
+            
+            <label for="telefon_zak">Telefonní číslo žáka:</label>
+            <input type="tel" id="telefon_zak" name="telefon_zak" required>
+            
+            <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
+            <input type="text" id="name_rodic" name="name_rodic" required>
+            
+            <label for="parent_email">E-mail rodiče:</label>
+            <input type="email" id="parent_email" name="parent_email" required>          
+            
+            <label for="misto_bydliste">Místo bydliště:</label>
+            <input type="text" id="misto_bydliste" name="misto_bydliste" required>
+
+            <label for="psc">PSČ:</label>
+            <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
+            
             <button type="submit" class="payment-btn">Zaplatit kartou (Stripe)</button>
           </form>
 
           <form id="masakr-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
             <input type="hidden" name="course_name" value="Masakr">
             <input type="hidden" name="course_price" value="4000">
-            <label for="masakr_child_name_bank">Jméno a příjmení žáka:</label>
-            <input type="text" id="masakr_child_name_bank" name="child_name" required>
-            <label for="masakr_parent_email_bank">E-mail rodiče:</label>
-            <input type="email" id="masakr_parent_email_bank" name="parent_email" required>
-            <label for="masakr_parent_account_bank">Číslo účtu rodiče:</label>
-            <input type="text" id="masakr_parent_account_bank" name="parent_account" placeholder="Např. 12345678/0100" required>
+            
+            <label for="name_zak">Jméno a příjmení žáka:</label>
+            <input type="text" id="name_zak" name="name_zak" required>
+            
+            <label for="telefon_zak">Telefonní číslo žáka:</label>
+            <input type="tel" id="telefon_zak" name="telefon_zak" required>
+            
+            <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
+            <input type="text" id="name_rodic" name="name_rodic" required>
+            
+            <label for="parent_email">E-mail rodiče:</label>
+            <input type="email" id="parent_email" name="parent_email" required>          
+            
+            <label for="misto_bydliste">Místo bydliště:</label>
+            <input type="text" id="misto_bydliste" name="misto_bydliste" required>
+
+            <label for="psc">PSČ:</label>
+            <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
+            
             <button type="submit" class="payment-btn">Generovat QR kód</button>
           </form>
         </div>

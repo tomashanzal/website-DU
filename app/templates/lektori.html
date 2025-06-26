@@ -111,20 +111,20 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-inner">
-            <div class="logo">
-                <img src="{{ url_for('static', filename='img/Logo.webp') }}" >
-                <span class="studna-text desktop-only">Studna</span>
-            </div>
-            <nav>
-                <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
-                <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
-                <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
-                <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
-            </nav>
-        </div>
-    </header>
+  <header>
+      <div class="header-inner">
+          <div class="logo">
+              <img src="{{ url_for('static', filename='img/big_logo.png') }}" >
+              <span class="studna-text desktop-only">Studna</span>
+          </div>
+          <nav>
+              <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
+              <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
+              <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
+              <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
+          </nav>
+      </div>
+  </header>
 
     <div class="lektori-page-container"> <section class="lektori-container">
             <h1>Naši lektoři</h1>

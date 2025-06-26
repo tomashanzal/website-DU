@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Kvalitní doučování matematiky a angličtiny pro úspěch u přijímaček na SŠ/VŠ a maturity. Individuální online i prezenční výuka.">
     <title>Studna-doucování na přijímačky</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='img/favicon.jpg') }}">
+
     <style>
         /* Globalní styly by ideálně měly být v styles.css */
         html {
@@ -36,11 +37,6 @@
             text-align: left; /* Zajišťuje, že samotný text je zarovnán doleva */
         }
 
-        .hero-logo {
-            max-width: 12vw;
-            border-radius: 10rem;
-            height: auto;
-        }
 
         .hero-buttons {
             display: flex;
@@ -124,24 +120,24 @@
 </head>
 
 <body>
-    <header>
-        <div class="header-inner">
-            <div class="logo">
-                <img src="{{ url_for('static', filename='img/Logo.webp') }}" >
-                <span class="studna-text desktop-only">Studna</span>
-            </div>
-            <nav>
-                <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
-                <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
-                <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
-                <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
-            </nav>
-        </div>
-    </header>
+  <header>
+      <div class="header-inner">
+          <div class="logo">
+              <img src="{{ url_for('static', filename='img/big_logo.png') }}" >
+              <span class="studna-text desktop-only">Studna</span>
+          </div>
+          <nav>
+              <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
+              <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
+              <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
+              <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
+          </nav>
+      </div>
+  </header>
 
     <section class="hero-landing">
         <div class="hero-text">
-            <img src="{{ url_for('static', filename='img/Logo.webp') }}" alt="Logo USIFEST" class="hero-logo">
+            <img src="{{ url_for('static', filename='img/big_logo.png') }}" alt="big_logo" class="hero-logo">
             <h2>Studenti studentum</h2>
             <p>Doučování na přijímačky 9. ročníků. 2025-26.
             <br>gymnázium Jana Keplera</p>

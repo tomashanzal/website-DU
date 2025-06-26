@@ -9,15 +9,18 @@
 </head>
 <body class="dark-bg">
   <header>
-    <div class="header-inner">
-      <div class="logo">🎓 Studenti studentům</div>
-      <nav>
-        <a href="{{ url_for('main.home') }}">Domů</a>
-        <a href="{{ url_for('main.about') }}">O kurzu</a>
-        <a href="{{ url_for('main.payment') }}">Koupit kurz</a>
-        <a href="{{ url_for('main.kontakt') }}">Kontakt</a>
-      </nav>
-    </div>
+      <div class="header-inner">
+          <div class="logo">
+              <img src="{{ url_for('static', filename='img/big_logo.png') }}" >
+              <span class="studna-text desktop-only">Studna</span>
+          </div>
+          <nav>
+              <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
+              <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
+              <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
+              <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
+          </nav>
+      </div>
   </header>
 
   <section class="features">

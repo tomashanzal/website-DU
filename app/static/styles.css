@@ -87,7 +87,7 @@ header {
   vertical-align: middle;
   margin-right: 1rem;
   transition: height 0.3s ease;
-  
+  border: 3px solid #1d3557;
 }
 
 /* Navigace */
@@ -244,7 +244,7 @@ footer {
     display: inline;
   }
   .header-inner .logo img {
-    height: 6.5rem;
+    height: 7rem;
     max-height: 8vw;
   }
 }
