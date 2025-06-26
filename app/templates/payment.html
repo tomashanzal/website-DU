@@ -191,7 +191,7 @@
 
             <label for="name_zak">Jméno a příjmení žáka:</label>
             <input type="text" id="name_zak" name="name_zak" required>
-            
+          
             <label for="telefon_zak">Telefonní číslo žáka:</label>
             <input type="tel" id="telefon_zak" name="telefon_zak" required>
             
@@ -201,12 +201,15 @@
             <label for="parent_email">E-mail rodiče:</label>
             <input type="email" id="parent_email" name="parent_email" required>          
             
-            <label for="bydliste">Místo bydliště:</label>
-            <input type="text" id="bydliste" name="bydliste" required>
+            <label for="cislo_uctu">Vaše číslo učtu:</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" required>    
             
+            <label for="misto_bydliste">Místo bydliště:</label>
+            <input type="text" id="misto_bydliste" name="misto_bydliste" required>
+
             <label for="psc">PSČ:</label>
             <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
-          
+                        
             <button type="submit" class="payment-btn">Zaplatit kartou (Stripe)</button>
           </form>
 
@@ -225,11 +228,14 @@
             <input type="text" id="name_rodic" name="name_rodic" required>
             
             <label for="parent_email">E-mail rodiče:</label>
-            <input type="email" id="parent_email" name="parent_email" required>          
-            
-            <label for="bydliste">Místo bydliště:</label>
-            <input type="text" id="bydliste" name="bydliste" required>
-            
+            <input type="email" id="parent_email" name="parent_email" required>    
+
+            <label for="cislo_uctu">Vaše číslo učtu:</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
+
+            <label for="misto_bydliste">Místo bydliště:</label>
+            <input type="text" id="misto_bydliste" name="misto_bydliste" required>
+
             <label for="psc">PSČ:</label>
             <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
                         
@@ -270,10 +276,13 @@
             <label for="parent_email">E-mail rodiče:</label>
             <input type="email" id="parent_email" name="parent_email" required>          
             
+            <label for="cislo_uctu">Vaše číslo učtu:</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
+
             <label for="misto_bydliste">Místo bydliště:</label>
             <input type="text" id="misto_bydliste" name="misto_bydliste" required>
 
-            label for="psc">PSČ:</label>
+            <label for="psc">PSČ:</label>
             <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
             
             <button type="submit" class="payment-btn">Zaplatit kartou (Stripe)</button>
@@ -293,7 +302,10 @@
             <input type="text" id="name_rodic" name="name_rodic" required>
             
             <label for="parent_email">E-mail rodiče:</label>
-            <input type="email" id="parent_email" name="parent_email" required>          
+            <input type="email" id="parent_email" name="parent_email" required>
+            
+            <label for="cislo_uctu">Vaše číslo učtu:</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
             
             <label for="misto_bydliste">Místo bydliště:</label>
             <input type="text" id="misto_bydliste" name="misto_bydliste" required>
@@ -337,7 +349,10 @@
             <input type="text" id="name_rodic" name="name_rodic" required>
             
             <label for="parent_email">E-mail rodiče:</label>
-            <input type="email" id="parent_email" name="parent_email" required>          
+            <input type="email" id="parent_email" name="parent_email" required> 
+            
+            <label for="cislo_uctu">Vaše číslo učtu:</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
             
             <label for="misto_bydliste">Místo bydliště:</label>
             <input type="text" id="misto_bydliste" name="misto_bydliste" required>
@@ -354,7 +369,7 @@
             
             <label for="name_zak">Jméno a příjmení žáka:</label>
             <input type="text" id="name_zak" name="name_zak" required>
-            
+
             <label for="telefon_zak">Telefonní číslo žáka:</label>
             <input type="tel" id="telefon_zak" name="telefon_zak" required>
             
@@ -362,7 +377,10 @@
             <input type="text" id="name_rodic" name="name_rodic" required>
             
             <label for="parent_email">E-mail rodiče:</label>
-            <input type="email" id="parent_email" name="parent_email" required>          
+            <input type="email" id="parent_email" name="parent_email" required>    
+            
+            <label for="cislo_uctu">Vaše číslo učtu:</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
             
             <label for="misto_bydliste">Místo bydliště:</label>
             <input type="text" id="misto_bydliste" name="misto_bydliste" required>
@@ -370,13 +388,13 @@
             <label for="psc">PSČ:</label>
             <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
             
+            
             <button type="submit" class="payment-btn">Generovat QR kód</button>
           </form>
         </div>
       </div>
     </div>
   </section>
-
   <footer>© 2025 Studenti studentům. Všechna práva vyhrazena.</footer>
 
   <script>

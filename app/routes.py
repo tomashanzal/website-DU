@@ -6,6 +6,7 @@ import stripe
 import os
 from dotenv import load_dotenv
 
+
 # Načti proměnné z .env souboru
 load_dotenv()
 
@@ -169,60 +170,67 @@ def cancel():
     flash("Platba byla zrušena nebo nedokončena.", "info")
     return render_template("cancel.html")
 
-# Nová route pro generování QR kódu bankovního převodu
+
+
+
+
+
+
 @main.route("/generate-qr", methods=["POST"])
 def generate_qr():
-    child_name = request.form["child_name"]
+    child_name = request.form["name_zak"]
     parent_email = request.form["parent_email"]
-    parent_account = request.form["parent_account"]
     course_name = request.form["course_name"]
-    
-    # --- ZDE DOPORUČUJI PŘESUNOUT DO .ENV SOUBORU ---
-    # Cena v haléřích. Ověř, že vstup je číslo a správně se převede
+
+    # Cena v haléřích
     course_price_str = request.form["course_price"]
     try:
         course_price_float = float(course_price_str)
-        course_price = int(course_price_float * 100) # Cena v haléřích/centech
+        course_price = int(course_price_float * 100)  # v haléřích
     except ValueError:
         flash("Neplatný formát ceny kurzu pro QR platbu. Zadejte prosím číslo.", "danger")
-        return redirect(url_for('main.payment')) # Nebo jiná stránka s formulářem
+        return redirect(url_for('main.payment'))
 
-    # Cíl platby - DŮLEŽITÉ: NAČÍTAT Z .ENV, NE ZDE TVRDOZAKÓDOVANĚ!
-    amount = course_price  # v haléřích
-    account_number = os.getenv("BANK_ACCOUNT_NUMBER", "123456789/0100") # Příklad, načti z .env
-    bank_code = os.getenv("BANK_CODE", "0100") # Příklad, načti z .env
-    specific_symbol = os.getenv("SPECIFIC_SYMBOL", "2025") # Příklad, načti z .env
-    
-    # Lepší variabilní symbol - unikátní pro každou objednávku
-    # Může to být např. ID z databáze nebo UUID
+    amount = course_price
+
+    # Načtení čísla účtu z .env
+    account_full = os.getenv("BANK_ACCOUNT_NUMBER")
+    bank_code = os.getenv("BANK_CODE")
+
+    if account_full:
+        if "/" in account_full:
+            account_number, bank_code = account_full.split("/")
+            account_number = account_number.strip()
+            bank_code = bank_code.strip()
+        else:
+            account_number = account_full.strip()
+            bank_code = os.getenv("BANK_CODE", "").strip()
+    else:
+        account_number = ""
+        bank_code = os.getenv("BANK_CODE", "").strip()
+
     import uuid
-    variable_symbol = str(uuid.uuid4().int % (10**10)) # Generuje 10místné číslo
+    variable_symbol = str(uuid.uuid4().int % (10**10))  # 10místné číslo
 
-    # Zpráva pro příjemce
-    message = f"Doucovani {course_name} pro {child_name}"
-
-    # QR kód podle standardu SPD pro bankovní platbu
-    qr_data = (
-        f"SPD*1.0*ACC:CZ{account_number.replace('/', '')}*AM:{amount / 100:.2f}*CC:CZK*"
-        f"MSG:{message}*X-VS:{variable_symbol}*X-SS:{specific_symbol}"
-    )
-
-    # Vygenerování QR kódu
-    qr_img = qrcode.make(qr_data)
-    buffer = io.BytesIO()
-    qr_img.save(buffer, format="PNG")
-    qr_code_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    # Výběr QR obrázku podle ceny (haléře)
+    print(course_price)
+    if course_price == 200000:
+        qr_filename = "ctvrtinovy.jpg"
+    elif course_price == 400000:
+        qr_filename = "polovicni.jpg"
+    elif course_price == 750000:
+        qr_filename = "komplet.jpg"
+    else:
+        qr_filename = "qr_default.png"  # fallback obrázek, pokud chceš
 
     return render_template(
         "qr_result.html",
-        qr_code=qr_code_base64,
+        qr_filename=qr_filename,
         amount=amount / 100,
         account_number=account_number,
         bank_code=bank_code,
-        message=message,
         child_name=child_name,
         parent_email=parent_email,
         course_name=course_name,
         variable_symbol=variable_symbol,
-        specific_symbol=specific_symbol
     )
