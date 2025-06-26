@@ -6,6 +6,7 @@ git add .
 git commit -m "První commit"
 git push -u origin main
 GIT push
+git reset --hard origin/main
 
 .\venv\Scripts\Activate
 pip freeze > requirements.txt

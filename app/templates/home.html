@@ -25,6 +25,8 @@
             background-color: #eef0f2;
         }
 
+
+
         .hero-text {
             flex: 1;
             display: flex;
@@ -61,6 +63,14 @@
             aspect-ratio: 16 / 9;
             border-radius: 1rem;
             box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.25);
+        }
+        .logo-homepage {
+            width: 10vw;
+            height: 10vw;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #1d3557;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* volitelné */
         }
 
         .project-info {
@@ -123,8 +133,8 @@
   <header>
       <div class="header-inner">
           <div class="logo">
-              <img src="{{ url_for('static', filename='img/big_logo.png') }}" >
-              <span class="studna-text desktop-only">Studna</span>
+            <img src="{{ url_for('static', filename='img/big_logo.png') }}" >
+            <span class="studna-text desktop-only">Studna</span>
           </div>
           <nav>
               <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
@@ -137,7 +147,7 @@
 
     <section class="hero-landing">
         <div class="hero-text">
-            <img src="{{ url_for('static', filename='img/big_logo.png') }}" alt="big_logo" class="hero-logo">
+            <img class="logo-homepage" src="{{ url_for('static', filename='img/big_logo.png') }}" alt="big_logo" class="hero-logo">
             <h2>Studenti studentum</h2>
             <p>Doučování na přijímačky 9. ročníků. 2025-26.
             <br>gymnázium Jana Keplera</p>

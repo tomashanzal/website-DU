@@ -8,13 +8,14 @@
     <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='img/favicon.jpg') }}">
 </head>
   <style>
+    
     .dou-flex {
       display: flex;
       gap: clamp(1rem, 3vw, 3vw);
       align-items: flex-end;
       justify-content: center;
       padding: clamp(1rem, 3vw, 3vw) clamp(3rem, 10vw, 10vw);
-      background-color: #f5faff;
+      background-color: #eef0f2;
       border-radius: clamp(0.5rem, 1vw, 1rem);
       flex-wrap: wrap;
     }
@@ -49,7 +50,7 @@
     }
     /* ===== TIMELINE ===== */
     .timeline-wrapper {
-      background-color: white;
+      background-color: #f5faff;
       padding-bottom: clamp(2rem, 5vw, 5vw);
     }
 
@@ -140,10 +141,11 @@
       padding: clamp(1rem, 3vw, 3vw) clamp(1rem, 10vw, 10vw);
       gap: clamp(1rem, 3vw, 3vw);
       flex-wrap: wrap;
+      background-color: #f5faff;
     }
     .description-block {
       flex: 1 1 200px;
-      background-color: #ffffff;
+      background-color: white;
       padding: clamp(1rem, 2vw, 2rem);
       border-radius: clamp(0.7rem, 1vw, 1rem);
       box-shadow: 0 clamp(0.1rem, 0.3vw, 0.4rem) clamp(0.3rem, 1vw, 1rem) rgba(0, 0, 0, 0.05);
@@ -155,8 +157,11 @@
     }
     .description-block p {
       font-size: clamp(0.9rem, 1.3vw, 2rem);
-      font-weight: 500;
+      font-weight: 400;
     }
+
+
+
 
     /* ===== MAPA ===== */
     .dou-map {
@@ -317,9 +322,6 @@
       </p>
     </div>
   </div>
-  <section style="text-align: center;">
-    <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Zjistit více o lektorech</a>
-  </section>
 
   <footer>
     &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
