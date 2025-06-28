@@ -174,9 +174,9 @@
         Zde se zaměříme na dopilování menších nedostatků studentů v potřebné látce a zároveň na psaní testů stejně, jako u cermatu.
         </p>
         <p>
-            <strong>Rozsah:</strong> 42 lekcí (63h)<br>
+          <strong>Rozsah:</strong> 42 lekcí (63h)<br>
         </p>
-        <div class="price">Cena: 7500 Kč</div>
+        <div class="price">Cena: 8 000 Kč</div>
 
         <div class="payment-options">
           <div class="payment-option-toggle">
@@ -186,7 +186,7 @@
 
           <form id="komplet-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
             <input type="hidden" name="course_name" value="Komplet">
-            <input type="hidden" name="course_price" value="7500">
+            <input type="hidden" name="course_price" value="8000">
 
             <label for="name_zak">Jméno a příjmení žáka:</label>
             <input type="text" id="name_zak" name="name_zak" required>
@@ -215,7 +215,7 @@
 
           <form id="komplet-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
             <input type="hidden" name="course_name" value="Komplet">
-            <input type="hidden" name="course_price" value="7500">
+            <input type="hidden" name="course_price" value="8000">
 
             <label for="name_zak">Jméno a příjmení žáka:</label>
             <input type="text" id="name_zak" name="name_zak" required>
@@ -396,7 +396,7 @@
   </section>
   <footer>© 2025 Studenti studentům. Všechna práva vyhrazena.</footer>
 
-  <script>
+<script>
     function showPaymentForm(formId) {
       document.querySelectorAll('.payment-form').forEach(form => {
         form.classList.remove('active');
@@ -438,21 +438,38 @@
       const priceEl = card.querySelector('.price');
       const subjectRadios = card.querySelectorAll('input[type="radio"][name^="subject-group"]');
       const priceInputs = card.querySelectorAll('input[name="course_price"]');
+      const courseNameElement = card.querySelector('h3'); // Get the course name element
+      let initialFullPrice;
+
+      // Determine initial full price based on the course name
+      if (courseNameElement.textContent.includes('Komplet')) {
+        initialFullPrice = 8000;
+      } else { // For Šprtárna and Masakr
+        initialFullPrice = 4000;
+      }
 
       subjectRadios.forEach(radio => {
         radio.addEventListener('change', () => {
           const selected = card.querySelector('input[type="radio"][name^="subject-group"]:checked');
-          let price = 2000;
-          if (selected && selected.value === 'Full') {
-            price = 4000;
+          let newPrice = initialFullPrice; // Start with the full price for the specific course
+
+          if (selected && selected.value !== 'Full') { // If a single subject is selected
+            newPrice = initialFullPrice / 2; // Half the initial full price
           }
-          priceEl.textContent = `Cena: ${price.toLocaleString('cs-CZ')} Kč`;
+
+          priceEl.textContent = `Cena: ${newPrice.toLocaleString('cs-CZ')} Kč`;
           priceInputs.forEach(input => {
-            input.value = price;
+            input.value = newPrice;
           });
         });
       });
+
+      // Set initial price correctly when the page loads (based on the default 'Full' selection)
+      priceEl.textContent = `Cena: ${initialFullPrice.toLocaleString('cs-CZ')} Kč`;
+      priceInputs.forEach(input => {
+          input.value = initialFullPrice;
+      });
     });
-  </script>
+</script>
 </body>
 </html>
