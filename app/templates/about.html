@@ -36,7 +36,7 @@
     .dou-heading-inner {
       display: flex;
       flex-wrap: wrap;
-      gap: 2em;
+      gap: 3em;
     }
     .left-col, .right-col {
       flex: 1 1 200px;
@@ -181,16 +181,28 @@
       border-radius: clamp(0.5rem, 1vw, 1rem);
       display: block;
     }
+    /* Skrytí tlačítka v desktopové verzi a zobrazení v mobilní verzi */
+    .btn-lektori-desktop {
+      display: block; /* Zobrazí se ve výchozím nastavení (desktop) */
+    }
+    .btn-lektori-mobile {
+      display: none; /* Skryje se ve výchozím nastavení (desktop) */
+    }
     @media (max-width: 768px) {
       .dou-heading {
         flex: 1 1 400px;
         background-color: white;
-        padding: clamp(1.5rem, 2vw, 2rem);
-        padding-bottom: clamp(0.5rem, 1vw, 1rem);
+        padding: clamp(1.5rem, 2vw, 5rem);
+        padding-bottom: clamp(0.5rem, 5vw, 5rem);
         margin-top: 0 0;
         border-radius: clamp(0.5rem, 1vw, 1rem);
         box-shadow: 0 clamp(0.1rem, 0.3vw, 0.4rem) clamp(0.3rem, 1vw, 1rem) rgba(0, 0, 0, 0.05);
         min-width: 0;
+      }
+      .dou-heading-inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
       }
       .timeline-month::before {
       content: '';
@@ -237,6 +249,18 @@
       border-radius: clamp(0.5rem, 1vw, 1rem);
       display: block;
     }
+    .btn-lektori-desktop {
+      display: none; /* Skryje tlačítko na desktopu v mobilním zobrazení */
+    }
+    .btn-lektori-mobile {
+      display: block; /* Zobrazí tlačítko v mobilním zobrazení */
+      text-align: center; /* Volitelné: zarovnání na střed */
+      margin-top: 1.5rem; /* Volitelné: mezera shora */
+    }
+    .dou-heading {
+      /* ... (tvůj stávající mobilní CSS pro dou-heading) ... */
+      min-width: 0; /* Oprava z tvého kódu, aby se dou-heading zmenšoval na mobilech */
+    }
     }
 
   </style>
@@ -259,15 +283,26 @@
     <div class="dou-flex">
       <div class="dou-heading">
         <h2>Rychlé Info.</h2>
+        {# Tlačítko pro mobilní verzi - zobrazí se pouze, pokud je is_mobile True #}
+        {% if is_mobile %}
+          <div class="btn-lektori-mobile">
+            <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Naši lektoři</a>
+          </div>
+        {% endif %}
         <div class="dou-heading-inner">
           <div class="left-col">
             <p><strong>Cena kurzů:</strong></p>
-            <p>Šprtárna: 4 000 
+            <p>Šprtárna: 4 000
             <br>Masakr: 4 000</p>
             <p><strong>Kde se koná?</strong></p>
             <p>Gymnázium Jana Keplera
             <br>Parléřova 2, Praha 6</p>
-            <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Naši lektoři</a>
+            {# Tlačítko pro desktopovou verzi - zobrazí se pouze, pokud is_mobile NENÍ True #}
+            {% if not is_mobile %}
+              <div class="btn-lektori-desktop">
+                <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Naši lektoři</a>
+              </div>
+            {% endif %}
           </div>
           <div class="right-col">
             <p><strong>Jak je kurz rozdělen?</strong></p>
@@ -276,7 +311,6 @@
             <p><strong>Kdy se koná?</strong></p>
             <p>Čeština, čtvrtky  17:00–18:30
             <br>Matematika, čtvrtky 17:00–18:30</p>
-
           </div>
         </div>
       </div>
@@ -318,7 +352,7 @@
     <div class="description-block">
       <h3 style="color: #fe6d73;">Masakr</h3>
       <p>V této části si studenti na začátku vyberou, v jakých oblastech daných předmětů by se chtěli zlepšovat, a podle toho budou následně rozřazeni do skupin.
-        Následně budou psát testy na “ostro” stejně jako u reálných přijímaček. V poslední části lekce si pak testy ve 
+        Následně budou psát testy na “ostro” stejně jako u reálných přijímaček. V poslední části lekce si pak testy ve
       </p>
     </div>
   </div>
