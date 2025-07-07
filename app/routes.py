@@ -1,24 +1,19 @@
-
 # app/routes.py
 from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 import stripe
 import os
-import json # <-- NOVÝ IMPORT
-from datetime import datetime # <-- NOVÝ IMPORT
-import uuid # Pro generování ID objednávky, pokud nebudeš používat db ID
-import qrcode # Pokud generuješ QR kódy
-import io # Pro práci s byty (pro QR kódy)
-import base64 # Pro práci s base64 kódováním (pro QR kódy)
-from flask_mail import Message, Mail # <-- NOVÝ IMPORT PRO EMAILY
+import json 
+from datetime import datetime
+import uuid 
+import qrcode
+import io 
+import base64 
+from flask_mail import Message, Mail 
 
 # Inicicializace Stripe API
 stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
 # Cesta k JSON souboru pro ukládání objednávek
-# Používáme current_app.instance_path pro bezpečné umístění
-# To vyžaduje, aby 'current_app' byl dostupný, což je v kontextu aplikace.
-# Pokud byste chtěli cestu definovat globálně bez current_app,
-# museli byste použít os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), 'instance', 'orders.json')
 ORDERS_FILE = None # Inicializujeme na None, nastavíme v create_app nebo v routách přes current_app
 
 main = Blueprint('main', __name__)
@@ -167,7 +162,7 @@ def create_checkout_session():
         orders.append(new_order_data)
         save_orders(orders)
         
-        # Odeslání e-mailu o nové objednávce (status pending)
+        # Odeslání e-mailu o nové objednávce, STRIPE ADMIN
         email_subject = f"Nová objednávka kurzu ({course_name}) - Čekající platba Stripe"
         email_body = f"""
         <p>Ahoj,</p>
@@ -222,9 +217,22 @@ def success():
                     save_orders(orders) # Uložíme aktualizovaný seznam objednávek
                     flash("Platba proběhla úspěšně! Děkujeme za nákup.", "success")
 
-                    # Odeslání e-mailu o úspěšné platbě
-                    email_subject = f"Platba za kurz {order_to_update['course_name']} úspěšná!"
+                    # Odeslání e-mailu o Potvruzení platby STRIPE RODIC (OPRAVENO HTML)
+                    email_subject = f"Potvrzení platby kurzu {order_to_update['course_name']}"
                     email_body = f"""
+                    <p>Dobrý den,</p>
+                    <p>Platba za kurz "<strong>{order_to_update['course_name']}</strong>" byla úspěšně zpracována.</p>
+                    <ul>
+                        <li><strong>{order_to_update['student_name']}</strong> je úspěšně přihlášen, těšíme se!</li>
+                        <li>Podrobné instrukce ohledně kurzu vám budou zaslány na: <strong>{order_to_update['parent_email']}</strong>.</li>
+                    </ul>
+                    """
+                    
+                    send_order_email(order_to_update['parent_email'], email_subject, email_body) # Pošli i rodiči
+                    
+                    # Odeslání e-mailu o Potvruzení platby STRIPE ADMIN
+                    email_subject_2 = f"Platba za kurz {order_to_update['course_name']} úspěšná!"
+                    email_body_2 = f"""
                     <p>Ahoj,</p>
                     <p>Platba za objednávku kurzu <strong>{order_to_update['course_name']}</strong> byla úspěšně zpracována.</p>
                     <ul>
@@ -235,8 +243,7 @@ def success():
                     </ul>
                     <p>Objednávka byla aktualizována v JSON souboru.</p>
                     """
-                    send_order_email(os.getenv("ADMIN_EMAIL"), email_subject, email_body) # Pošli na admin email
-                    send_order_email(order_to_update['parent_email'], email_subject, email_body) # Pošli i rodiči
+                    send_order_email(os.getenv("ADMIN_EMAIL"), email_subject_2, email_body_2) # Pošli na admin email
 
                 else:
                     flash("Tato platba již byla zpracována. Děkujeme!", "info")
@@ -287,7 +294,7 @@ def success():
     except Exception as e:
         flash("Došlo k neočekávané chybě při ověřování platby.", "danger")
         print(f"Unexpected Error on success page: {e}")
-        return redirect(url_for('main.app')) # Změněno z main.payment na main.app, předpokládám, že payment je pod main blueprintem
+        return redirect(url_for('main.payment')) # OPRAVENO: Změněno z main.app na main.payment
 
 
 # Route pro zrušenou platbu
