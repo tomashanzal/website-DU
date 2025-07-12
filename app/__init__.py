@@ -4,12 +4,6 @@ from dotenv import load_dotenv
 import os
 from flask_mail import Mail # <-- Ujisti se, že je tu tento import!
 
-# DEBUGGING: Zkontrolujte, odkud se nacita .env
-dotenv_path = os.path.join(os.path.abspath(os.path.dirname(os.path.dirname(__file__))), '.env')
-print(f"DEBUG: Očekávaná cesta k .env souboru: {dotenv_path}")
-print(f"DEBUG: Existuje soubor na této cestě? {os.path.exists(dotenv_path)}")
-
-
 # Definujeme základní adresář projektu
 basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 

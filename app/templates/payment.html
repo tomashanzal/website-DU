@@ -18,6 +18,7 @@
     .course-offerings {
       display: flex;
       flex-wrap: wrap;
+      align-items: flex-start;
       gap: clamp(1.5rem, 3vw, 3rem);
       justify-content: center;
       margin-top: 2rem;
@@ -32,13 +33,20 @@
       max-width: 350px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 1.5 rem;
       transition: border 0.3s ease; /* přechod pro zvýraznění */
       margin-bottom: 5vw;
     }
     .course-card.selected {
       border: 3px solid #1d3557;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .course-card .space {
+      text-align: center ;
+      margin-top: -1rem;
+      margin-bottom: 0.5rem;
+
     }
 
     .course-card h3 {
@@ -169,6 +177,7 @@
       <!-- KARTA: KOMPLET-->
       <div class="course-card">
         <h3>Komplet</h3>
+        <div class="space" style="color: #1d3557; "><p><strong>14 volných míst</strong></p></div>
         <p><strong>Období:</strong> 4. Listopad – 16. Duben</p>
         <p><strong>Obsah:</strong><br> 
         Zde se zaměříme na dopilování menších nedostatků studentů v potřebné látce a zároveň na psaní testů stejně, jako u cermatu.
@@ -246,6 +255,7 @@
      <!--SPRTARNA-->
       <div class="course-card">
         <h3 style="color: #17c3b2;">Šprtárna</h3>
+        <div class="space" style="color: #17c3b2; "><p><strong>14 volných míst</strong></p></div>
         <p><strong>Období:</strong> 4. Listopadu – 29. Ledna</p>
         <p><strong>Obsah:</strong><br>
         V tomto kurzu se primárně zaměříme na skupinové vyplňování a opravování testů ve skupinkách, abychom žákům pomohli získat základy potřebné k tomu, aby se dostali na jejich vysněnou střední školu.
@@ -320,8 +330,8 @@
       <!-- KARTA: Masakr -->
       <div class="course-card">
         <h3 style="color: #fe6d73;">Masakr</h3>
+        <div class="space" style="color: #fe6d73; "><p><strong>14 volných míst</strong></p></div>
         <p><strong>Období:</strong> 3. Únor – 16. Dubna</p>
-        <p><strong>Rozsah:</strong> 20 lekcí (30h)</p>
         <p><strong>Obsah:</strong><br> 
         Zde se zaměříme na dopilování menších nedostatků studentů v potřebné látce a zároveň na psaní testů stejně, jako u cermatu.
         </p>
