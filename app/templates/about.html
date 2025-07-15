@@ -283,12 +283,6 @@
     <div class="dou-flex">
       <div class="dou-heading">
         <h2>Rychlé Info.</h2>
-        {# Tlačítko pro mobilní verzi - zobrazí se pouze, pokud je is_mobile True #}
-        {% if is_mobile %}
-          <div class="btn-lektori-mobile">
-            <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Naši lektoři</a>
-          </div>
-        {% endif %}
         <div class="dou-heading-inner">
           <div class="left-col">
             <p><strong>Cena kurzů:</strong></p>
@@ -300,7 +294,7 @@
             {# Tlačítko pro desktopovou verzi - zobrazí se pouze, pokud is_mobile NENÍ True #}
             {% if not is_mobile %}
               <div class="btn-lektori-desktop">
-                <a href="{{ url_for('main.lektori') }}" class="btn-lektori">Naši lektoři</a>
+                <a href="{{ url_for('main.payment') }}" class="btn-lektori">koupit kurz</a>
               </div>
             {% endif %}
           </div>
