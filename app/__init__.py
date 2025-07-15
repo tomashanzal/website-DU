@@ -28,7 +28,6 @@ def create_app():
 
     # --- KONFIGURACE FLASK-MAIL ZDE ---
     # Ujisti se, že celá tato sekce je zde a je správně napsaná
-    print(os.getenv('MAIL_PASSWORD'))
     app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
     app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT', 587))
     app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS', 'True').lower() in ('true', '1', 't')

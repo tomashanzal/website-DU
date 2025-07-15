@@ -15,3 +15,5 @@ pip install -r requirements.txt
 4242 4242 4242 4242
 
 ZMENA CENY= payment.html dotazník(html + JV dole)
+
+<a href="{{ url_for('main.lektori') }}" class="btn-lektori">koupit kurz</a>
