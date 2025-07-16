@@ -405,7 +405,7 @@ def generate_qr():
 
 
     # Odeslání e-mailu s instrukcemi pro bankovní převod
-    email_subject = f"Potvrzení objednávky kurzu ({course_name}) – Studna doučování"
+    email_subject = f"Vytvoření objednávky kurzu ({course_name}) – Studna doučování"
     email_body = f"""
     <p>Dobrý den,</p>
 
