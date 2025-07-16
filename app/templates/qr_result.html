@@ -1,114 +1,124 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Detaily bankovního převodu – Studenti studentům</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-  <link rel="icon" type="image/jpeg" href="{{ url_for('static', filename='img/favicon.jpg') }}">
-  <style>
-    .qr-section {
-      text-align: center;
-      padding: clamp(2rem, 2vw, 8vw);
-      background-color: white;
-      margin: clamp(0rem, 0vw, 5vw) auto;
-      max-width: 1000px;
-    }
-    .qr-section h1 {
-      color: #1d3557;
-      margin-bottom: 1.5rem;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detaily bankovního převodu – Studenti studentům</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <style>
+        .qr-section {
+            text-align: center;
+            padding: clamp(2rem, 2vw, 8vw);
+            background-color: white;
+            margin: clamp(0rem, 0vw, 5vw) auto;
+            max-width: 1000px;
+        }
+        .qr-section h1 {
+            color: #1d3557;
+            margin-bottom: 1.5rem;
+        }
 
-    .qr-flex {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: clamp(1rem, 5vw, 8vw);
-      flex-wrap: wrap; /* umožní zalomení na menších zařízeních */
-      margin-top: 2rem;
-    }
+        .qr-flex {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: clamp(1rem, 5vw, 8vw);
+            flex-wrap: wrap; /* umožní zalomení na menších zařízeních */
+            margin-top: 2rem;
+        }
 
-    .qr-section img {
-      max-width: 300px;
-      height: auto;
-      border: 5px solid #00a8e8;
-      border-radius: 1rem;
-    }
+        .qr-section img {
+            max-width: 300px;
+            height: auto;
+            border: 5px solid #00a8e8;
+            border-radius: 1rem;
+        }
 
-    .qr-details {
-      max-width: 400px;
-      text-align: left;
-    }
+        .qr-details {
+            max-width: 500px;
+            text-align: left;
+        }
 
-    .qr-details p {
-      font-size: clamp(1rem, 1.3vw, 1.1rem);
-      margin-bottom: 0.5rem;
-    }
+        .qr-details p {
+            font-size: clamp(1rem, 1.3vw, 1.1rem);
+            margin-bottom: 0.5rem;
+        }
 
-    .qr-details strong {
-      display: inline-block;
-      min-width: 150px;
-    }
+        .qr-details strong {
+            display: inline-block;
+            min-width: 150px;
+        }
 
-    .qr-section .btn {
-      margin-top: 2rem;
-      background-color: #00a8e8;
-      color: white;
-      text-decoration: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      display: inline-block;
-    }
+        .qr-section .btn {
+            margin-top: 2rem;
+            background-color: #00a8e8;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            display: inline-block;
+        }
 
-    .qr-section .btn:hover {
-      background-color: #008cb3;
-    }
-  </style>
+        .qr-section .btn:hover {
+            background-color: #008cb3;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="header-inner">
-      <div class="logo">
-        <img src="{{ url_for('static', filename='img/big_logo.png') }}">
-        <span class="studna-text desktop-only">Studna</span>
-      </div>
-      <nav>
-        <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
-        <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
-        <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
-        <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
-      </nav>
-    </div>
-  </header>
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='img/big_logo.png') }}">
+                <span class="studna-text desktop-only">Studna</span>
+            </div>
+            <nav>
+                <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
+                <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
+                <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
+                <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
+            </nav>
+        </div>
+    </header>
 
-  <section class="qr-section">
-    <h1>Detaily bankovního převodu</h1>
-    <p>Použijte tento QR kód pro snadnou platbu kurzu <strong>{{ course_name }}</strong> nebo zadejte údaje ručně.</p>
+    <section class="qr-section">
+        <h1>Objednávka přijata – Detaily platby bankovním převodem</h1>
+        <p>Děkujeme za Vaši objednávku kurzu <strong>{{ course_name }}</strong>. Níže naleznete údaje pro provedení bankovního převodu.</p>
+        <p><strong>Stejné platební instrukce včetně QR kódu Vám byly právě zaslány na Váš e-mail: <strong style="color: #1d3557;">{{ parent_email }}</strong>.</strong></p>
 
-    <div class="qr-flex">
-      <img src="{{ url_for('static', filename='img/' ~ qr_filename) }}" alt="QR kód pro platbu" />
-      <div class="qr-details">
-        <p><strong>Kurz:</strong> {{ course_name }}</p>
-        <p><strong>Jméno žáka:</strong> {{ child_name }}</p>
-        <p><strong>E-mail rodiče:</strong> {{ parent_email }}</p>
-        <p><strong>Částka:</strong> {{ "%.2f" % amount }} CZK</p>
-        <p><strong>Číslo účtu příjemce:</strong> {{ account_number }}</p>
-        <p><strong>Variabilní symbol:</strong> {{ variable_symbol }}</p>
-        {% if specific_symbol %}
-          <p><strong>Specifický symbol:</strong> {{ specific_symbol }}</p>
-        {% endif %}
-        {% if message %}
-          <p><strong>Zpráva pro příjemce:</strong> {{ message }}</p>
-        {% endif %}
-      </div>
-    </div>
+        <div class="qr-flex">
+            {% if amount == 2000 %}
+              <img src="{{ url_for('static', filename='img/ctvrtinovy.jpg') }}" alt="QR kód pro platbu 2000 Kč" />
+            {% elif amount == 4000 %}
+              <img src="{{ url_for('static', filename='img/polovicni.jpg') }}" alt="QR kód pro platbu 4000 Kč" />
+            {% elif amount == 8000 %}
+              <img src="{{ url_for('static', filename='img/komplet.jpg') }}" alt="QR kód pro platbu 8000 Kč" />
+            {% else %}
+              <p>Pro tuto částku není k dispozici specifický QR kód. Prosím, použijte ruční zadání údajů níže.</p>
+            {% endif %}
 
-    <p class="small-text" style="margin-top: 3vw;">Po odeslání platby obdržíte potvrzení na váš e-mail.</p>
-    <a href="{{ url_for('main.payment') }}" class="btn">Zpět na výběr kurzů</a>
-  </section>
+            <div class="qr-details">
+                <p><strong>Kurz:</strong> {{ course_name }}</p>
+                <p><strong>Jméno žáka:</strong> {{ child_name }}</p>
+                <p><strong>E-mail rodiče:</strong> {{ parent_email }}</p>
+                <p><strong>Částka:</strong> {{ "%.2f" % amount }} CZK</p>
+                <p><strong>Číslo účtu příjemce:</strong> CZ73 3030 0000 0031 3428 4022</p>
+                <p><strong>Variabilní symbol:</strong> {{ variable_symbol }}</p>
+                {% if specific_symbol %}
+                  <p><strong>Specifický symbol:</strong> {{ specific_symbol }}</p>
+                {% endif %}
+                {% if message %}
+                  <p><strong>Zpráva pro příjemce:</strong> {{ message }}</p>
+                {% endif %}
+            </div>
+        </div>
 
-  <footer>
-    © 2025 Studenti studentům. Všechna práva vyhrazena.
-  </footer>
+        <p class="small-text" style="margin-top: 3vw;">Jakmile Vaše platba dorazí na náš účet, obdržíte **automatické potvrzení** na Váš e-mail.</p>
+        <a href="{{ url_for('main.payment') }}" class="btn">Zpět na výběr kurzů</a>
+    </section>
+
+    <footer>
+        © 2025 Studenti studentům. Všechna práva vyhrazena.
+    </footer>
 </body>
 </html>

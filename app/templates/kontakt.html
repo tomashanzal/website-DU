@@ -221,23 +221,7 @@
       </div>
     </section>
   </div>
-
-  <div class="tym-wrapper">
-    <section class="tym-section">
-      <h2>Organizátoři</h2>
-      <div class="tym-grid">
-        {% for i in range(1, 7) %}
-        <div class="tym-clen">
-          <img src="{{ url_for('static', filename='img/tym/clen' ~ i ~ '.jpg') }}" alt="Člen týmu {{ i }}">
-          <h3>Jméno Příjmení {{ i }}</h3>
-          <p>📞 +420 123 456 78{{ i }}</p>
-          <p>📧 <a href="mailto:clen{{ i }}@example.com">clen{{ i }}@example.com</a></p>
-        </div>
-        {% endfor %}
-      </div>
-    </section>
-  </div>
-
+  
   <footer>
     &copy; 2025 Studenti studentům. Všechna práva vyhrazena.
   </footer>

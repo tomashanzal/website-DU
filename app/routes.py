@@ -163,7 +163,7 @@ def create_checkout_session():
         save_orders(orders)
         
         # Odeslání e-mailu o nové objednávce, STRIPE ADMIN
-        email_subject = f"Nová objednávka kurzu ({course_name}) - Čekající platba Stripe"
+        email_subject = f"Nová objednávka kurzu ({course_name})"
         email_body = f"""
         <p>Ahoj,</p>
         <p>Byla vytvořena nová objednávka kurzu.</p>
@@ -220,21 +220,33 @@ def success():
                     # Odeslání e-mailu o Potvruzení platby STRIPE RODIC (OPRAVENO HTML)
                     email_subject = f"Potvrzení platby kurzu {order_to_update['course_name']}"
                     email_body = f"""
-                    <p>Dobrý den,</p>
-                    <p>Platba za kurz "<strong>{order_to_update['course_name']}</strong>" byla úspěšně zpracována.</p>
-                    <ul>
-                        <li><strong>{order_to_update['student_name']}</strong> je úspěšně přihlášen, těšíme se!</li>
-                        <li>Podrobné instrukce ohledně kurzu vám budou zaslány na: <strong>{order_to_update['parent_email']}</strong>.</li>
-                    </ul>
+                        <p>Dobrý den,</p>
+
+                        <p>velice Vám děkujeme za platbu a důvěru. Potvrzujeme, že Vaše platba za kurz "<strong>{order_to_update['course_name']}</strong>" ve výši <strong>{order_to_update['course_price']} Kč</strong> byla úspěšně zpracována.</p>
+
+                        <p>Jsme rádi, že se k nám <strong>{order_to_update['student_name']}</strong> přidá a těšíme se na společnou přípravu na přijímací zkoušky</p>
+
+                        <p>Co se stane dál?</p>
+                        <ul>
+                            <li><strong>{order_to_update['student_name']}</strong> je nyní oficiálně přihlášen na kurz. Těšíme se na něj/ni v listopadu!</li>
+                            <li>Podrobné instrukce k zahájení kurzu Vám zašleme na e-mail: <strong>{order_to_update['parent_email']}</strong>.</li>
+                            <li>Pro snazší komunikaci v pruběhu kurzu přidáme <strong>{order_to_update['student_name']}</strong> do naší **WhatsApp skupiny** pro žáky a lektory. </li>
+                            <li>Před samotným startem kurzu proběhne **rozřazovací test**, který nám pomůže rozdělit žáky do skupin tak, aby pro ně byla výuka co nejefektivnější. O detailech Vás budeme včas informovat.</li>
+                        </ul>
+                        <p>V případě jakýchkoli dotazů nás neváhejte kontaktovat odpovědí na tento e-mail, nebo na telefonním čísle [+420 602 270 817].</p>
+
+                        <p>S pozdravem a přáním hezkého dne,</p>
+                        <p>Tým Studna Doučování</p>
                     """
                     
-                    send_order_email(order_to_update['parent_email'], email_subject, email_body) # Pošli i rodiči
+                    send_order_email(order_to_update['parent_email'], email_subject, email_body) # Pošli rodiči
                     
                     # Odeslání e-mailu o Potvruzení platby STRIPE ADMIN
                     email_subject_2 = f"Platba za kurz {order_to_update['course_name']} úspěšná!"
                     email_body_2 = f"""
                     <p>Ahoj,</p>
                     <p>Platba za objednávku kurzu <strong>{order_to_update['course_name']}</strong> byla úspěšně zpracována.</p>
+                    <p><strong>zapotřebí zapsat do databáze<strong><p>
                     <ul>
                         <li><strong>Jméno žáka:</strong> {order_to_update['student_name']}</li>
                         <li><strong>E-mail rodiče:</strong> {order_to_update['parent_email']}</li>
@@ -393,26 +405,37 @@ def generate_qr():
 
 
     # Odeslání e-mailu s instrukcemi pro bankovní převod
-    email_subject = f"Potvrzení objednávky kurzu ({course_name}) - Bankovní převod"
+    email_subject = f"Potvrzení objednávky kurzu ({course_name}) – Studna doučování"
     email_body = f"""
-    <p>Ahoj,</p>
-    <p>Děkujeme za objednávku kurzu <strong>{course_name}</strong>.</p>
-    <p>Pro dokončení objednávky prosím proveďte platbu na následující údaje:</p>
+    <p>Dobrý den,</p>
+
+    <p>děkujeme Vám za objednávku kurzu <strong>{course_name}</strong>. Vaše objednávka byla úspěšně přijata!</p>
+
+    <p>Pro dokončení registrace prosím proveďte platbu bankovním převodem na následující údaje:</p>
     <ul>
         <li><strong>Částka:</strong> {amount / 100:.2f} CZK</li>
-        <li><strong>Číslo účtu:</strong> {account_number}/{bank_code}</li>
-        <li><strong>Variabilní symbol:</strong> {variable_symbol}</li>
-        <li><strong>Popis platby:</strong> Platba za kurz - {student_name}</li>
+        <li><strong>Číslo účtu příjemce:</strong> <strong>{account_number}/{bank_code}</strong></li>
+        <li><strong>Variabilní symbol:</strong> <strong>{variable_symbol}</strong></li>
+        <li><strong>Zpráva pro příjemce:</strong> Platba za kurz - {student_name}</li>
     </ul>
-    <p>QR kód pro platbu naleznete také na stránce potvrzení.</p>
-    <p>Jakmile obdržíme platbu, potvrdíme vaši objednávku e-mailem.</p>
+    <p>Pro rychlejší a snadnější platbu můžete použít také QR kód, který naleznete na stránce potvrzení objednávky (kam jste byli přesměrováni po odeslání formuláře).</p>
+
+    <p><strong>Co se stane dál?</strong></p>
+    <p>Jakmile obdržíme Vaši platbu (obvykle do 1-2 pracovních dnů), zašleme Vám **samostatný e-mail s potvrzením o přijetí platby** a podrobnými informacemi k zahájení kurzu (včetně termínů, místa a detailů o rozřazovacím testu).</p>
+
+    <p><strong>Přehled Vaší objednávky:</strong></p>
     <ul>
         <li><strong>ID objednávky:</strong> {new_order_id}</li>
+        <li><strong>Kurz:</strong> {course_name}</li>
         <li><strong>Jméno žáka:</strong> {student_name}</li>
-        <li><strong>E-mail rodiče:</strong> {parent_email}</li>
-        <li><strong>Stav:</strong> Čeká na bankovní převod</li>
+        <li><strong>E-mail pro komunikaci:</strong> {parent_email}</li>
+        <li><strong>Aktuální stav:</strong> Čeká na platbu bankovním převodem</li>
     </ul>
-    <p>Objednávka byla uložena do JSON souboru.</p>
+
+    <p>V případě jakýchkoli dotazů nás neváhejte kontaktovat. Rádi Vám pomůžeme!</p>
+
+    <p>S pozdravem,</p>
+    <p>Tým Studna Doučování</p>
     """
     send_order_email(os.getenv("ADMIN_EMAIL"), email_subject, email_body) # Pošli na admin email
     send_order_email(parent_email, email_subject, email_body) # Pošli i rodiči

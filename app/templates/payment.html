@@ -177,7 +177,7 @@
       <!-- KARTA: KOMPLET-->
       <div class="course-card">
         <h3>Komplet</h3>
-        <div class="space" style="color: #1d3557; "><p><strong>14 volných míst</strong></p></div>
+        <div class="space" style="color: #1d3557; "><p><strong>13 volných míst</strong></p></div>
         <p><strong>Období:</strong> 4. Listopad – 16. Duben</p>
         <p><strong>Rozsah:</strong> 42 lekcí (63h)<br></p>
         <p><strong>Popis:</strong><br> Komplet je spojení Šprtárny a Masakru,<br> Je to kompletní příprava. Žákum pravidelně posíláme domácí úkoly, dukladně jim vysvětlíme veškerou látku, a naučíme je správný postup při vyplňování testů<br> </p>
@@ -193,7 +193,7 @@
 
           <form id="komplet-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
             <input type="hidden" name="course_name" value="Komplet">
-            <input type="hidden" name="course_price" value="20">
+            <input type="hidden" name="course_price" value="8000">
             
             <label for="name_zak">Jméno a příjmení žáka:</label>
             <input type="text" id="name_zak" name="name_zak" required>
@@ -216,13 +216,13 @@
             <label for="psc">PSČ:</label>
             <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
                         
-            <button type="submit" class="payment-btn">Zaplatit kartou (Stripe)</button>
+            <button type="submit" class="payment-btn">Platit kartou</button>
           </form>
 
 
           <form id="komplet-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
             <input type="hidden" name="course_name" value="Komplet">
-            <input type="hidden" name="course_price" value="20">
+            <input type="hidden" name="course_price" value="8000">
 
             <label for="name_zak">Jméno a příjmení žáka:</label>
             <input type="text" id="name_zak" name="name_zak" required>
@@ -245,7 +245,7 @@
             <label for="psc">PSČ:</label>
             <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
                         
-            <button type="submit" class="payment-btn">Generovat QR kód</button>
+            <button type="submit" class="payment-btn">Platit převodem</button>
           </form>
         </div>
       </div>
@@ -291,7 +291,7 @@
             <label for="psc">PSČ:</label>
             <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
             
-            <button type="submit" class="payment-btn">Zaplatit kartou (Stripe)</button>
+            <button type="submit" class="payment-btn">Platit kartou </button>
           </form>
 
           <form id="sprtarna-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
@@ -319,7 +319,7 @@
             <label for="psc">PSČ:</label>
             <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
             
-            <button type="submit" class="payment-btn">Generovat QR kód</button>
+            <button type="submit" class="payment-btn">Platit převodem</button>
           </form>
         </div>
       </div>
@@ -327,7 +327,7 @@
       <!-- KARTA: Masakr -->
       <div class="course-card">
         <h3 style="color: #fe6d73;">Masakr</h3>
-        <div class="space" style="color: #fe6d73; "><p><strong>14 volných míst</strong></p></div>
+        <div class="space" style="color: #fe6d73; "><p><strong>13 volných míst</strong></p></div>
         <p><strong>Období:</strong> 3. Únor – 16. Dubna</p>
         <p><strong>Rozsah:</strong> 20 lekcí (30h)</p>
         <p><strong>Popis:</strong><br> Masakr je grind.<br> Cílem je získat v testech jistotu <br>a tak je píšem pořád dokola. <br>Každý týden žaci si napíšou kompletní cermat test, který si nasledně s lektorem v malých skupinkách opraví a vysvětlí. </p>
@@ -365,7 +365,7 @@
             <label for="psc">PSČ:</label>
             <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
             
-            <button type="submit" class="payment-btn">Zaplatit kartou (Stripe)</button>
+            <button type="submit" class="payment-btn">Platit kartou</button>
           </form>
 
           <form id="masakr-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
@@ -394,7 +394,7 @@
             <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
             
             
-            <button type="submit" class="payment-btn">Generovat QR kód</button>
+            <button type="submit" class="payment-btn">Platit převodem</button>
           </form>
         </div>
       </div>
@@ -449,7 +449,7 @@
 
       // Determine initial full price based on the course name
       if (courseNameElement.textContent.includes('Komplet')) {
-        initialFullPrice = 20;
+        initialFullPrice = 8000;
       } else { // For Šprtárna and Masakr
         initialFullPrice = 4000;
       }
