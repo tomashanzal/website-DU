@@ -27,7 +27,11 @@
 
 
     <style>
-        /* Globalní styly by ideálně měly být v styles.css */
+
+        body {
+            background-color: white; /* Zde nastavíte barvu pozadí pro celou stránku */
+        }
+
         html {
             scroll-behavior: smooth; /* Pro plynulý posuv na kotvy */
         }
@@ -41,7 +45,7 @@
             margin: 0vw auto;
             gap: 2vw;
             border-radius: 0rem;
-            background-color: #eef0f2;
+            background-color: #f5faff;
         }
 
 
@@ -51,8 +55,8 @@
             display: flex;
             padding: -4vw 0; /* Zvaž, zda je záporný padding v pořádku, může způsobovat překryvy */
             flex-direction: column;
-            background-color:#eef0f2;
-            gap: -2rem; /* mezera mezi odstavci */
+            background-color: #f5faff;
+            gap: -2rem; /* mezera mezi odstavci   #eef0f2*/
             /* ZMĚNY PRO ZAROVNÁNÍ TEXTU A TLAČÍTEK */
             align-items: flex-start; /* Zarovná logo, nadpis, odstavce a tlačítka doleva */
             text-align: left; /* Zajišťuje, že samotný text je zarovnán doleva */
@@ -76,7 +80,7 @@
         }
 
         .hero-video iframe {
-            width: 100%;
+            width: 90%;
             max-width: 725px;
             height: auto;
             aspect-ratio: 16 / 9;
@@ -141,9 +145,14 @@
                 line-height: 1.7;
                 font-size: 1.1rem;
                 color: #1d1d1d;
-                background-color: white;
+                background-color: #f5faff;
             }
         
+        }
+        @media (max-width: 1500px) { /* 992px je běžný breakpoint pro tablety */
+            .logo-homepage {
+            display: none;
+            }
         }
     </style>
 </head>
@@ -166,10 +175,8 @@
 
     <section class="hero-landing">
         <div class="hero-text">
-            <img class="logo-homepage" src="{{ url_for('static', filename='img/big_logo.png') }}" alt="big_logo" class="hero-logo">
-            <h2>Studenti studentum</h2>
-            <p>Doučování na přijímačky 9. ročníků. 2025-26.
-            <br>Studenti gymnázium Jana Keplera</p>
+            <h2>Doučování od studentů <br>pro studenty</h2>
+            <p>Kvalitní a dostupné doučování na přijímačky od studentů, kteří si tím úspěšně prošli.</p>
             <div class="hero-buttons">
                 <a href="#o-projektu" class="btn" style="background-color: #00a8e8;">Kdo jsme</a>
                 <a href="{{ url_for('main.about') }}" class="btn" style="background-color: #ff6392;">O průběhu doučování</a>
@@ -181,13 +188,13 @@
     </section>
 
     <section class="project-info" id="o-projektu">
-        <h4>Kdo jsme</h4>
+        <h4>Kdo jsme, a přoč doučujeme?</h4>
         <p>
             Jsme skupina studentů Gymnázia Jana Keplera, kteří úspěšně prošli přijímacími zkouškami.
             Vlastní zkušenost nás naučila, že většina komerčních doučování je neefektivní a finančně náročná a
             studenti se pak často musí učit doma s rodiči.
             <br>Založili jsme proto Studnu – doučování, které je dostupné, 
-            vedené zkušenými studenty a skutečně připravuje na to, co u přijímaček rozhoduje.
+            vedené studenty co přijímačky už zvládly a skutečně připravuje na to, co u přijímaček rozhoduje.
         </p>
         <h4>Jak Doučujeme</h4>
         <p>

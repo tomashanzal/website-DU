@@ -57,9 +57,16 @@ p {
   color: #666;
 }
 
+/* ===== PATIČKA ===== */
+footer {
+  text-align: center;
+  padding: clamp(1rem, 2vw, 2rem);
+  background-color: #24508e;
+  color: white;
+}
 /* ===== HLAVIČKA ===== */
 header {
-  background-color: #00a8e8;
+  background-color: #3368b2;
   padding: clamp(0rem, 0.4vw, 3rem) clamp(3vw, 6vw, 8vw);
   color: white;
 }
@@ -108,11 +115,43 @@ header {
   white-space: nowrap;
 }
 .header-inner nav a:hover {
-  color: #f7b801;
+  color: white;
 }
 .header-inner nav a.active {
   border-bottom: 2px solid white;
   padding-bottom: 0.2rem;
+}
+
+
+/* zvetšenéí textu */
+.header-inner nav {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: clamp(0rem, 3vw, 2.5rem);
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.header-inner nav a {
+    color: white;
+    font-weight: 600;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    text-decoration: none;
+    margin-left: 0;
+    white-space: nowrap;
+    /* Přechod pro plynulou animaci */
+    transition: transform 0.2s ease;
+}
+
+.header-inner nav a:hover {
+    color: white;
+    /* Zvětší text při najetí myší */
+    transform: scale(1.1);
+}
+
+.header-inner nav a.active {
+    border-bottom: 2px solid white;
+    padding-bottom: 0.2rem;
 }
 
 /* ===== FEATURES SEKCE ===== */
@@ -124,7 +163,6 @@ header {
   margin: clamp(2rem, 4vw, 5vw) auto;
   max-width: 1000px;
 }
-
 
 /* ===== DOUBLÍKOVÁNÍ – “dou-flex” & “dou-heading” ===== */
 .dou-flex {
@@ -226,13 +264,6 @@ header {
   background-color: #ff4c7d;
 }
 
-/* ===== PATIČKA ===== */
-footer {
-  text-align: center;
-  padding: clamp(1rem, 2vw, 2rem);
-  background-color: #1d3557;
-  color: white;
-}
 .bio {
   font-size: clamp(0.8rem, 1vw, 0.9rem);
   color: #666;

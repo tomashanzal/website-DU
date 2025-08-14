@@ -16,6 +16,7 @@ pip install -r requirements.txt
 
 ZMENA CENY= payment.html dotazník(html + JV dole)
 
-to do:
+  color: #f7b801;
+  #00a8e8
 
 
