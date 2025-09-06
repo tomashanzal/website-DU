@@ -20,3 +20,14 @@ ZMENA CENY= payment.html dotazník(html + JV dole)
   #00a8e8
 
 
+COLORS
+#003092
+#00879E
+#FFAB5B
+
+#B2B0E8
+#7A85C1
+
+#864AF9
+#F8E559
+

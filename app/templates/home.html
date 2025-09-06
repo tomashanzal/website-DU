@@ -56,7 +56,7 @@
             padding: -4vw 0; /* Zvaž, zda je záporný padding v pořádku, může způsobovat překryvy */
             flex-direction: column;
             background-color: #f5faff;
-            gap: -2rem; /* mezera mezi odstavci   #eef0f2*/
+            gap: -2rem; /* mezera mezi odstavci   #eef0f2*/
             /* ZMĚNY PRO ZAROVNÁNÍ TEXTU A TLAČÍTEK */
             align-items: flex-start; /* Zarovná logo, nadpis, odstavce a tlačítka doleva */
             text-align: left; /* Zajišťuje, že samotný text je zarovnán doleva */
@@ -72,6 +72,19 @@
             justify-content: flex-start;
         }
 
+        /* --- Přidáno ohraničení pro tlačítka --- */
+        .btn {
+            border: 3px solid black; /* Modré ohraničení */
+        }
+        .btn-frst-border {
+            border-color: #11235A;
+        }
+
+        .btn-second-border {
+            border-color: black;
+        }
+        /* -------------------------------------- */
+
         .hero-video {
             flex: 1.2;
             display: flex;
@@ -80,8 +93,8 @@
         }
 
         .hero-video iframe {
-            width: 90%;
-            max-width: 725px;
+            width: 105%;
+            max-width: 750px;
             height: auto;
             aspect-ratio: 16 / 9;
             border-radius: 1rem;
@@ -158,32 +171,32 @@
 </head>
 
 <body>
-  <header>
-      <div class="header-inner">
-          <div class="logo">
-            <img src="{{ url_for('static', filename='img/big_logo.png') }}" >
-            <span class="studna-text desktop-only">Studna</span>
-          </div>
-          <nav>
-              <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
-              <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
-              <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
-              <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
-          </nav>
-      </div>
-  </header>
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='img/big_logo.png') }}" >
+                <span class="studna-text desktop-only">Studna</span>
+            </div>
+            <nav>
+                <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
+                <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
+                <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
+                <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
+            </nav>
+        </div>
+    </header>
 
     <section class="hero-landing">
         <div class="hero-text">
             <h2>Doučování od studentů <br>pro studenty</h2>
             <p>Kvalitní a dostupné doučování na přijímačky od studentů, kteří si tím úspěšně prošli.</p>
             <div class="hero-buttons">
-                <a href="#o-projektu" class="btn" style="background-color: #00a8e8;">Kdo jsme</a>
-                <a href="{{ url_for('main.about') }}" class="btn" style="background-color: #ff6392;">O průběhu doučování</a>
+                <a href="#o-projektu" class="btn btn-frst-border" style="background-color: #d4d4d4; color: #11235A;">Kdo jsme</a>
+                <a href="{{ url_for('main.about') }}" class="btn btn-second-border" style="background-color: #711760; color: white;">O průběhu doučování</a>
             </div>
         </div>
         <div class="hero-video">
-            <iframe src="https://www.youtube.com/embed/5hiULjkAj-4" title="STUDNA (doučování)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/kqZ7puaB2g8?si=_bNlDCXoEnOSHhE6" title="STUDNA (doučování)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </section>
 
@@ -205,17 +218,14 @@
         <h4>Lektoři</h4>
         <p>
             Propojujeme studenty se studenty – u nás doučují žáci Gymnázia Jana Keplera,
-            kteří už přijímačky zvládli s minimálně 45 body a vědí, co je čeká.
+            kteří už přijímačky zvládli s minimálně 90 body a vědí, co je čeká.
             Všichni máme učení na přijímačky ještě čerstvě v hlavě –
             víme, jak se systematicky učit i na co si dát pozor v testech.
-
-
-
-            Učení na přijímačky máme všichni v živé paměti víme jak se systematicky učit.
+            Učení na přijímačky máme všichni v paměti a víme jak se učit.
         </p>
     </section>
     <footer>
-        © 2025 Studenti studentům. Všechna práva vyhrazena.
+        © 2025 Studenti Studentům. Všechna práva vyhrazena.
     </footer>
 </body>
 </html>
