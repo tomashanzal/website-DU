@@ -8,6 +8,8 @@ git push -u origin main
 GIT push
 git reset --hard origin/main
 
+        <div class="space" style="color: #1d3557; "><p><strong>13 volných míst</strong></p></div>
+
 .\venv\Scripts\Activate
 pip freeze > requirements.txt
 pip install -r requirements.txt
