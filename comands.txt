@@ -16,6 +16,8 @@ pip install -r requirements.txt
 
 4242 4242 4242 4242
 
+                'child_phone': student_phone,
+                
 ZMENA CENY= payment.html dotazník(html + JV dole)
 
   color: #f7b801;
@@ -33,3 +35,504 @@ COLORS
 #864AF9
 #F8E559
 
+
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studna-doucování na přijímačky</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/favicon-96x96.png') }}" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='img/favicon.svg') }}" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" />
+  <link rel="manifest" href="{{ url_for('static', filename='img/site.webmanifest') }}" />
+
+  <meta property="og:title" content="Studna – Doučování na přijímačky | Studenti studentům" />
+  <meta property="og:description" content="Kvalitní doučování matematiky a češtiny pro úspěch u přijímaček na SŠ." />
+  <meta property="og:image" content="{{ url_for('static', filename='img/big_logo.png', _external=True) }}" />
+  <meta property="og:url" content="{{ request.url }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Studna Doučování" />
+  <meta property="og:locale" content="cs_CZ" /> 
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Studna – Doučování na přijímačky | Studenti studentům" />
+  <meta name="twitter:description" content="Kvalitní doučování matematiky a češtiny pro úspěch u přijímaček na SŠ." />
+  <meta name="twitter:image" content="{{ url_for('static', filename='img/big.logo.png', _external=True) }}" />
+  <style>
+    .payment-section {
+      background-color: #f5faff; 
+      padding: clamp(0rem, 1vw, 5vw) clamp(2vw, 4vw, 8vw);
+      margin-top: 0vw;
+      margin-bottom: 15vw auto;
+      max-width: 3000px;
+    }
+
+    .course-offerings {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: clamp(1.5rem, 3vw, 3rem);
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .course-card {
+      background-color: white;
+      padding: clamp(1.5rem, 2vw, 2.5rem);
+      border-radius: clamp(0.7rem, 1.2vw, 1.2rem);
+      box-shadow: 0 clamp(0.2rem, 0.4vw, 0.6rem) clamp(0.4rem, 0.8vw, 1rem) rgba(0, 0, 0, 0.08);
+      flex: 1 1 300px;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5 rem;
+      transition: border 0.3s ease; /* přechod pro zvýraznění */
+      margin-bottom: 5vw;
+    }
+    .course-card.selected {
+      border: 3px solid #000000;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .course-card .space {
+      text-align: center ;
+      margin-top: -1rem;
+      margin-bottom: 0.5rem;
+
+    }
+
+    .course-card h3 {
+      color: #1d3557;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .course-card p {
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
+      margin-bottom: 0.6rem;
+    }
+
+    .course-card .price {
+      font-size: clamp(1.4rem, 2vw, 1.8rem);
+      font-weight: 700;
+      color: #1d3557;
+      text-align: center;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .payment-options {
+      margin-top: 0rem;
+    }
+
+    .payment-option-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .payment-option-toggle button {
+      background-color: #163e8e;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: clamp(0.9rem, 1.1vw, 1rem);
+      transition: background-color 0.3s ease;
+    }
+
+    .payment-option-toggle button:hover {
+      background-color: #163e8e;
+    }
+    .payment-option-toggle button.active {
+      background-color: none;
+    }
+
+    .payment-form {
+      display: none; /* Skryje formuláře, dokud se nevybere možnost */
+      flex-direction: column;
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+
+    .payment-form.active {
+      display: flex;
+    }
+
+    .payment-form label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .payment-form input[type="text"],
+    .payment-form input[type="email"] {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: clamp(0.9rem, 1.1vw, 1rem);
+    }
+
+    .payment-form button[type="submit"] {
+      background-color: #163e8e;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: clamp(1rem, 1.2vw, 1.1rem);
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .payment-form button[type="submit"]:hover {
+      background-color: #00a8e8;
+    }
+
+    .stripe-button-container {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    /* Adjust for smaller screens */
+    @media (max-width: 768px) {
+      .course-card {
+        flex: 1 1 100%;
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+      <div class="header-inner">
+          <div class="logo">
+              <img src="{{ url_for('static', filename='img/big_logo.png') }}" >
+              <span class="studna-text desktop-only">Studna</span>
+          </div>
+          <nav>
+              <a href="{{ url_for('main.home') }}" class="{% if request.endpoint == 'main.home' %}active{% endif %}">Domů</a>
+              <a href="{{ url_for('main.about') }}" class="{% if request.endpoint == 'main.about' %}active{% endif %}">Doučko</a>
+              <a href="{{ url_for('main.payment') }}" class="{% if request.endpoint == 'main.payment' %}active{% endif %}">Koupit kurz</a>
+              <a href="{{ url_for('main.kontakt') }}" class="{% if request.endpoint == 'main.kontakt' %}active{% endif %}">Kontakt</a>
+          </nav>
+      </div>
+  </header>
+
+  <section class="payment-section">
+    <h1>Kurzy:</h1>
+    <div class="course-offerings">
+      <!-- KARTA: KOMPLET-->
+      <div class="course-card">
+        <h3>Komplet</h3>
+
+        <p><strong>Období:</strong> 4. Listopad – 16. Duben</p>
+        <p><strong>Rozsah:</strong> 42 lekcí (84h)<br></p>
+        <p><strong>Popis:</strong><br> Tento kurz obsahuje kompletní přípravu na přijímací zkoušky. Zde se zaměříme nejen na základy, ale také na doplnění menších mezer v učivu a psaní testů stejným způsobem, jako u ostrých přijímacích zkoušek.<br> </p>
+        <p><strong>Čas:</strong><br>Čeština, Úterky 17:00–19:00 <br> Matematika, Čtvrtky 17:00–19:00</p>
+        
+        <div class="price">Cena: 8 000 Kč</div>
+
+        <div class="payment-options">
+          <div class="payment-option-toggle">
+            <button onclick="showPaymentForm('komplet-stripe')">Platba kartou</button>
+            <button onclick="showPaymentForm('komplet-bank')">Bankovní převod</button>
+          </div>
+
+          <form id="komplet-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
+            <input type="hidden" name="course_name" value="Komplet">
+            <input type="hidden" name="course_price" value="8000">
+            
+            <label for="name_zak">Jméno a příjmení žáka:</label>
+            <input type="text" id="name_zak" name="name_zak" required>
+          
+            <label for="telefon_zak">Telefonní číslo žáka:</label>
+            <input type="tel" id="telefon_zak" name="telefon_zak" required>
+            
+            <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
+            <input type="text" id="name_rodic" name="name_rodic" required>
+            
+            <label for="parent_email">E-mail rodiče:</label>
+            <input type="email" id="parent_email" name="parent_email" required>          
+            
+            <label for="cislo_uctu">Vaše číslo učtu :</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" required>    
+            
+            <label for="misto_bydliste">Celé místo bydliště:</label>
+            <input type="text" id="misto_bydliste" name="misto_bydliste" required>
+
+            <label for="psc">PSČ:</label>
+            <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
+                        
+            <button type="submit" class="payment-btn">Platit kartou</button>
+          </form>
+
+
+          <form id="komplet-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
+            <input type="hidden" name="course_name" value="Komplet">
+            <input type="hidden" name="course_price" value="8000">
+
+            <label for="name_zak">Jméno a příjmení žáka:</label>
+            <input type="text" id="name_zak" name="name_zak" required>
+            
+            <label for="telefon_zak">Telefonní číslo žáka:</label>
+            <input type="tel" id="telefon_zak" name="telefon_zak" required>
+            
+            <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
+            <input type="text" id="name_rodic" name="name_rodic" required>
+            
+            <label for="parent_email">E-mail rodiče:</label>
+            <input type="email" id="parent_email" name="parent_email" required>    
+
+            <label for="cislo_uctu">Vaše číslo učtu:</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
+
+            <label for="misto_bydliste">Celé místo bydliště:</label>
+            <input type="text" id="misto_bydliste" name="misto_bydliste" required>
+
+            <label for="psc">PSČ:</label>
+            <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
+                        
+            <button type="submit" class="payment-btn">Platit převodem</button>
+          </form>
+        </div>
+      </div>
+
+     <!--SPRTARNA-->
+      <div class="course-card">
+        <h3 style="color: #15b5a5;">Šprtárna</h3>
+
+        <p><strong>Období:</strong> 4. Listopadu – 29. Ledna</p>
+        <p><strong>Rozsah:</strong> 22 lekcí (44h)</p>
+        <p><strong>Popis:</strong><br>V tomto kurzu se primárně zaměříme na vyplňování a opravování testů ve skupinkách, abychom žákům pomohli získat základy potřebné k tomu, aby se dostali na jejich vysněnou střední školu.<br><br></p>
+        <p><strong>Čas:</strong><br>Čeština, Úterky 17:00–19:00 <br> Matematika, Čtvrtky 17:00–19:00</p>
+        <div class="price">Cena: 4 000 Kč</div>
+
+        <div class="payment-options">
+          <div class="payment-option-toggle">
+            <button onclick="showPaymentForm('sprtarna-stripe')">Platba kartou</button>
+            <button onclick="showPaymentForm('sprtarna-bank')">Bankovní převod</button>
+          </div>
+
+          <form id="sprtarna-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
+            <input type="hidden" name="course_name" value="Šprtárna">
+            <input type="hidden" name="course_price" value="4000">
+            
+            <label for="name_zak">Jméno a příjmení žáka:</label>
+            <input type="text" id="name_zak" name="name_zak" required>
+            
+            <label for="telefon_zak">Telefonní číslo žáka:</label>
+            <input type="tel" id="telefon_zak" name="telefon_zak" required>
+            
+            <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
+            <input type="text" id="name_rodic" name="name_rodic" required>
+            
+            <label for="parent_email">E-mail rodiče:</label>
+            <input type="email" id="parent_email" name="parent_email" required>          
+            
+            <label for="cislo_uctu">Vaše číslo učtu:</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
+
+            <label for="misto_bydliste">Celé místo bydliště:</label>
+            <input type="text" id="misto_bydliste" name="misto_bydliste" required>
+
+            <label for="psc">PSČ:</label>
+            <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
+            
+            <button type="submit" class="payment-btn">Platit kartou </button>
+          </form>
+
+          <form id="sprtarna-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
+            <input type="hidden" name="course_name" value="Šprtárna">
+            <input type="hidden" name="course_price" value="4000">
+            
+            <label for="name_zak">Jméno a příjmení žáka:</label>
+            <input type="text" id="name_zak" name="name_zak" required>
+            
+            <label for="telefon_zak">Telefonní číslo žáka:</label>
+            <input type="tel" id="telefon_zak" name="telefon_zak" required>
+            
+            <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
+            <input type="text" id="name_rodic" name="name_rodic" required>
+            
+            <label for="parent_email">E-mail rodiče:</label>
+            <input type="email" id="parent_email" name="parent_email" required>
+            
+            <label for="cislo_uctu">Vaše číslo učtu:</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
+            
+            <label for="misto_bydliste">Celé místo bydliště:</label>
+            <input type="text" id="misto_bydliste" name="misto_bydliste" required>
+
+            <label for="psc">PSČ:</label>
+            <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
+            
+            <button type="submit" class="payment-btn">Platit převodem</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- KARTA: Masakr -->
+      <div class="course-card">
+        <h3 style="color: #c3282d;">Masakr</h3>
+
+        <p><strong>Období:</strong> 3. Únor – 16. Dubna</p>
+        <p><strong>Rozsah:</strong> 20 lekcí (40h)</p>
+        <p><strong>Popis:</strong><br>Zde se zaměříme na dopilování menších nedostatků studentů v potřebné látce a zároveň na psaní testů stejným stylem jako u ostrých přijimacích zkoušek. <br><br><br> </p>
+        <p><strong>Čas:</strong><br>Čeština, Úterky 17:00–19:00 <br> Matematika, Čtvrtky 17:00–19:00</p>
+        <div class="price">Cena: 4 000 Kč</div>
+
+        <div class="payment-options">
+          <div class="payment-option-toggle">
+            <button onclick="showPaymentForm('masakr-stripe')">Platba kartou</button>
+            <button onclick="showPaymentForm('masakr-bank')">Bankovní převod</button>
+          </div>
+
+          <form id="masakr-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
+            <input type="hidden" name="course_name" value="Masakr">
+            <input type="hidden" name="course_price" value="4000">
+            
+             <label for="name_zak">Jméno a příjmení žáka:</label>
+            <input type="text" id="name_zak" name="name_zak" required>
+            
+            <label for="telefon_zak">Telefonní číslo žáka:</label>
+            <input type="tel" id="telefon_zak" name="telefon_zak" required>
+            
+            <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
+            <input type="text" id="name_rodic" name="name_rodic" required>
+            
+            <label for="parent_email">E-mail rodiče:</label>
+            <input type="email" id="parent_email" name="parent_email" required> 
+            
+            <label for="cislo_uctu">Vaše číslo učtu:</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
+            
+            <label for="misto_bydliste">Celé místo bydliště:</label>
+            <input type="text" id="misto_bydliste" name="misto_bydliste" required>
+
+            <label for="psc">PSČ:</label>
+            <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
+            
+            <button type="submit" class="payment-btn">Platit kartou</button>
+          </form>
+
+          <form id="masakr-bank" class="payment-form" action="{{ url_for('main.generate_qr') }}" method="POST">
+            <input type="hidden" name="course_name" value="Masakr">
+            <input type="hidden" name="course_price" value="4000">
+            
+            <label for="name_zak">Jméno a příjmení žáka:</label>
+            <input type="text" id="name_zak" name="name_zak" required>
+
+            <label for="telefon_zak">Telefonní číslo žáka:</label>
+            <input type="tel" id="telefon_zak" name="telefon_zak" required>
+            
+            <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
+            <input type="text" id="name_rodic" name="name_rodic" required>
+            
+            <label for="parent_email">E-mail rodiče:</label>
+            <input type="email" id="parent_email" name="parent_email" required>    
+            
+            <label for="cislo_uctu">Vaše číslo učtu:</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
+            
+            <label for="misto_bydliste">Celé Místo bydliště:</label>
+            <input type="text" id="misto_bydliste" name="misto_bydliste" required>
+
+            <label for="psc">PSČ:</label>
+            <input type="text" id="psc" name="psc" required pattern="[0-9]{5}" inputmode="numeric" title="Zadejte 5místné PSČ">
+            
+            
+            <button type="submit" class="payment-btn">Platit převodem</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>© 2025 Studenti studentům. Všechna práva vyhrazena.</footer>
+
+<script>
+    function showPaymentForm(formId) {
+      document.querySelectorAll('.payment-form').forEach(form => {
+        form.classList.remove('active');
+      });
+      document.querySelectorAll('.payment-option-toggle button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      const targetForm = document.getElementById(formId);
+      if (targetForm) {
+        targetForm.classList.add('active');
+      }
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+      }
+    }
+
+    document.querySelectorAll('.course-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.course-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+      });
+    });
+
+    const courseCards = document.querySelectorAll('.course-card');
+    courseCards.forEach((card, index) => {
+      const groupName = `subject-group-${index}`;
+      const subjectSelector = document.createElement('div');
+      subjectSelector.classList.add('subject-selection');
+      subjectSelector.innerHTML = `
+        <p><strong>Vyber předmět:</strong></p>
+        <label><input type="radio" name="${groupName}" value="Full" required checked> Full (obojí)</label><br>
+        <label><input type="radio" name="${groupName}" value="Matematika"> Matematika </label><br>
+        <label><input type="radio" name="${groupName}" value="Čestina"> Čeština </label>
+      `;
+      card.insertBefore(subjectSelector, card.querySelector('.price'));
+    });
+
+    courseCards.forEach(card => {
+      const priceEl = card.querySelector('.price');
+      const subjectRadios = card.querySelectorAll('input[type="radio"][name^="subject-group"]');
+      const priceInputs = card.querySelectorAll('input[name="course_price"]');
+      const courseNameElement = card.querySelector('h3'); // Get the course name element
+      let initialFullPrice;
+
+      // Determine initial full price based on the course name
+      if (courseNameElement.textContent.includes('Komplet')) {
+        initialFullPrice = 8000;
+      } else { // For Šprtárna and Masakr
+        initialFullPrice = 4000;
+      }
+
+      subjectRadios.forEach(radio => {
+        radio.addEventListener('change', () => {
+          const selected = card.querySelector('input[type="radio"][name^="subject-group"]:checked');
+          let newPrice = initialFullPrice; // Start with the full price for the specific course
+
+          if (selected && selected.value !== 'Full') { // If a single subject is selected
+            newPrice = initialFullPrice / 2; // Half the initial full price
+          }
+
+          priceEl.textContent = `Cena: ${newPrice.toLocaleString('cs-CZ')} Kč`;
+          priceInputs.forEach(input => {
+            input.value = newPrice;
+          });
+        });
+      });
+
+      // Set initial price correctly when the page loads (based on the default 'Full' selection)
+      priceEl.textContent = `Cena: ${initialFullPrice.toLocaleString('cs-CZ')} Kč`;
+      priceInputs.forEach(input => {
+          input.value = initialFullPrice;
+      });
+    });
+</script>
+</body>
+</html>

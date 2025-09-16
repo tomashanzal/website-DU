@@ -130,7 +130,6 @@ def create_checkout_session():
             metadata={
                 'course_name': course_name,
                 'child_name': student_name,
-                'child_phone': student_phone,
                 'parent_name': parent_name,
                 'parent_email': parent_email,
                 'address': address,
@@ -448,6 +447,7 @@ def generate_qr():
         bank_code=bank_code,
         child_name=student_name,
         parent_email=parent_email,
+        parent_name=parent_name,
         course_name=course_name,
         variable_symbol=variable_symbol,
     )

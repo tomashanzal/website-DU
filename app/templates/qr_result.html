@@ -107,14 +107,8 @@
                 <p><strong>Jméno žáka:</strong> {{ child_name }}</p>
                 <p><strong>E-mail rodiče:</strong> {{ parent_email }}</p>
                 <p><strong>Částka:</strong> {{ "%.2f" % amount }} CZK</p>
-                <p><strong>Číslo účtu příjemce:</strong> CZ73 3030 0000 0031 3428 4022</p>
-                <p><strong>Variabilní symbol:</strong> {{ variable_symbol }}</p>
-                {% if specific_symbol %}
-                  <p><strong>Specifický symbol:</strong> {{ specific_symbol }}</p>
-                {% endif %}
-                {% if message %}
-                  <p><strong>Zpráva pro příjemce:</strong> {{ message }}</p>
-                {% endif %}
+                <p><strong>Číslo účtu:</strong> 3134284022/3030</p>
+                <p><strong>Zprava pro přijemce:</strong> {{ parent_name }}</p>
             </div>
         </div>
 
