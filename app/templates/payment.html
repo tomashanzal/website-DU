@@ -211,7 +211,7 @@
 
           <form id="komplet-stripe" class="payment-form" action="{{ url_for('main.create_checkout_session') }}" method="POST">
             <input type="hidden" name="course_name" value="Komplet">
-            <input type="hidden" name="course_price" value="8000">
+            <input type="hidden" name="course_price" value="30">
             
             <label for="name_zak">Jméno a příjmení žáka:</label>
             <input type="text" id="name_zak" name="name_zak" required>
@@ -225,8 +225,8 @@
             <label for="parent_email">E-mail rodiče:</label>
             <input type="email" id="parent_email" name="parent_email" required>          
             
-            <label for="cislo_uctu">Vaše číslo učtu :</label>
-            <input type="number" id="cislo_uctu" name="cislo_uctu" required>    
+            <label for="cislo_uctu">Vaše číslo učtu (nepovinné):</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" >    
             
             <label for="misto_bydliste">Celé místo bydliště:</label>
             <input type="text" id="misto_bydliste" name="misto_bydliste" required>
@@ -251,8 +251,8 @@
             <label for="name_rodic">Jméno a příjmení zákonného zástupce:</label>
             <input type="text" id="name_rodic" name="name_rodic" required>
             
-            <label for="parent_email">E-mail rodiče:</label>
-            <input type="email" id="parent_email" name="parent_email" required>    
+            <label for="parent_email">E-mail rodiče (nepovinné):</label>
+            <input type="email" id="parent_email" name="parent_email" >    
 
             <label for="cislo_uctu">Vaše číslo učtu:</label>
             <input type="number" id="cislo_uctu" name="cislo_uctu" required>
@@ -300,8 +300,8 @@
             <label for="parent_email">E-mail rodiče:</label>
             <input type="email" id="parent_email" name="parent_email" required>          
             
-            <label for="cislo_uctu">Vaše číslo učtu:</label>
-            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
+            <label for="cislo_uctu">Vaše číslo učtu (nepovinné):</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" >
 
             <label for="misto_bydliste">Celé místo bydliště:</label>
             <input type="text" id="misto_bydliste" name="misto_bydliste" required>
@@ -328,8 +328,8 @@
             <label for="parent_email">E-mail rodiče:</label>
             <input type="email" id="parent_email" name="parent_email" required>
             
-            <label for="cislo_uctu">Vaše číslo učtu:</label>
-            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
+            <label for="cislo_uctu">Vaše číslo učtu (nepovinné):</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" >
             
             <label for="misto_bydliste">Celé místo bydliště:</label>
             <input type="text" id="misto_bydliste" name="misto_bydliste" required>
@@ -374,8 +374,8 @@
             <label for="parent_email">E-mail rodiče:</label>
             <input type="email" id="parent_email" name="parent_email" required> 
             
-            <label for="cislo_uctu">Vaše číslo učtu:</label>
-            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
+            <label for="cislo_uctu">Vaše číslo učtu (nepovinné):</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu">
             
             <label for="misto_bydliste">Celé místo bydliště:</label>
             <input type="text" id="misto_bydliste" name="misto_bydliste" required>
@@ -402,8 +402,8 @@
             <label for="parent_email">E-mail rodiče:</label>
             <input type="email" id="parent_email" name="parent_email" required>    
             
-            <label for="cislo_uctu">Vaše číslo učtu:</label>
-            <input type="number" id="cislo_uctu" name="cislo_uctu" required>
+            <label for="cislo_uctu">Vaše číslo učtu (nepovinné):</label>
+            <input type="number" id="cislo_uctu" name="cislo_uctu" >
             
             <label for="misto_bydliste">Celé Místo bydliště:</label>
             <input type="text" id="misto_bydliste" name="misto_bydliste" required>
@@ -467,7 +467,7 @@
 
       // Determine initial full price based on the course name
       if (courseNameElement.textContent.includes('Komplet')) {
-        initialFullPrice = 8000;
+        initialFullPrice = 30;
       } else { // For Šprtárna and Masakr
         initialFullPrice = 4000;
       }
