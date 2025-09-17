@@ -57,7 +57,7 @@
 
         .qr-section .btn {
             margin-top: 2rem;
-            background-color: #00a8e8;
+            background-color: #163e8e;
             color: white;
             text-decoration: none;
             padding: 0.75rem 1.5rem;
@@ -66,7 +66,7 @@
         }
 
         .qr-section .btn:hover {
-            background-color: #008cb3;
+            background-color: #0a69de;
         }
     </style>
 </head>
@@ -89,7 +89,7 @@
     <section class="qr-section">
         <h1>Objednávka přijata – Detaily platby bankovním převodem</h1>
         <p>Děkujeme za Vaši objednávku kurzu <strong>{{ course_name }}</strong>. Níže naleznete údaje pro provedení bankovního převodu.</p>
-        <p><strong>Stejné platební instrukce včetně QR kódu Vám byly právě zaslány na Váš e-mail: <strong style="color: #1d3557;">{{ parent_email }}</strong>.</strong></p>
+        <p><strong>Stejné platební instrukce. Vám byly právě zaslány na Váš e-mail: <strong style="color: #1d3557;">{{ parent_email }}</strong>.</strong></p>
 
         <div class="qr-flex">
             {% if amount == 2000 %}

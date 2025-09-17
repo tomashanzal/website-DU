@@ -415,7 +415,7 @@ def generate_qr():
         <li><strong>Částka:</strong> {amount / 100:.2f} CZK</li>
         <li><strong>Číslo účtu příjemce:</strong> <strong>{account_number}/{bank_code}</strong></li>
         <li><strong>Variabilní symbol:</strong> <strong>{variable_symbol}</strong></li>
-        <li><strong>Zpráva pro příjemce:</strong> Platba za kurz - {student_name}</li>
+        <li><strong>Zpráva pro příjemce:</strong>{parent_name}</li>
     </ul>
     <p>Pro rychlejší a snadnější platbu můžete použít také QR kód, který naleznete na stránce potvrzení objednávky (kam jste byli přesměrováni po odeslání formuláře).</p>
 
