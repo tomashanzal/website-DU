@@ -13,6 +13,7 @@ git reset --hard origin/main
 .\venv\Scripts\Activate
 pip freeze > requirements.txt
 pip install -r requirements.txt
+git merge --abort
 
 4242 4242 4242 4242
 
