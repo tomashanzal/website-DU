@@ -414,17 +414,14 @@ def generate_qr():
     <ul>
         <li><strong>Částka:</strong> {amount / 100:.2f} CZK</li>
         <li><strong>Číslo účtu příjemce:</strong> <strong>{account_number}/{bank_code}</strong></li>
-        <li><strong>Variabilní symbol:</strong> <strong>{variable_symbol}</strong></li>
         <li><strong>Zpráva pro příjemce:</strong>{parent_name}</li>
     </ul>
-    <p>Pro rychlejší a snadnější platbu můžete použít také QR kód, který naleznete na stránce potvrzení objednávky (kam jste byli přesměrováni po odeslání formuláře).</p>
 
     <p><strong>Co se stane dál?</strong></p>
     <p>Jakmile obdržíme Vaši platbu (obvykle do 1-2 pracovních dnů), zašleme Vám **samostatný e-mail s potvrzením o přijetí platby** a podrobnými informacemi k zahájení kurzu (včetně termínů, místa a detailů o rozřazovacím testu).</p>
 
     <p><strong>Přehled Vaší objednávky:</strong></p>
     <ul>
-        <li><strong>ID objednávky:</strong> {new_order_id}</li>
         <li><strong>Kurz:</strong> {course_name}</li>
         <li><strong>Jméno žáka:</strong> {student_name}</li>
         <li><strong>E-mail pro komunikaci:</strong> {parent_email}</li>
